@@ -18,5 +18,8 @@ namespace Controls
         public UiControl UiControl;
         public ShaftControl ShaftControl;
         public DepositoryControl DepositoryControl;
+        
+        [Header("Markers")]
+        public Transform DepositoryStartTransform;
     }
 }

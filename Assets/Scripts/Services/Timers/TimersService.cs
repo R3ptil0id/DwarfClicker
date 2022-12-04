@@ -60,7 +60,7 @@ namespace Services.Timers
 
         public ITimer AddTimer(float duration, Action<ITimer> tick = null, Action<ITimer> done = null)
         {
-            int id = GetId();
+            var id = GetId();
             var timer = CreateTimer(id, duration, tick, done);
             _added[timer.Id] = timer;
             return timer;
