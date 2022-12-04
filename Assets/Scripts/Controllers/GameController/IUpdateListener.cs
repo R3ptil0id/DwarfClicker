@@ -2,6 +2,6 @@ namespace Controllers.GameController
 {
     public interface IUpdateListener
     {
-        void Update();
+        void Update(float deltaTime);
     }
 }

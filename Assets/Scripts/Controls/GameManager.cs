@@ -7,15 +7,15 @@ namespace Controls
     {
         private GameController _gameController;
         private Installer _installer;
-        
+
+        private void Awake()
+        {
+            _installer = GetComponent<Installer>();
+        }
+
         private void Start()
         {
            _gameController = new GameController(_installer);
-        }
-
-        private void FixedUpdate()
-        {
-            _gameController.Update();
         }
     }
 }

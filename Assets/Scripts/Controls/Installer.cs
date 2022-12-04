@@ -1,3 +1,4 @@
+using Controls.GameElements;
 using Controls.UiControls;
 using MonoBehaviours.GameElements;
 using ScriptableObjects;
@@ -12,7 +13,7 @@ namespace Controls
         
         [Header("Controls")]
         public CameraControl CameraControl;
-        public CurrenciesControl CurrenciesControl;
+        public CurrenciesUiControl currenciesUiControl;
         public InputControl InputControl;
         public UiControl UiControl;
         public ShaftControl ShaftControl;
