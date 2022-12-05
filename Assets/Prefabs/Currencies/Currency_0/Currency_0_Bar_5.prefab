@@ -529,7 +529,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9136122834281841631}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.6582258, y: 2.3680322, z: 19.74781}
+  m_LocalPosition: {x: 0, y: 0, z: 19.74781}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -556,7 +556,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currencyType: 0
   _currencyLevel: 0
-  b: 0
   _barControls:
   - Bar: {fileID: 4055094460406176688}
   - Bar: {fileID: 3263124283243850334}
