@@ -12,9 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e4367bb7f147de8850f5aea8ae735a, type: 3}
   m_Name: Prefabs Table
   m_EditorClassIdentifier: 
-  MainBlock: {fileID: 0}
-  TreasuryBlock: {fileID: 0}
-  "\u0421urrency_1": {fileID: 0}
-  "\u0421urrency_2": {fileID: 0}
-  "\u0421urrency_3": {fileID: 0}
-  "\u0421urrency_4": {fileID: 0}
+  CommonPrefabs: {fileID: 11400000, guid: 3b152b2b6027824449666f315b26dea4, type: 2}
+  CurrenciesElementsPrefabs: {fileID: 11400000, guid: a1c8b46e817616c44acbba3a95977174, type: 2}

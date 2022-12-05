@@ -14,10 +14,12 @@ namespace Controllers.GameController
         private readonly CurrenciesUiControl _currenciesUiControl;
         private readonly UiControl _uiControl;
         private readonly PrefabsTable _prefabsTable;
+
+        private readonly CurrencyObjectsPool _currencyObjectsPool;
         
         private readonly ShaftController _shaftControl;
         private readonly DepositoryController _depositoryController;
-
+        
         public GameController(Installer installer)
         {
             _timersService = new TimersService();
@@ -27,16 +29,22 @@ namespace Controllers.GameController
             _prefabsTable = installer.PrefabsTable;
 
             _shaftControl = new ShaftController(installer.ShaftControl);
-            _shaftControl.AddLevel();
 
             _depositoryController = new DepositoryController(installer.DepositoryControl);
+            _currencyObjectsPool = new CurrencyObjectsPool(installer, _prefabsTable);
             
             GameLoopService.Instance.Register(this);
+            Initialize();
         }
 
         public void Update(float deltaTime)
         {
             
+        }
+
+        private void Initialize()
+        {
+            _currencyObjectsPool.Initialize();
         }
     }
 }
