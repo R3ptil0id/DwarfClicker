@@ -9,7 +9,6 @@ namespace Controls.GameElements.CurrencyBar
 {
     public class ComplexCurrencyBarControl : CurrencyBarControl
     {
-        
         [SerializeField] private List<SmallBarControl> _barControls;
         [SerializeField] private Transform _bar;
 

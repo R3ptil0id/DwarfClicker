@@ -1,7 +1,7 @@
 using Controls.GameElements;
+using Controls.ScriptableObjects;
 using Controls.UiControls;
 using MonoBehaviours.GameElements;
-using ScriptableObjects;
 using UnityEngine;
 
 namespace Controls
@@ -21,5 +21,6 @@ namespace Controls
         
         [Header("Markers")]
         public Transform DepositoryStartTransform;
+        public Transform PoolObject;
     }
 }

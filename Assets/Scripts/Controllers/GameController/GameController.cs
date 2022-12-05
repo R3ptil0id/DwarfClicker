@@ -1,6 +1,6 @@
 using Controls;
+using Controls.ScriptableObjects;
 using Controls.UiControls;
-using ScriptableObjects;
 using Services.GameLoop;
 using Services.Timers;
 

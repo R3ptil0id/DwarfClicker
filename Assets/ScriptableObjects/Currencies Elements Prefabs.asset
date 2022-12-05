@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bc50f06d0d249009d92a25c38fc67a6, type: 3}
+  m_Name: Currencies Elements Prefabs
+  m_EditorClassIdentifier: 
+  Currency_0_Bar_5: {fileID: 9136122834281841631, guid: 326c224acd84b1041b9129ea6584b466, type: 3}
+  Currency_0_Bar_20: {fileID: 8547958030041885624, guid: 3470c2954a0171f428887da8aac893d4, type: 3}
+  Currency_0_Bar_80: {fileID: 7558424961252115193, guid: fc9a4ef11972cdf41a2c48fac584175e, type: 3}
+  Currency_0_Bar_320: {fileID: 6195363985399486917, guid: cc9942f86873c694da34657aaa7e1db0, type: 3}
+  Currency_0_Bar_1280: {fileID: 715693167448603801, guid: 0db43c02477ae22479dbc4ceb7f1c1b4, type: 3}
+  Currency_1_Bar_5: {fileID: 8246963025585920648, guid: 2dad68efa13b0004a96ca577aac503dd, type: 3}
+  Currency_1_Bar_20: {fileID: 8488178164097738985, guid: 0e8f4dc383c512d45ad64bb269054e7f, type: 3}
+  Currency_1_Bar_80: {fileID: 8069077016282291314, guid: 0e6ca1a6b4d839f4b8f761f6f873beb5, type: 3}
+  Currency_1_Bar_320: {fileID: 1179095752991261055, guid: d69d73110281ca84ab64bf3554df1684, type: 3}
+  Currency_1_Bar_1280: {fileID: 1767628068742087945, guid: 8eb7a2b62f7e8bb459e37a734b6a2539, type: 3}
+  Currency_2_Bar_5: {fileID: 5395533851653310264, guid: fc93a07c2506c8c4e8c1e18eb697e16e, type: 3}
+  Currency_2_Bar_20: {fileID: 2648692252772074490, guid: 17fb9ef752ddf0f4eaf71da42e369b0f, type: 3}
+  Currency_2_Bar_80: {fileID: 766632613551190217, guid: 048b505a4f808734dad73b11e5d02d9e, type: 3}
+  Currency_2_Bar_320: {fileID: 8597251150345174921, guid: 237287e283e9f794f8dd8cfb7958ac25, type: 3}
+  Currency_2_Bar_1280: {fileID: 2713872617065438391, guid: 3c27679efc2fa3840941933ae6fc0f60, type: 3}
+  Currency_3_Bar_5: {fileID: 3325819437668725286, guid: 57dbc883e91bf174db03a194ecead148, type: 3}
+  Currency_3_Bar_20: {fileID: 8559391489896739912, guid: e61d4d1184b9e5e41b74a213ac2d593a, type: 3}
+  Currency_3_Bar_80: {fileID: 7646081330418043469, guid: 0c0ff4987c04c194abd868023f45694b, type: 3}
+  Currency_3_Bar_320: {fileID: 1732336788911462835, guid: 08d46375dfd75db4cb2473bb2e75b40e, type: 3}
+  Currency_3_Bar_1280: {fileID: 204341355849923135, guid: bb876b514f0cf8648870e0b782d8eb66, type: 3}
+  Currency_4_Bar_5: {fileID: 6594235430416914441, guid: cb3760e476c3ac84c80ba455b925c1e7, type: 3}
+  Currency_4_Bar_20: {fileID: 1799434513130256166, guid: 3371e8c8362039442b807aa490a3f36a, type: 3}
+  Currency_4_Bar_80: {fileID: 9175488098278078062, guid: 26aaf78ec0d073e4f92d9ce63009a2ec, type: 3}
+  Currency_4_Bar_320: {fileID: 8354536196610181075, guid: ff8bc15b887c61443b2b1b1df8fa8113, type: 3}
+  Currency_4_Bar_1280: {fileID: 4478767869991965652, guid: e3d3676c2b55edd43bb8d387d3104f4a, type: 3}
