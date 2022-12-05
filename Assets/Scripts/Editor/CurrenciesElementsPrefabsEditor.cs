@@ -12,9 +12,8 @@ namespace Editor
     public class CurrenciesElementsPrefabsEditor : UnityEditor.Editor
     {
         private string _assetFolderPath = "Assets/Prefabs/Currencies";
-        private int _breakRcursion = 200;        
-        //Currency_0_Bar_5
-
+        private int _breakRecursion = 200;        
+        
         public override void OnInspectorGUI()
         {
             var currenciesPrefabs = (CurrenciesElementsPrefabs)target;
@@ -36,7 +35,7 @@ namespace Editor
 
         private void Recursive(string folder, List<GameObject> list, int currentPass)
         {
-            if (currentPass > _breakRcursion)
+            if (currentPass > _breakRecursion)
             {
                 return;
             }
@@ -51,8 +50,6 @@ namespace Editor
                 Recursive(fld, list, currentPass);
             }
         }
-        
-        
 
         private void FillFields(List<GameObject> list, Type currenciesElementsPrefabs)
         {
