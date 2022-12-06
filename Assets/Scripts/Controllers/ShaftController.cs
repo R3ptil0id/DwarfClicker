@@ -1,3 +1,4 @@
+using Controls;
 using Controls.GameElements;
 
 namespace Controllers
@@ -6,9 +7,9 @@ namespace Controllers
     {
         private readonly ShaftControl _shaftControl;
 
-        public ShaftController(ShaftControl shaftControl)
+        public ShaftController(Installer installer)
         {
-            _shaftControl = shaftControl;
+            _shaftControl = installer.ShaftControl;
         }
 
         public void AddLevel()

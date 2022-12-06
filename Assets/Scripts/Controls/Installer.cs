@@ -1,7 +1,10 @@
+using System;
+using System.Collections.Generic;
 using Controls.GameElements;
 using Controls.ScriptableObjects;
 using Controls.UiControls;
 using UnityEngine;
+using Object = System.Object;
 
 namespace Controls
 {
@@ -9,6 +12,7 @@ namespace Controls
     {
         [Header("Commons")]
         public PrefabsTable PrefabsTable;
+        public Transform PoolObject;
         
         [Header("Controls")]
         public CameraControl CameraControl;
@@ -20,6 +24,17 @@ namespace Controls
         
         [Header("Markers")]
         public Transform DepositoryStartTransform;
-        public Transform PoolObject;
+        //
+        // private Dictionary<Type, Object> _instances = new();
+        //
+        // public void AddInstance(Object obj)
+        // {
+        //     _instances.Add(obj.GetType(), obj);
+        // }
+        //
+        // public T GetInstance<T>()
+        // {
+        //     return (T)_instances[typeof(T)];
+        // }
     }
 }

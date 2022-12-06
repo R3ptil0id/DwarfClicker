@@ -1,6 +1,5 @@
 using Controls;
 using Controls.ScriptableObjects;
-using Controls.UiControls;
 using Services.GameLoop;
 using Services.Timers;
 
@@ -11,8 +10,8 @@ namespace Controllers.GameController
     {
         private readonly TimersService _timersService;
         
-        private readonly CurrenciesUiControl _currenciesUiControl;
-        private readonly UiControl _uiControl;
+        private readonly InputControl _inputControl;
+        
         private readonly PrefabsTable _prefabsTable;
 
         private readonly CurrencyObjectsPool _currencyObjectsPool;
@@ -23,15 +22,13 @@ namespace Controllers.GameController
         public GameController(Installer installer)
         {
             _timersService = new TimersService();
-            
-            _currenciesUiControl = installer.currenciesUiControl;
-            _uiControl = installer.UiControl;
             _prefabsTable = installer.PrefabsTable;
 
-            _shaftControl = new ShaftController(installer.ShaftControl);
-
-            _depositoryController = new DepositoryController(installer.DepositoryControl);
-            _currencyObjectsPool = new CurrencyObjectsPool(installer, _prefabsTable);
+            _currencyObjectsPool = new CurrencyObjectsPool(installer);
+            
+            _shaftControl = new ShaftController(installer);
+            _depositoryController = new DepositoryController(installer, _currencyObjectsPool);
+            
             
             GameLoopService.Instance.Register(this);
             Initialize();

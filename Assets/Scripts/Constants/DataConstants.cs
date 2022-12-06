@@ -1,12 +1,20 @@
-using JetBrains.Annotations;
+using System.Collections.Generic;
+using Enums;
 
 namespace Constants
 {
     public static class DataConstants
     {
-        [NotNull] public const int Сurrency_1_Max = 1000;
-        [NotNull] public const int Сurrency_2_Max = 10000;
-        [NotNull] public const int Сurrency_3_Max = 100000;
-        [NotNull] public const int Сurrency_4_Max = 1000000;
+        public static readonly Dictionary<CurrencyLevel, int> CurrencyValues = new();
+
+        static DataConstants()
+        {
+            CurrencyValues.Add(CurrencyLevel.Units_1, 1);
+            CurrencyValues.Add(CurrencyLevel.Units_5, 5);
+            CurrencyValues.Add(CurrencyLevel.Units_20, 20);
+            CurrencyValues.Add(CurrencyLevel.Units_80, 80);
+            CurrencyValues.Add(CurrencyLevel.Units_320, 320);
+            CurrencyValues.Add(CurrencyLevel.Units_1280, 1280);
+        }
     }
 }

@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 namespace Controls
@@ -16,5 +17,11 @@ namespace Controls
             _camera = CameraControl.Camera;
         }
 
+        public Action NotifyClick;
+        
+        public void Click()
+        {
+            NotifyClick?.Invoke();
+        }
     }
 }
