@@ -554,8 +554,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3adb4b2a16e4464195c812509d5f6a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currencyType: 0
-  _currencyLevel: 0
+  _currencyType: 1
+  _currencyLevel: 2
   _barControls:
   - Bar: {fileID: 4055094460406176688}
   - Bar: {fileID: 3263124283243850334}
