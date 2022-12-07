@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Enums;
 using Futures.Base;
 using Futures.Common;
 using Futures.Util;
@@ -15,7 +16,7 @@ namespace Controls.GameElements.CurrencyBar
         private const float LocalYStartPositions = 0.076f;
         private const float LocalStartScale = 0.01f;
         
-        private int _currentLvl = -1;
+        private int _currentLvl;
         private IFuture _future;
         
         private void Awake()
@@ -26,9 +27,14 @@ namespace Controls.GameElements.CurrencyBar
             }
         }
 
-        public void AddLevel()
+        public void AddLevel(int currentLvl, CurrencyLevel currencyLevel = CurrencyLevel.Undefined)
         {
-            _currentLvl++;
+            if (currencyLevel == CurrencyLevel.Units_5)
+            {
+                _currencyLevel = currencyLevel;
+            }
+
+            _currentLvl = currentLvl;
 
             UpdateView();
         }

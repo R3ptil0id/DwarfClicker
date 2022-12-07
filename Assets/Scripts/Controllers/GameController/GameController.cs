@@ -1,34 +1,28 @@
+using Controllers.Depository;
 using Controls;
 using Controls.ScriptableObjects;
 using Services.GameLoop;
-using Services.Timers;
 
 
 namespace Controllers.GameController
 {
     public class GameController : IUpdateListener
     {
-        private readonly TimersService _timersService;
-        
-        private readonly InputControl _inputControl;
-        
         private readonly PrefabsTable _prefabsTable;
 
         private readonly CurrencyObjectsPool _currencyObjectsPool;
         
         private readonly ShaftController _shaftControl;
-        private readonly DepositoryController _depositoryController;
+        private readonly InputControl _inputControl;
         
         public GameController(Installer installer)
         {
-            _timersService = new TimersService();
-            _prefabsTable = installer.PrefabsTable;
-
             _currencyObjectsPool = new CurrencyObjectsPool(installer);
             
-            _shaftControl = new ShaftController(installer);
-            _depositoryController = new DepositoryController(installer, _currencyObjectsPool);
-            
+            installer.AddInstance(_currencyObjectsPool);
+            installer.AddInstance(new PerkController(installer));
+            installer.AddInstance(new DepositoryController(installer));
+            installer.AddInstance(new ShaftController(installer));
             
             GameLoopService.Instance.Register(this);
             Initialize();

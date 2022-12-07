@@ -51,6 +51,14 @@ namespace Controllers
                 {
                     var gameObject = (GameObject)field.GetValue(_currenciesPrefabs);
                     var component = gameObject.GetComponent<CurrencyBarControl>();
+                    
+                    if (component.CurrencyType == CurrencyType.Undefined ||
+                        component.CurrencyLevel == CurrencyLevel.Undefined)
+                    {
+                        Debug.LogError($"component.CurrencyType: {component.CurrencyType} / component.CurrencyLevel {component.CurrencyLevel} in {this}");
+                        return;
+                    }
+
                     component.Initialzie(_parentObject.position);
                     _dictionary[component.CurrencyType][component.CurrencyLevel].Add(component);
                     Object.Instantiate(gameObject, _parentObject);

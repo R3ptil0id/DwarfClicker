@@ -16,7 +16,7 @@ namespace Controls
         
         [Header("Controls")]
         public CameraControl CameraControl;
-        public CurrenciesUiControl currenciesUiControl;
+        public CurrenciesUiControl CurrenciesUiControl;
         public InputControl InputControl;
         public UiControl UiControl;
         public ShaftControl ShaftControl;
@@ -24,17 +24,17 @@ namespace Controls
         
         [Header("Markers")]
         public Transform DepositoryStartTransform;
-        //
-        // private Dictionary<Type, Object> _instances = new();
-        //
-        // public void AddInstance(Object obj)
-        // {
-        //     _instances.Add(obj.GetType(), obj);
-        // }
-        //
-        // public T GetInstance<T>()
-        // {
-        //     return (T)_instances[typeof(T)];
-        // }
+        
+        private Dictionary<Type, Object> _instances = new();
+        
+        public void AddInstance(Object obj)
+        {
+            _instances.Add(obj.GetType(), obj);
+        }
+        
+        public T GetInstance<T>()
+        {
+            return (T)_instances[typeof(T)];
+        }
     }
 }
