@@ -8,7 +8,7 @@ using Utils;
 
 namespace Controllers.Depository
 {
-    public class DepositoryCalculateHelper
+    public class AdderCurrencyToDepository
     {
         private readonly Dictionary<CurrencyType, int> _currencyValues = new();
         private readonly LinkedList<CurrencyDepositoryBlock> BlocksInDepository = new();
@@ -21,7 +21,7 @@ namespace Controllers.Depository
         public Action<CurrencyBarController> NotifyCurrencyBarControlCreated;
         private bool _autoConvert;
         
-        public DepositoryCalculateHelper(Installer installer)
+        public AdderCurrencyToDepository(Installer installer)
         {
             _installer = installer;
             _perkController = installer.GetInstance<PerkController>();
@@ -41,22 +41,25 @@ namespace Controllers.Depository
             {
                 if (_currentBarController == null)
                 {
+                    
                     var control = (ComplexCurrencyBarControl)_currencyObjectsPool.GetCurrencyObject(CurrencyType.Currency_0, CurrencyLevel.Units_5);
+                    control.transform.SetParent(_installer.InnerBunker);
                     _currentBarController = new ComplexCurrencyBarController(control);
+                    _currentBarController.AppearAtPosition(_installer.DepositoryStartTransform.position);
                     _currentBarController.AddLevel(DataConstants.CurrencyValues[CurrencyLevel.Units_1]);
                     
                     NotifyCurrencyBarControlCreated?.Invoke(_currentBarController);
+
                     return;
                 }
                 
-                _currentBarController.AddLevel(DataConstants.CurrencyValues[CurrencyLevel.Units_1]);
+                // _currentBarController.AddLevel(DataConstants.CurrencyValues[CurrencyLevel.Units_1]);
                 // if (_currentBarControl.CurrencyLevel != CurrencyLevel.Units_5)
             }
 
             var currencyDepositoryBlock = BlocksInDepository.Last;
             if (currencyDepositoryBlock?.Value == null)
             {
-                
                 return;
             }
             

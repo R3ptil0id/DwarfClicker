@@ -855,8 +855,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PrefabsTable: {fileID: 11400000, guid: 8500e9cb6c825324f9c7fd0196700c8a, type: 2}
   PoolObject: {fileID: 1458228023}
+  InnerBunker: {fileID: 1321426301}
   CameraControl: {fileID: 1725522357}
-  currenciesUiControl: {fileID: 1362789966}
+  CurrenciesUiControl: {fileID: 1362789966}
   InputControl: {fileID: 856122445}
   UiControl: {fileID: 584678946}
   ShaftControl: {fileID: 1217018503}
@@ -2584,7 +2585,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814899255}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.35125, y: 1.1499999, z: 97}
+  m_LocalPosition: {x: -6.3241, y: 1.201, z: -5}
   m_LocalScale: {x: 4.75, y: 2.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

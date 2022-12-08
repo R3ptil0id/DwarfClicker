@@ -16,8 +16,11 @@ namespace Controls.GameElements.CurrencyBar
         private const float LocalYStartPositions = 0.076f;
         private const float LocalStartScale = 0.01f;
         
-        private int _currentLvl;
+        private int _index;
         private IFuture _future;
+        
+
+        public bool b;
         
         private void Awake()
         {
@@ -34,37 +37,48 @@ namespace Controls.GameElements.CurrencyBar
                 _currencyLevel = currencyLevel;
             }
 
-            _currentLvl = currentLvl;
+            _index = currentLvl - 1;
 
             UpdateView();
         }
 
+        void Update()
+        {
+            if (b)
+            {
+                b = false;
+                _index++;
+                UpdateView();
+            }
+        }
+
         private void UpdateView()
         {
-            var currentBar = _barControls[_currentLvl];
-            var localPosition = currentBar.Bar.localPosition;
+            var smallBarControl = _barControls[_index];
+            var localPosition = smallBarControl.Bar.localPosition;
             var targetLocalPosition = localPosition;
             
             localPosition = new Vector3(targetLocalPosition.x, LocalYStartPositions, targetLocalPosition.z);
-            currentBar.Bar.localPosition = localPosition;
+            smallBarControl.Bar.localPosition = localPosition;
 
-            var localScale = currentBar.Bar.localScale;
-            _barControls[_currentLvl].Bar.localScale = new Vector3(LocalStartScale, localScale.y, localScale.z);
+            var localScale = smallBarControl.Bar.localScale;
+            smallBarControl.Bar.localScale = new Vector3(LocalStartScale, localScale.y, localScale.z);
 
-            var scaleXFuture = FuturePool.Take<ScaleTransformFuture>().Initialize(_barControls[_currentLvl].Bar,
+            var scaleXFuture = FuturePool.Take<ScaleTransformFuture>().Initialize(smallBarControl.Bar,
                 localScale, EasingFunction.Ease.EaseOutBack, 0.4f);
             
             var translatePositionFuture = FuturePool.Take<TranslateLocalPositionEasingFuture>()
-                .Initialize(_barControls[_currentLvl].Bar, localPosition, targetLocalPosition, EasingFunction.Ease.Linear, 0.2f);
+                .Initialize(smallBarControl.Bar, localPosition, targetLocalPosition, EasingFunction.Ease.Linear, 0.2f);
 
             _future = new SequenceFuture();
 
             ((SequenceFuture)_future).AddFuture(scaleXFuture);
             ((SequenceFuture)_future).AddFuture(translatePositionFuture);
 
-            _barControls[_currentLvl].Bar.gameObject.SetActive(true);
+            var small = smallBarControl.Bar;
+            smallBarControl.Bar.gameObject.SetActive(true);
 
-            if (_currentLvl == _barControls.Count - 1)
+            if (_index == _barControls.Count - 1)
             {
                 _future.AddListenerOnFinalize(OnFutureEnd);
             }

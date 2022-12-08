@@ -1,5 +1,6 @@
 using Constants;
 using Enums;
+using UnityEngine;
 
 namespace Controllers.Depository
 {
@@ -9,6 +10,8 @@ namespace Controllers.Depository
         private int _count;
         public CurrencyType CurrencyType { get; private set; }
         public CurrencyLevel CurrencyLevel { get; private set; }
+        
+        public Vector3 Positon { get; private set; }
         
         public int Cost => DataConstants.CurrencyValues[CurrencyLevel] * _count;
 
@@ -22,7 +25,7 @@ namespace Controllers.Depository
             private set { }
         }
 
-        public int AddBar(CurrencyType type, CurrencyLevel level)
+        public int AddBar(CurrencyType type, CurrencyLevel level, Vector3 position)
         {
             if (CurrencyType != type || CurrencyLevel != level)
             {
@@ -38,7 +41,8 @@ namespace Controllers.Depository
                 
                 return Cost;
             }
-            
+
+            Positon = position;
             _count++;
             return Cost-currentCost;
         }

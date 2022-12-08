@@ -13,6 +13,7 @@ namespace Controls
         [Header("Commons")]
         public PrefabsTable PrefabsTable;
         public Transform PoolObject;
+        public Transform InnerBunker;
         
         [Header("Controls")]
         public CameraControl CameraControl;

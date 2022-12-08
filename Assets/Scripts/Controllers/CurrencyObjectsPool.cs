@@ -26,8 +26,19 @@ namespace Controllers
 
         public CurrencyBarControl GetCurrencyObject(CurrencyType type, CurrencyLevel level)
         {
+            foreach (var control in _dictionary[type][level])
+            {
+                if (control.IsBusy)
+                {
+                    continue;
+                }
+                control.Busy();
+                return control;
+            }
+            
             foreach (var control in _dictionary[type][level].Where(control => !control.IsBusy))
             {
+                Debug.Log("GetCurrencyObject");
                 control.Busy();
                 return control;
             }
@@ -49,8 +60,9 @@ namespace Controllers
 
                 foreach (var field in fields)
                 {
-                    var gameObject = (GameObject)field.GetValue(_currenciesPrefabs);
-                    var component = gameObject.GetComponent<CurrencyBarControl>();
+                    var prefab = (GameObject)field.GetValue(_currenciesPrefabs);
+                    var instance = Object.Instantiate(prefab, _parentObject);
+                    var component = instance.GetComponent<CurrencyBarControl>();
                     
                     if (component.CurrencyType == CurrencyType.Undefined ||
                         component.CurrencyLevel == CurrencyLevel.Undefined)
@@ -59,9 +71,9 @@ namespace Controllers
                         return;
                     }
 
-                    component.Initialzie(_parentObject.position);
+                    component.Initialize(_parentObject.position);
                     _dictionary[component.CurrencyType][component.CurrencyLevel].Add(component);
-                    Object.Instantiate(gameObject, _parentObject);
+                    
                 }
             }
         }

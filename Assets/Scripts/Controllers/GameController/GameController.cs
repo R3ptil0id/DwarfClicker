@@ -2,6 +2,7 @@ using Controllers.Depository;
 using Controls;
 using Controls.ScriptableObjects;
 using Services.GameLoop;
+using Services.Timers;
 
 
 namespace Controllers.GameController
@@ -23,6 +24,7 @@ namespace Controllers.GameController
             installer.AddInstance(new PerkController(installer));
             installer.AddInstance(new DepositoryController(installer));
             installer.AddInstance(new ShaftController(installer));
+            installer.AddInstance(new TimersService());
             
             GameLoopService.Instance.Register(this);
             Initialize();

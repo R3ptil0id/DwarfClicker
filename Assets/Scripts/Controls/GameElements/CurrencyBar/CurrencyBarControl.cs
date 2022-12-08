@@ -1,4 +1,3 @@
-
 using System;
 using UnityEngine;
 
@@ -22,10 +21,10 @@ namespace Controls.GameElements.CurrencyBar
             IsBusy = true;
         }
 
-
-        public void Initialzie(Vector3 startPosition)
+        public void Initialize(Vector3 startPosition)
         {
-            Guid = new Guid();
+            IsBusy = false;
+            Guid = Guid.NewGuid();
             _startPosition = startPosition;
         }
     }
