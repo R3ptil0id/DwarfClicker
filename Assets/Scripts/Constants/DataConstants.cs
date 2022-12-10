@@ -7,6 +7,8 @@ namespace Constants
     {
         public static readonly Dictionary<CurrencyLevel, int> CurrencyValues = new();
         public static readonly Dictionary<CurrencyType, int> CurrencyMaxValues = new();
+
+        public const float PositionOffsetCurrencyLvl_5 = 0.022f;
                 
         static DataConstants()
         {

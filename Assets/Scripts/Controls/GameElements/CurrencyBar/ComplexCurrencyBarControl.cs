@@ -19,9 +19,6 @@ namespace Controls.GameElements.CurrencyBar
         private int _index;
         private IFuture _future;
         
-
-        public bool b;
-        
         private void Awake()
         {
             for (var i = 0; i < _barControls.Count; i++)
@@ -42,16 +39,6 @@ namespace Controls.GameElements.CurrencyBar
             UpdateView();
         }
 
-        void Update()
-        {
-            if (b)
-            {
-                b = false;
-                _index++;
-                UpdateView();
-            }
-        }
-
         private void UpdateView()
         {
             var smallBarControl = _barControls[_index];
@@ -65,10 +52,10 @@ namespace Controls.GameElements.CurrencyBar
             smallBarControl.Bar.localScale = new Vector3(LocalStartScale, localScale.y, localScale.z);
 
             var scaleXFuture = FuturePool.Take<ScaleTransformFuture>().Initialize(smallBarControl.Bar,
-                localScale, EasingFunction.Ease.EaseOutBack, 0.4f);
+                localScale, EasingFunction.Ease.EaseOutBack, 0.2f);
             
             var translatePositionFuture = FuturePool.Take<TranslateLocalPositionEasingFuture>()
-                .Initialize(smallBarControl.Bar, localPosition, targetLocalPosition, EasingFunction.Ease.Linear, 0.2f);
+                .Initialize(smallBarControl.Bar, localPosition, targetLocalPosition, EasingFunction.Ease.Linear, 0.1f);
 
             _future = new SequenceFuture();
 

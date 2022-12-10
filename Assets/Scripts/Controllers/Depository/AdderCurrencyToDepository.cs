@@ -4,6 +4,7 @@ using Constants;
 using Controls;
 using Controls.GameElements.CurrencyBar;
 using Enums;
+using UnityEngine;
 using Utils;
 
 namespace Controllers.Depository
@@ -20,13 +21,16 @@ namespace Controllers.Depository
         private ComplexCurrencyBarController _currentBarController;
         public Action<CurrencyBarController> NotifyCurrencyBarControlCreated;
         private bool _autoConvert;
+
+        private Vector3 _currentPosition;
         
         public AdderCurrencyToDepository(Installer installer)
         {
             _installer = installer;
             _perkController = installer.GetInstance<PerkController>();
             _currencyObjectsPool = installer.GetInstance<CurrencyObjectsPool>();
-             
+            _currentPosition = _installer.DepositoryStartTransform.localPosition;
+            
             foreach (var currencyType in EnumExtension.GetAllItems<CurrencyType>())
             {
                 _currencyValues.Add(currencyType, 0);
@@ -41,16 +45,19 @@ namespace Controllers.Depository
             {
                 if (_currentBarController == null)
                 {
-                    
                     var control = (ComplexCurrencyBarControl)_currencyObjectsPool.GetCurrencyObject(CurrencyType.Currency_0, CurrencyLevel.Units_5);
-                    control.transform.SetParent(_installer.InnerBunker);
+                    Transform transform;
+                    (transform = control.transform).SetParent(_installer.InnerBunker);
+                    transform.localPosition = _currentPosition; 
                     _currentBarController = new ComplexCurrencyBarController(control);
-                    _currentBarController.AppearAtPosition(_installer.DepositoryStartTransform.position);
-                    _currentBarController.AddLevel(DataConstants.CurrencyValues[CurrencyLevel.Units_1]);
-                    
-                    NotifyCurrencyBarControlCreated?.Invoke(_currentBarController);
-
-                    return;
+                }
+                
+                _currentBarController.AddLevel(DataConstants.CurrencyValues[CurrencyLevel.Units_1]);    
+                NotifyCurrencyBarControlCreated?.Invoke(_currentBarController);
+                if (_currentBarController.CurrentBarLvl == DataConstants.CurrencyValues[CurrencyLevel.Units_5])
+                {
+                    _currentBarController = null;
+                    _currentPosition = _currentPosition + Vector3.right * DataConstants.PositionOffsetCurrencyLvl_5;
                 }
                 
                 // _currentBarController.AddLevel(DataConstants.CurrencyValues[CurrencyLevel.Units_1]);
@@ -70,5 +77,7 @@ namespace Controllers.Depository
                 currencyDepositoryBlock = currencyDepositoryBlock.Previous;
             }
         }
+        
+        // private void AddToBlock
     }
 }
