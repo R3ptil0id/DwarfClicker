@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using Constants;
 using Controls;
-using Controls.GameElements.CurrencyBar;
 using Enums;
 using UnityEngine;
 using Utils;
@@ -18,18 +16,15 @@ namespace Controllers.Depository
         private readonly PerkController _perkController;
         private readonly CurrencyObjectsPool _currencyObjectsPool;
         
-        private ComplexCurrencyBarController _currentBarController;
-        public Action<CurrencyBarController> NotifyCurrencyBarControlCreated;
         private bool _autoConvert;
-
-        private Vector3 _currentPosition;
+        
+        public Dictionary<CurrencyType, int> CurrencyValues => _currencyValues;
         
         public AdderCurrencyToDepository(Installer installer)
         {
             _installer = installer;
             _perkController = installer.GetInstance<PerkController>();
             _currencyObjectsPool = installer.GetInstance<CurrencyObjectsPool>();
-            _currentPosition = _installer.DepositoryStartTransform.localPosition;
             
             foreach (var currencyType in EnumExtension.GetAllItems<CurrencyType>())
             {
@@ -37,47 +32,116 @@ namespace Controllers.Depository
             }
         }
 
-        public Dictionary<CurrencyType, int> CurrencyValues => _currencyValues;
-
         public void AddCurrency(CurrencyType type, CurrencyLevel level)
         {
-            if (type == CurrencyType.Currency_0 && level == CurrencyLevel.Units_1)
+            var index = -1;
+            var lastBlock = BlocksInDepository.Last;
+            while (lastBlock?.Value != null)
             {
-                if (_currentBarController == null)
+                if (lastBlock.Value.CurrencyType != type || lastBlock.Value.CurrencyLevel != level || lastBlock.Value.IsFull)
                 {
-                    var control = (ComplexCurrencyBarControl)_currencyObjectsPool.GetCurrencyObject(CurrencyType.Currency_0, CurrencyLevel.Units_5);
-                    Transform transform;
-                    (transform = control.transform).SetParent(_installer.InnerBunker);
-                    transform.localPosition = _currentPosition; 
-                    _currentBarController = new ComplexCurrencyBarController(control);
+                    lastBlock = lastBlock.Previous;
                 }
-                
-                _currentBarController.AddLevel(DataConstants.CurrencyValues[CurrencyLevel.Units_1]);    
-                NotifyCurrencyBarControlCreated?.Invoke(_currentBarController);
-                if (_currentBarController.CurrentBarLvl == DataConstants.CurrencyValues[CurrencyLevel.Units_5])
+                else
                 {
-                    _currentBarController = null;
-                    _currentPosition = _currentPosition + Vector3.right * DataConstants.PositionOffsetCurrencyLvl_5;
+                    break;
                 }
-                
-                // _currentBarController.AddLevel(DataConstants.CurrencyValues[CurrencyLevel.Units_1]);
-                // if (_currentBarControl.CurrencyLevel != CurrencyLevel.Units_5)
             }
 
-            var currencyDepositoryBlock = BlocksInDepository.Last;
-            if (currencyDepositoryBlock?.Value == null)
+            Vector3 nextPosition;
+
+            if (lastBlock?.Value != null)
             {
-                return;
+                nextPosition = lastBlock.Value.GetNextPosition();
+            }
+            else
+            {
+                var offset = DataConstants.Sizes[CurrencyLevel.Units_5] / 2;
+                nextPosition = Vector3.right * offset + Vector3.up * offset;
             }
             
-            while ((currencyDepositoryBlock.Value.CurrencyType != type &&
-                    currencyDepositoryBlock.Value.CurrencyLevel != level) ||
-                   currencyDepositoryBlock.Previous != null)
+            var control = _currencyObjectsPool.GetCurrencyObject(type, level);
+            control.transform.SetParent(_installer.Currencies);
+            var controller = new CurrencyBarController(control);
+            
+            var currentDepositoryBlock = lastBlock?.Value ?? new CurrencyDepositoryBlock(nextPosition);
+            currentDepositoryBlock.AddBar(controller);
+
+            if (currentDepositoryBlock.IsFull)
             {
-                currencyDepositoryBlock = currencyDepositoryBlock.Previous;
+                
             }
         }
-        
+
+        // public void AddAllCurrency(CurrencyType type, CurrencyLevel level)
+        // {
+        //     if (type == CurrencyType.Currency_0 && level == CurrencyLevel.Units_1)
+        //     {
+        //         if (_currentBarController == null)
+        //         {
+        //             var control =
+        //                 (ComplexCurrencyBarControl)_currencyObjectsPool.GetCurrencyObject(CurrencyType.Currency_0,
+        //                     CurrencyLevel.Units_1);
+        //
+        //             control.transform.SetParent(_installer.Currencies);
+        //             _currentBarController = new ComplexCurrencyBarController(control);
+        //             _currentBarController.SetToPosition(_currentPosition);
+        //         }
+        //
+        //        _currentBarController.AddLevel(DataConstants.CurrencyValues[CurrencyLevel.Units_1]);
+        //
+        //         if (_currentBarController.CurrencyLevel != CurrencyLevel.Units_5)
+        //         {
+        //             return;
+        //         }
+        //         
+        //         _currentBarController.AddListener(delegate
+        //         {
+        //             var lastBlock = BlocksInDepository.Last;
+        //             while (lastBlock != null)
+        //             {
+        //                 if (lastBlock.Value.CurrencyType != CurrencyType.Currency_0)
+        //                 {
+        //                     lastBlock = lastBlock.Previous;
+        //                 }
+        //                 else
+        //                 {
+        //                     break;
+        //                 }
+        //             }
+        //
+        //             if (lastBlock?.Value == null && _currentBarController.CurrentBarLvl ==
+        //                 DataConstants.CurrencyValues[CurrencyLevel.Units_5])
+        //             {
+        //                 var depositoryBlock = new CurrencyDepositoryBlock(_currentBarController.Position);
+        //                 depositoryBlock.AddBar(_currentBarController);
+        //                 BlocksInDepository.AddLast(depositoryBlock);
+        //             }
+        //             else
+        //             {
+        //                 lastBlock?.Value?.AddBar(_currentBarController);
+        //             }
+        //
+        //             _currentBarController = null;
+        //             _currentPosition += Vector3.right * DataConstants.Sizes[CurrencyLevel.Units_5] +
+        //                                 Vector3.right * DataConstants.PositionOffsetCurrency;
+        //         });
+        //     }
+        //
+        //     var currencyDepositoryBlock = BlocksInDepository.Last;
+        //     if (currencyDepositoryBlock?.Value == null)
+        //     {
+        //         return;
+        //     }
+        //     
+        //     while ((currencyDepositoryBlock.Value.CurrencyType != type &&
+        //             currencyDepositoryBlock.Value.CurrencyLevel != level) ||
+        //            currencyDepositoryBlock.Previous != null)
+        //     {
+        //         currencyDepositoryBlock = currencyDepositoryBlock.Previous;
+        //     }
+        // }
+
         // private void AddToBlock
     }
 }

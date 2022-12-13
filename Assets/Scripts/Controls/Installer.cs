@@ -13,7 +13,7 @@ namespace Controls
         [Header("Commons")]
         public PrefabsTable PrefabsTable;
         public Transform PoolObject;
-        public Transform InnerBunker;
+        public Transform Currencies;
         
         [Header("Controls")]
         public CameraControl CameraControl;
@@ -22,9 +22,6 @@ namespace Controls
         public UiControl UiControl;
         public ShaftControl ShaftControl;
         public DepositoryControl DepositoryControl;
-        
-        [Header("Markers")]
-        public Transform DepositoryStartTransform;
         
         private Dictionary<Type, Object> _instances = new();
         

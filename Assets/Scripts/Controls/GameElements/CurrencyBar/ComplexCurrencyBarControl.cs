@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Enums;
 using Futures.Base;
@@ -13,11 +14,13 @@ namespace Controls.GameElements.CurrencyBar
         [SerializeField] private List<SmallBarControl> _barControls;
         [SerializeField] private Transform _bar;
 
-        private const float LocalYStartPositions = 0.076f;
+        private const float LocalYStartPositions = 0.98f;
         private const float LocalStartScale = 0.01f;
         
         private int _index;
         private IFuture _future;
+
+        public Action NotifyAnimationComplete;
         
         private void Awake()
         {
@@ -78,6 +81,7 @@ namespace Controls.GameElements.CurrencyBar
             _bar.gameObject.SetActive(true);
             
             _barControls.ForEach(b => b.Bar.gameObject.SetActive(false));
+            NotifyAnimationComplete?.Invoke();
             _future = null;
         }
     }

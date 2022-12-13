@@ -612,7 +612,7 @@ Transform:
   - {fileID: 1217018501}
   - {fileID: 968478069}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &360260154
 GameObject:
@@ -780,10 +780,9 @@ Transform:
   m_LocalScale: {x: 5, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1814899256}
   - {fileID: 1321426301}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &515525297
 MonoBehaviour:
@@ -856,14 +855,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PrefabsTable: {fileID: 11400000, guid: 8500e9cb6c825324f9c7fd0196700c8a, type: 2}
   PoolObject: {fileID: 1458228023}
-  InnerBunker: {fileID: 1321426301}
+  Currencies: {fileID: 1814899256}
   CameraControl: {fileID: 1725522357}
   CurrenciesUiControl: {fileID: 1362789966}
   InputControl: {fileID: 856122445}
   UiControl: {fileID: 584678946}
   ShaftControl: {fileID: 1217018503}
   DepositoryControl: {fileID: 515525297}
-  DepositoryStartTransform: {fileID: 1814899256}
 --- !u!4 &584678949
 Transform:
   m_ObjectHideFlags: 0
@@ -877,7 +875,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &584678950
 MonoBehaviour:
@@ -2131,7 +2129,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 515525296}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1321426302
 SpriteRenderer:
@@ -2313,7 +2311,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1583619113
 GameObject:
@@ -2540,7 +2538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1814899256}
   m_Layer: 0
-  m_Name: DepositoryStartTransform
+  m_Name: Currencies
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2554,10 +2552,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814899255}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.46482, y: -0.933, z: -2}
-  m_LocalScale: {x: 0.95, y: 0.90000004, z: 1}
+  m_LocalPosition: {x: -6.36, y: 1.165, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 515525296}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
