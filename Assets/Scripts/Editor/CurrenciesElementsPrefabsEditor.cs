@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Controls.ScriptableObjects;
+using ScriptableObjects;
 using UnityEditor;
 using UnityEngine;
 
@@ -51,7 +51,7 @@ namespace Editor
             }
         }
 
-        private void FillFields(List<GameObject> list, Type currenciesElementsPrefabs)
+        private void FillFields(IList<GameObject> list, Type currenciesElementsPrefabs)
         {
             var fields = currenciesElementsPrefabs.GetFields();
          

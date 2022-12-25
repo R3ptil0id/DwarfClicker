@@ -2,7 +2,7 @@ using System;
 using Controls;
 using Controls.UiControls;
 using Enums;
-using Object = UnityEngine.Object;
+using Utils.Ioc;
 
 namespace Controllers.Depository
 {
@@ -12,18 +12,21 @@ namespace Controllers.Depository
         private readonly CurrenciesUiControl _currenciesUiControl;
         
         private readonly AdderCurrencyToDepository _adderCurrencyToDepository;
-        public DepositoryController(Installer installer)
+        public DepositoryController()
         {
-            _adderCurrencyToDepository = new AdderCurrencyToDepository(installer);
-            _inputControl = installer.InputControl;
+            _adderCurrencyToDepository = new AdderCurrencyToDepository();
+
+            var installer = IoC.Resolve<Installer>();
+            
             _currenciesUiControl = installer.CurrenciesUiControl;
-           
+            _inputControl = installer.InputControl;
+            
             Subscribe();
         }
 
         private void OnSimpleClick()
         {
-            _adderCurrencyToDepository.AddCurrency(CurrencyType.Currency_0, CurrencyLevel.Units_1);
+            _adderCurrencyToDepository.AddCurrency(CurrencyType.Currency_0, CurrencyLevel.Units1);
             
             foreach (var currencyValue in _adderCurrencyToDepository.CurrencyValues)
             {

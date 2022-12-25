@@ -6,10 +6,10 @@ namespace Controllers.Depository
 {
     public class CurrencyBarController
     {
+        protected readonly CurrencyBarControl _control;
+        
         public CurrencyType CurrencyType { get; protected set;}
         public CurrencyLevel CurrencyLevel { get; protected set;}
-        
-        protected readonly CurrencyBarControl _control;
 
         public CurrencyBarController(CurrencyBarControl control)
         {

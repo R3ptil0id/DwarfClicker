@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using Controllers.GameController;
 using UnityEngine;
+using Utils.Ioc;
 
 namespace Services.GameLoop
 {
+    [RegistrateMonoBehaviourInIoc]
     public class GameLoopService : MonoBehaviour
     {
-        public static GameLoopService Instance;
-        
         private readonly List<IUpdateListener> _updateListeners = new List<IUpdateListener>();
 
         public void Register(IUpdateListener listener)
@@ -19,8 +19,6 @@ namespace Services.GameLoop
         {
             _updateListeners.Remove(listener);
         }
-
-        private void Awake() => Instance = this;
 
         private void Update()
         {

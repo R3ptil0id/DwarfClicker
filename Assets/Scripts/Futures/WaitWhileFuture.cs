@@ -2,12 +2,13 @@
 using Controllers.GameController;
 using Futures.Base;
 using Services.GameLoop;
+using Utils.Ioc;
 
 namespace Futures
 {
     public class WaitWhileFuture : Future, IUpdateListener
     {
-        private readonly GameLoopService _gameLoopService = GameLoopService.Instance;
+        private readonly GameLoopService _gameLoopService;
         private Func<bool> _predicate;
         
         // public event Action<IDisposableObject> OnDisposed;
@@ -15,7 +16,7 @@ namespace Futures
 
         public WaitWhileFuture()
         {
-            //no op
+            _gameLoopService = IoC.Resolve<GameLoopService>();
         }
 
         public WaitWhileFuture Initialize(Func<bool> p)

@@ -2,6 +2,7 @@ using Futures.Base;
 using Services.Timers;
 using UnityEngine;
 using Utils;
+using Utils.EnumExtensions;
 
 namespace Futures.Common
 {
@@ -99,7 +100,7 @@ namespace Futures.Common
         protected override void OnRun()
         {
             _transform.localScale = _startScale;
-            timer = timersService.AddTimer(_time, OnUpdate, (_) => Complete());
+            timer = _timersService.AddTimer(_time, OnUpdate, (_) => Complete());
         }
 
         private void OnUpdate(ITimer _)

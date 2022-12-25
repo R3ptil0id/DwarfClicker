@@ -2,26 +2,28 @@ using System.Collections.Generic;
 using System.Linq;
 using Controls;
 using Controls.GameElements.CurrencyBar;
-using Controls.ScriptableObjects;
 using Enums;
+using ScriptableObjects;
 using UnityEngine;
-using Utils;
-using Object = UnityEngine.Object;
+using Utils.EnumExtensions;
+using Utils.Ioc;
 
 namespace Controllers
 {
+    [RegistrateInIoc]
     public class CurrencyObjectsPool
     {
         private readonly CurrenciesElementsPrefabs _currenciesPrefabs;
         private readonly Transform _parentObject;
 
         private readonly Dictionary<CurrencyType, Dictionary<CurrencyLevel, List<CurrencyBarControl>>> _dictionary;
-        public CurrencyObjectsPool(Installer installer, int startCount = 20)
+        
+        public CurrencyObjectsPool()
         {
-            _parentObject = installer.PoolObject;
-            _currenciesPrefabs = installer.PrefabsTable.CurrenciesElementsPrefabs;
+            _parentObject = IoC.Resolve<Installer>().PoolObject;
+            _currenciesPrefabs = IoC.Resolve<CurrenciesElementsPrefabs>();
             _dictionary = new Dictionary<CurrencyType, Dictionary<CurrencyLevel, List<CurrencyBarControl>>>();
-            CreateDictionary();
+            Initialize();
         }
 
         public CurrencyBarControl GetCurrencyObject(CurrencyType type, CurrencyLevel level)
@@ -38,7 +40,6 @@ namespace Controllers
             
             foreach (var control in _dictionary[type][level].Where(control => !control.IsBusy))
             {
-                Debug.Log("GetCurrencyObject");
                 control.Busy();
                 return control;
             }
@@ -51,8 +52,20 @@ namespace Controllers
             control.Release();
         }
 
-        public void Initialize()
+        private void Initialize()
         {
+            foreach (var currencyType in EnumExtension.GetAllItems<CurrencyType>())
+            {   
+                var dict = new Dictionary<CurrencyLevel, List<CurrencyBarControl>>();
+                foreach (var currencyLevel in EnumExtension.GetAllItems<CurrencyLevel>())
+                {
+                    var list = new List<CurrencyBarControl>();
+                    dict.Add(currencyLevel, list);
+                }   
+                
+                _dictionary.Add(currencyType, dict);
+            }
+            
             for (var i = 0; i < 20; i++)
             {
                 var type = _currenciesPrefabs.GetType();
@@ -73,23 +86,7 @@ namespace Controllers
 
                     component.Initialize(_parentObject.position);
                     _dictionary[component.CurrencyType][component.CurrencyLevel].Add(component);
-                    
                 }
-            }
-        }
-
-        private void CreateDictionary()
-        {   
-            foreach (var currencyType in EnumExtension.GetAllItems<CurrencyType>())
-            {   
-                var dict = new Dictionary<CurrencyLevel, List<CurrencyBarControl>>();
-                foreach (var currencyLevel in EnumExtension.GetAllItems<CurrencyLevel>())
-                {
-                    var list = new List<CurrencyBarControl>();
-                    dict.Add(currencyLevel, list);
-                }   
-                
-                _dictionary.Add(currencyType, dict);
             }
         }
     }

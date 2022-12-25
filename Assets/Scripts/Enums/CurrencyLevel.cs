@@ -3,11 +3,9 @@ namespace Enums
     public enum CurrencyLevel
     {
         Undefined,
-        Units_1,
-        Units_5,
-        Units_20,
-        Units_80,
-        Units_320,
-        Units_1280,
+        Units1,
+        Units10,
+        Units100,
+        Units1000
     }
 }

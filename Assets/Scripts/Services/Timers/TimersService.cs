@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Services.GameLoop;
+using Utils.Ioc;
 
 namespace Services.Timers
 {
+    [RegistrateInIoc]
     public class TimersService : ITimersService
     {
         private static int _currentId = 0;
@@ -14,20 +16,20 @@ namespace Services.Timers
         private readonly LinkedList<ITimer> _timers = new LinkedList<ITimer>();
         private readonly Dictionary<int, ITimer> _added = new Dictionary<int, ITimer>();
         private readonly Queue<LinkedListNode<ITimer>> _removed = new Queue<LinkedListNode<ITimer>>();
-
+        
+        private GameLoopService _gameLoopService;
+        
         private double _serverTime;
         private double _serverStartTime;
         private DateTime _startTime;
-
-        public static TimersService Instance;
-
+        
         public event Action<ITimer> Added;
         public event Action<ITimer> Removed;
         
         public void Run()
         {
             _startTime = DateTime.UtcNow;
-            GameLoopService.Instance.Register(this);
+            _gameLoopService.Register(this);
         }
 
         public void Update(float deltaTime)
@@ -132,7 +134,7 @@ namespace Services.Timers
         {
             Removed = null;
 
-            GameLoopService.Instance.Unregister(this);
+            _gameLoopService.Unregister(this);
 
             while (_timers.Count > 0)
             {
@@ -149,8 +151,7 @@ namespace Services.Timers
 
         public TimersService()
         {
-            Instance = this;
-            GameLoopService.Instance.Register(this);
+            _gameLoopService = IoC.Resolve<GameLoopService>();
         }
         
         private void AddTimers()

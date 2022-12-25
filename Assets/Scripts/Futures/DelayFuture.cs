@@ -1,11 +1,12 @@
 ﻿using Futures.Base;
 using Services.Timers;
+using Utils.Ioc;
 
 namespace Futures
 {
     public class DelayFuture : Future
     {
-        private readonly ITimersService _timersService = TimersService.Instance;
+        private readonly ITimersService _timersService = IoC.Resolve<TimersService>();
         
         private float _delay;
         private IFuture _delayedFuture;

@@ -1,27 +1,27 @@
-
 using System;
 using UnityEngine;
+using Utils.Ioc;
 
 namespace Controls
 {
-    public class InputControl : MonoBehaviour
+    [RegistrateMonoBehaviourInIoc]
+    public class InputControl : MonoBehaviour, Iinitializable
     {
         [SerializeField] private float _zoomFactor;
         [SerializeField] private float _zoomLerpSpeed;
         
         private Camera _camera;
         private float _targetZoom;
-
-        private void Awake()
-        {
-            _camera = CameraControl.Camera;
-        }
-
         public Action NotifyClick;
         
         public void Click()
         {
             NotifyClick?.Invoke();
+        }
+
+        public void Initialize()
+        {
+            _camera = IoC.Resolve<CameraControl>().Camera;
         }
     }
 }

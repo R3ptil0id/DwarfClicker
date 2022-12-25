@@ -1,15 +1,16 @@
 ﻿using Futures.Base;
 using Services.Timers;
+using Utils.Ioc;
 
 namespace Futures
 {
-    public class WaitFuture : Futures.Base.Future
+    public class WaitFuture : Future
     {
         private float _duration;
         private ITimer _waitTimer;
         private bool _realtime;
-        
-        private readonly ITimersService _timersService = TimersService.Instance;
+
+        private readonly ITimersService _timersService = IoC.Resolve<TimersService>();// TimersService.Instance;
 
         public IFuture Initialize(float duration)
         {

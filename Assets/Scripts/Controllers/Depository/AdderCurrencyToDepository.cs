@@ -1,30 +1,30 @@
 using System.Collections.Generic;
-using Constants;
 using Controls;
 using Enums;
-using UnityEngine;
-using Utils;
+using Utils.EnumExtensions;
 
 namespace Controllers.Depository
 {
     public class AdderCurrencyToDepository
     {
         private readonly Dictionary<CurrencyType, int> _currencyValues = new();
-        private readonly LinkedList<CurrencyDepositoryBlock> BlocksInDepository = new();
         
         private readonly Installer _installer;
         private readonly PerkController _perkController;
         private readonly CurrencyObjectsPool _currencyObjectsPool;
+        private readonly CurrencyDepositoryFiller _currencyDepositoryFiller;
         
         private bool _autoConvert;
+        private CurrencyBarController _currentBarController; 
         
         public Dictionary<CurrencyType, int> CurrencyValues => _currencyValues;
         
-        public AdderCurrencyToDepository(Installer installer)
+        public AdderCurrencyToDepository()
         {
-            _installer = installer;
-            _perkController = installer.GetInstance<PerkController>();
-            _currencyObjectsPool = installer.GetInstance<CurrencyObjectsPool>();
+            // _installer = installer;
+            // _perkController = installer.GetInstance<PerkController>();
+            // _currencyObjectsPool = installer.GetInstance<CurrencyObjectsPool>();
+            // _currencyDepositoryFiller = new CurrencyDepositoryFiller();
             
             foreach (var currencyType in EnumExtension.GetAllItems<CurrencyType>())
             {
@@ -34,43 +34,43 @@ namespace Controllers.Depository
 
         public void AddCurrency(CurrencyType type, CurrencyLevel level)
         {
-            var index = -1;
-            var lastBlock = BlocksInDepository.Last;
-            while (lastBlock?.Value != null)
-            {
-                if (lastBlock.Value.CurrencyType != type || lastBlock.Value.CurrencyLevel != level || lastBlock.Value.IsFull)
-                {
-                    lastBlock = lastBlock.Previous;
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            Vector3 nextPosition;
-
-            if (lastBlock?.Value != null)
-            {
-                nextPosition = lastBlock.Value.GetNextPosition();
-            }
-            else
-            {
-                var offset = DataConstants.Sizes[CurrencyLevel.Units_5] / 2;
-                nextPosition = Vector3.right * offset + Vector3.up * offset;
-            }
-            
-            var control = _currencyObjectsPool.GetCurrencyObject(type, level);
-            control.transform.SetParent(_installer.Currencies);
-            var controller = new CurrencyBarController(control);
-            
-            var currentDepositoryBlock = lastBlock?.Value ?? new CurrencyDepositoryBlock(nextPosition);
-            currentDepositoryBlock.AddBar(controller);
-
-            if (currentDepositoryBlock.IsFull)
-            {
-                
-            }
+            // var index = -1;
+            // var lastBlock = BlocksInDepository.Last;
+            // while (lastBlock?.Value != null)
+            // {
+            //     if (lastBlock.Value.CurrencyType != type || lastBlock.Value.CurrencyLevel != level || lastBlock.Value.IsFull)
+            //     {
+            //         lastBlock = lastBlock.Previous;
+            //     }
+            //     else
+            //     {
+            //         break;
+            //     }
+            // }
+            //
+            // Vector3 nextPosition;
+            //
+            // if (lastBlock?.Value != null)
+            // {
+            //     nextPosition = lastBlock.Value.GetNextPosition(lastBlock.Value.CurrencyLevel == level);
+            // }
+            // else
+            // {
+            //     var offset = DataConstants.Sizes[CurrencyLevel.Units10] / 2;
+            //     nextPosition = Vector3.right * offset + Vector3.up * offset;
+            // }
+            //
+            // var control = _currencyObjectsPool.GetCurrencyObject(type, level);
+            // control.transform.SetParent(_installer.Currencies);
+            // var controller = new CurrencyBarController(control);
+            //
+            // var currentDepositoryBlock = lastBlock?.Value ?? new CurrencyDepositoryFiller(nextPosition);
+            // currentDepositoryBlock.AddBar(controller);
+            //
+            // if (currentDepositoryBlock.IsFull)
+            // {
+            //     
+            // }
         }
 
         // public void AddAllCurrency(CurrencyType type, CurrencyLevel level)

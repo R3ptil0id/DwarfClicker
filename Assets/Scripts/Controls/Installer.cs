@@ -1,19 +1,21 @@
-using System;
-using System.Collections.Generic;
 using Controls.GameElements;
-using Controls.ScriptableObjects;
 using Controls.UiControls;
+using ScriptableObjects;
 using UnityEngine;
-using Object = System.Object;
+using Utils.Ioc;
 
 namespace Controls
 {
+    [RegistrateMonoBehaviourInIoc]
     public class Installer : MonoBehaviour
     {
-        [Header("Commons")]
-        public PrefabsTable PrefabsTable;
+        [Header("SceneObjects")]
         public Transform PoolObject;
         public Transform Currencies;
+        
+        [Header("ScriptableObjects")]
+        public StoreCustomAttributesTypes StoreCustomAttributesTypes;
+        public CurrenciesElementsPrefabs CurrenciesElementsPrefabs;
         
         [Header("Controls")]
         public CameraControl CameraControl;
@@ -22,17 +24,5 @@ namespace Controls
         public UiControl UiControl;
         public ShaftControl ShaftControl;
         public DepositoryControl DepositoryControl;
-        
-        private Dictionary<Type, Object> _instances = new();
-        
-        public void AddInstance(Object obj)
-        {
-            _instances.Add(obj.GetType(), obj);
-        }
-        
-        public T GetInstance<T>()
-        {
-            return (T)_instances[typeof(T)];
-        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Services.Timers;
+using Utils.Ioc;
 
 namespace Futures.Base
 {
@@ -6,7 +7,7 @@ namespace Futures.Base
     {
         protected ITimer timer;
         
-        protected readonly ITimersService timersService = TimersService.Instance;
+        protected readonly ITimersService _timersService = IoC.Resolve<TimersService>();
 
         protected override void OnRun()
         {
