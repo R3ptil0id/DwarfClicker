@@ -1,4 +1,4 @@
-namespace Controls
+namespace Utils.Ioc
 {
     public interface IInitializable
     {

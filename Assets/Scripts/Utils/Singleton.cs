@@ -4,7 +4,7 @@ namespace Utils
     {
         protected static T Instance { get; private set; }
 
-        public static void Initialize()
+        public static void CreateIoC()
         {
             Instance = new T();
         }

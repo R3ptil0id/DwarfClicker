@@ -8,9 +8,11 @@ namespace Utils.Ioc
     {
         private readonly Dictionary<Type, object> _types = new();
 
-        public static void Register<T>(T type) where  T : Type
+        public static object Register<T>(T type) where T : Type
         {
-            Instance._types[type] = Create(type);
+            var instance = Create(type);
+            Instance._types[type] = instance;
+            return instance;
         }
 
         public static void Register(object instance)

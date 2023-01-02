@@ -14,7 +14,7 @@ namespace Controls
         public Transform Currencies;
         
         [Header("ScriptableObjects")]
-        public StoreCustomAttributesTypes StoreCustomAttributesTypes;
+        public StoreCustomAttributes storeCustomAttributes;
         public CurrenciesElementsPrefabs CurrenciesElementsPrefabs;
         
         [Header("Controls")]

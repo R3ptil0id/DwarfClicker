@@ -11,10 +11,10 @@ namespace Controllers.Depository
         private readonly InputControl _inputControl;
         private readonly CurrenciesUiControl _currenciesUiControl;
         
-        private readonly AdderCurrencyToDepository _adderCurrencyToDepository;
+        private readonly CurrencyInDepositoryController _currencyInDepositoryController;
         public DepositoryController()
         {
-            _adderCurrencyToDepository = new AdderCurrencyToDepository();
+            _currencyInDepositoryController = new CurrencyInDepositoryController();
 
             var installer = IoC.Resolve<Installer>();
             
@@ -26,9 +26,9 @@ namespace Controllers.Depository
 
         private void OnSimpleClick()
         {
-            _adderCurrencyToDepository.AddCurrency(CurrencyType.Currency_0, CurrencyLevel.Units1);
+            _currencyInDepositoryController.AddCurrency(CurrencyType.Currency_0);
             
-            foreach (var currencyValue in _adderCurrencyToDepository.CurrencyValues)
+            foreach (var currencyValue in _currencyInDepositoryController.CurrencyValues)
             {
                 _currenciesUiControl.UpdateInfo(currencyValue.Key, currencyValue.Value);
             }

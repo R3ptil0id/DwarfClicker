@@ -4,8 +4,8 @@ using Utils.Ioc;
 
 namespace Controls
 {
-    [RegistrateMonoBehaviourInIoc]
-    public class InputControl : MonoBehaviour, Iinitializable
+    [RegistrateMonoBehaviourInIoc(needInitialize: true)]
+    public class InputControl : MonoBehaviour, IInitializable
     {
         [SerializeField] private float _zoomFactor;
         [SerializeField] private float _zoomLerpSpeed;
@@ -21,7 +21,8 @@ namespace Controls
 
         public void Initialize()
         {
-            _camera = IoC.Resolve<CameraControl>().Camera;
+            var cameraControl = IoC.Resolve<CameraControl>();
+            _camera = cameraControl.Camera;
         }
     }
 }
