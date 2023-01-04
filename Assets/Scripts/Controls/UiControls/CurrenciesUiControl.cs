@@ -2,9 +2,11 @@ using System;
 using Enums;
 using TMPro;
 using UnityEngine;
+using Utils.Ioc;
 
 namespace Controls.UiControls
 {
+    [RegistrateMonoBehaviourInIoc]
     public class CurrenciesUiControl : MonoBehaviour
     {
         public TMP_Text Сurrency_0;

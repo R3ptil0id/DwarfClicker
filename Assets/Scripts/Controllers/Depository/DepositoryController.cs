@@ -16,10 +16,8 @@ namespace Controllers.Depository
         {
             _currencyInDepositoryController = new CurrencyInDepositoryController();
 
-            var installer = IoC.Resolve<Installer>();
-            
-            _currenciesUiControl = installer.CurrenciesUiControl;
-            _inputControl = installer.InputControl;
+            _currenciesUiControl = IoC.Resolve<CurrenciesUiControl>();
+            _inputControl = IoC.Resolve<InputControl>();
             
             Subscribe();
         }

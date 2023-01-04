@@ -10,12 +10,9 @@ namespace ScriptableObjects
         [Space(3)]
         public GameObject Bar0;
         public GameObject Bar1;
-        // public GameObject Bar2;
-        // public GameObject Bar3;
+        public GameObject Bar2;
         
-        private void Initialize()
-        {
-            IoC.Register(this);
-        }
+        [HideInInspector]
+        public int Count;
     }
 }

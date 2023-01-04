@@ -29,6 +29,7 @@ namespace Editor
                 var list = new List<GameObject>();
                 FillList(_assetFolderPath, 0, ref list);
                 FillFields(list, currenciesPrefabs.GetType());
+                EditorUtility.SetDirty(target);
             }
         }
 
@@ -53,20 +54,16 @@ namespace Editor
         private void FillFields(IList<GameObject> list, Type currenciesElementsPrefabs)
         {
             var fields = currenciesElementsPrefabs.GetFields();
-         
+            ((CurrenciesElementsPrefabs)target).Count = 0;
+            
             foreach (var fieldInfo in fields)
             {
-                var index = -1;
-                for (var i = 0; i < list.Count; i++)
+                for (var i = list.Count-1; i >= 0; i--)
                 {
                     if (fieldInfo.Name != list[i].name) continue;
                     fieldInfo.SetValue(target,list[i]);
-                    index = i;
-                }
-
-                if (index >= 0)
-                {
-                    list.RemoveAt(index);
+                    ((CurrenciesElementsPrefabs)target).Count++; 
+                    list.RemoveAt(i);
                 }
             }
         }

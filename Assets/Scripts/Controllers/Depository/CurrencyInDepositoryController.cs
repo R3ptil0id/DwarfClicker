@@ -10,14 +10,14 @@ namespace Controllers.Depository
     public class CurrencyInDepositoryController
     {
         private readonly Dictionary<CurrencyType, int> _currencyValues = new();
-        private readonly Installer _installer;
+        private readonly ObjectsInstaller _objectsInstaller;
         private readonly LinkedList<CurrencyBarController> _currencyBarControllers = new ();
         
         public Dictionary<CurrencyType, int> CurrencyValues => _currencyValues;
         
         public CurrencyInDepositoryController()
         {
-            _installer = IoC.Resolve<Installer>();
+            _objectsInstaller = IoC.Resolve<ObjectsInstaller>();
             
             foreach (var currencyType in EnumExtension.GetAllItems<CurrencyType>())
             {
