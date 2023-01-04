@@ -17,37 +17,36 @@ namespace Editor
         public override void OnInspectorGUI()
         {
             var currenciesPrefabs = (CurrenciesElementsPrefabs)target;
+            
+            GUILayout.Label("Path Prefabs Folder");
+            _assetFolderPath = EditorGUILayout.TextField(_assetFolderPath);
+            
+            GUILayout.Space(10);
             DrawDefaultInspector();
             GUILayout.Space(10);
             if(GUILayout.Button("Fill"))
             {
-                var currentPass = 0;
-                var list = new List<GameObject>();     
-                var folders = AssetDatabase.GetSubFolders(_assetFolderPath);
-                foreach (var folder in folders)
-                {
-                    Recursive(folder, list, currentPass);
-                }
-
+                var list = new List<GameObject>();
+                FillList(_assetFolderPath, 0, ref list);
                 FillFields(list, currenciesPrefabs.GetType());
             }
         }
 
-        private void Recursive(string folder, List<GameObject> list, int currentPass)
+        private void FillList(string path, int currentPass, ref List<GameObject> list)
         {
             if (currentPass > _breakRecursion)
             {
                 return;
             }
 
-            var names = Directory.GetFiles(folder).Where(f => !f.Contains("meta"));
-            
+            var names = Directory.GetFiles(path).Where(f => !f.Contains("meta"));
+
             list.AddRange(names.Select(AssetDatabase.LoadAssetAtPath<GameObject>));
 
-            var folders = AssetDatabase.GetSubFolders(folder);
-            foreach (var fld in folders)
+            var subFolders = AssetDatabase.GetSubFolders(path);
+            foreach (var subFolder in subFolders)
             {
-                Recursive(fld, list, currentPass);
+                FillList(subFolder, currentPass, ref list);
             }
         }
 

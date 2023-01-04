@@ -15,7 +15,7 @@ namespace Controllers
         private readonly Transform _parentObject;
         
         private readonly Dictionary<CurrencyType, Dictionary<CurrencyType, List<CurrencyBarControl>>> _dictionary;
-        //
+        
         public CurrencyObjectsPool()
         {
             _parentObject = IoC.Resolve<Installer>().PoolObject;
