@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 505a7b398624409c8c79ab7d83a9df1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currencyType: 1
+  _currencyType: 3
   _bar: {fileID: 7646608429043190925}
   _fill: {fileID: 7646608428101423038}
 --- !u!1 &7646608429043190926

@@ -6,19 +6,15 @@ using Utils.Ioc;
 
 namespace Controllers.Depository
 {
-    public class DepositoryController : IDisposable
+    public class DepositoryController : BaseController, IDisposable
     {
-        private readonly InputControl _inputControl;
-        private readonly CurrenciesUiControl _currenciesUiControl;
+        [Inject] private readonly InputControl _inputControl;
+        [Inject] private readonly CurrenciesUiControl _currenciesUiControl;
         
         private readonly CurrencyInDepositoryController _currencyInDepositoryController;
         public DepositoryController()
         {
             _currencyInDepositoryController = new CurrencyInDepositoryController();
-
-            _currenciesUiControl = IoC.Resolve<CurrenciesUiControl>();
-            _inputControl = IoC.Resolve<InputControl>();
-            
             Subscribe();
         }
 

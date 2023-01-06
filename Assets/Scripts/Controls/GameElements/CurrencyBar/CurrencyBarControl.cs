@@ -48,7 +48,8 @@ namespace Controls.GameElements.CurrencyBar
         {
             IsBusy = false;
             Guid = Guid.NewGuid();
-            _startPosition = startPosition;
+            transform.position = startPosition;
+            // _startPosition = startPosition;
             InitView();
         }
         

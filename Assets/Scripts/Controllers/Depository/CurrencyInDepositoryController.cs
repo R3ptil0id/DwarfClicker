@@ -7,10 +7,10 @@ using Utils.Ioc;
 
 namespace Controllers.Depository
 {
-    public class CurrencyInDepositoryController
+    public class CurrencyInDepositoryController : BaseController
     {
         [Inject] private readonly ObjectsInstaller _objectsInstaller;
-        [Inject] private readonly CurrencyObjectsPoolController _currencyObjectsPoolController;
+        [Inject] private readonly CurrencyObjectsPoolController _currencyObjectsPool;
         
         private readonly Dictionary<CurrencyType, int> _currencyValues = new();
         private readonly LinkedList<CurrencyBarController> _currencyBarControllers = new ();
@@ -31,15 +31,13 @@ namespace Controllers.Depository
             
             if (bar == null)
             {
-                var parent = _objectsInstaller.Currencies;
-                
-                // bar = new CurrencyBarController();
+                var control = _currencyObjectsPool.GetCurrencyObject(type);
+                bar = new CurrencyBarController(control, _objectsInstaller.Currencies.position);
             }
             else
             {
                 
             }
-            
         }
 
         // public void AddAllCurrency(CurrencyType type, CurrencyLevel level)

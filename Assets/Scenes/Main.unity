@@ -845,11 +845,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bbc04bfdae2436690035c47a89826ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "\u0421urrency_0": {fileID: 0}
-  "\u0421urrency_1": {fileID: 0}
-  "\u0421urrency_2": {fileID: 0}
-  "\u0421urrency_3": {fileID: 0}
-  "\u0421urrency_4": {fileID: 0}
+  "\u0421urrency_0": {fileID: 1236039998}
+  "\u0421urrency_1": {fileID: 744244353}
+  "\u0421urrency_2": {fileID: 1066604791}
+  "\u0421urrency_3": {fileID: 154834942}
+  "\u0421urrency_4": {fileID: 116159010}
 --- !u!1 &646730110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,7 +1318,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 856122445}
+      - m_Target: {fileID: 584678952}
         m_TargetAssemblyTypeName: Controls.InputControl, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
@@ -1379,7 +1379,6 @@ GameObject:
   - component: {fileID: 856122442}
   - component: {fileID: 856122444}
   - component: {fileID: 856122443}
-  - component: {fileID: 856122445}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1447,20 +1446,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856122441}
   m_CullTransparentMesh: 1
---- !u!114 &856122445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856122441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89204325f6b845cca02cfec0d0767f8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _zoomFactor: 0
-  _zoomLerpSpeed: 0
 --- !u!1 &892995045
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,7 +2046,7 @@ GameObject:
   - component: {fileID: 1362789964}
   - component: {fileID: 1362789966}
   m_Layer: 5
-  m_Name: Curencies
+  m_Name: CurenciesUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2417,8 +2402,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814899255}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.05, y: 1.2481484, z: -3}
-  m_LocalScale: {x: 5, y: 3.7034848, z: 1}
+  m_LocalPosition: {x: -6.05, y: 1.22, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
