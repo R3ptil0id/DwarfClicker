@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using InspectorEditor;
 using UnityEngine;
 
 namespace Utils.Ioc
 {
     public class MonoBehaviourIocInstaller : MonoBehaviour
     {
-        [HideInInspector] public List<MonoBehaviour> GameObjects = new ();
-        [HideInInspector] public List<MonoBehaviour> Initializables = new ();
+        [ReadOnlyInspector] public List<MonoBehaviour> GameObjects = new ();
+        [ReadOnlyInspector] public List<MonoBehaviour> Initializables = new ();
     }
 }

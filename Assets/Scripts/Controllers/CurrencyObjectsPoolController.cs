@@ -10,22 +10,16 @@ using Utils.Ioc;
 namespace Controllers
 {
     [RegistrateInIoc(needInitialize: true)]
-    public class CurrencyObjectsPool : IInitializable
+    public class CurrencyObjectsPoolController : BaseController, IInitializable
     {
-        private readonly CurrenciesElementsPrefabs _currenciesPrefabs;
-        private readonly Transform _parentObject;
+        [Inject] private readonly CurrenciesElementsPrefabs _currenciesPrefabs;
+        [Inject] private readonly ObjectsInstaller _objectsInstaller;
         
-        private readonly Dictionary<CurrencyType, List<CurrencyBarControl>> _dictionary;
+        private Transform _parentObject;
+        private Dictionary<CurrencyType, List<CurrencyBarControl>> _dictionary;
         
         private const int InstancesCount = 20;
         
-        public CurrencyObjectsPool()
-        {
-            _parentObject = IoC.Resolve<ObjectsInstaller>().PoolObject;
-            _currenciesPrefabs = IoC.Resolve<CurrenciesElementsPrefabs>();
-            
-            _dictionary = new Dictionary<CurrencyType, List<CurrencyBarControl>>(_currenciesPrefabs.Count);
-        }
         
         public CurrencyBarControl GetCurrencyObject(CurrencyType type)
         { 
@@ -45,6 +39,9 @@ namespace Controllers
         
         public void Initialize()
         {
+            _parentObject = _objectsInstaller.PoolObject;
+            _dictionary = new Dictionary<CurrencyType, List<CurrencyBarControl>>(_currenciesPrefabs.Count);
+            
             for (var i = 0; i < _currenciesPrefabs.Count; i++)
             {
                 var list = new List<CurrencyBarControl>();

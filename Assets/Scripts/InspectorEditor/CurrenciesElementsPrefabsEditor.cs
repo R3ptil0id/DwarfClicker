@@ -6,10 +6,10 @@ using ScriptableObjects;
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor
+namespace InspectorEditor
 {
     [CustomEditor(typeof(CurrenciesElementsPrefabs))]
-    public class CurrenciesElementsPrefabsEditor : UnityEditor.Editor
+    public class CurrenciesElementsPrefabsEditor : Editor
     {
         private string _assetFolderPath = "Assets/Prefabs/Currencies";
         private int _breakRecursion = 200;        

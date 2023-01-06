@@ -9,16 +9,16 @@ namespace Controllers.Depository
 {
     public class CurrencyInDepositoryController
     {
+        [Inject] private readonly ObjectsInstaller _objectsInstaller;
+        [Inject] private readonly CurrencyObjectsPoolController _currencyObjectsPoolController;
+        
         private readonly Dictionary<CurrencyType, int> _currencyValues = new();
-        private readonly ObjectsInstaller _objectsInstaller;
         private readonly LinkedList<CurrencyBarController> _currencyBarControllers = new ();
         
         public Dictionary<CurrencyType, int> CurrencyValues => _currencyValues;
         
         public CurrencyInDepositoryController()
-        {
-            _objectsInstaller = IoC.Resolve<ObjectsInstaller>();
-            
+        {    
             foreach (var currencyType in EnumExtension.GetAllItems<CurrencyType>())
             {
                 _currencyValues.Add(currencyType, 0);
@@ -27,18 +27,18 @@ namespace Controllers.Depository
 
         public void AddCurrency(CurrencyType type)
         {
-            // var bar = _currencyBarControllers.LastOrDefault(c => c.CurrencyType == type);
-            //
-            // if (bar == null)
-            // {
-            //     var parent = _installer.Currencies;
-            //     var 
-            //     bar = new CurrencyBarController();
-            // }
-            // else
-            // {
-            //     
-            // }
+            var bar = _currencyBarControllers.LastOrDefault(c => c.CurrencyType == type);
+            
+            if (bar == null)
+            {
+                var parent = _objectsInstaller.Currencies;
+                
+                // bar = new CurrencyBarController();
+            }
+            else
+            {
+                
+            }
             
         }
 

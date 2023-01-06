@@ -25,9 +25,18 @@ namespace Utils.Ioc
             Instance._types[typeof(T)] = Create<T>();
         }
         
+        public static object Resolve<T>(T type)
+        {
+            return Instance._types.TryGetValue(type as Type ?? type.GetType(), out var o) ? o : Resolve<T>();
+        }
         public static T Resolve<T>()  
         {
-            return (T)Instance._types[typeof(T)];
+            if (Instance._types.TryGetValue(typeof(T), out var o))
+            {
+                return (T)o;
+            }
+
+            throw new ArgumentNullException($"{typeof(T)} not registrated in Ioc");
         }
         
         public static T Create<T>()

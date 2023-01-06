@@ -707,13 +707,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 584678949}
-  - component: {fileID: 584678948}
+  - component: {fileID: 584678953}
   - component: {fileID: 584678947}
+  - component: {fileID: 584678948}
   - component: {fileID: 584678946}
   - component: {fileID: 584678951}
   - component: {fileID: 584678950}
   - component: {fileID: 584678952}
-  - component: {fileID: 584678953}
+  - component: {fileID: 584678954}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -829,8 +830,26 @@ MonoBehaviour:
   - {fileID: 584678948}
   - {fileID: 584678951}
   - {fileID: 584678952}
+  - {fileID: 584678954}
   Initializables:
   - {fileID: 584678952}
+--- !u!114 &584678954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584678945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bbc04bfdae2436690035c47a89826ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "\u0421urrency_0": {fileID: 0}
+  "\u0421urrency_1": {fileID: 0}
+  "\u0421urrency_2": {fileID: 0}
+  "\u0421urrency_3": {fileID: 0}
+  "\u0421urrency_4": {fileID: 0}
 --- !u!1 &646730110
 GameObject:
   m_ObjectHideFlags: 0
