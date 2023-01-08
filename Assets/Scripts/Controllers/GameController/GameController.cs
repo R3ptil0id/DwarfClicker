@@ -6,7 +6,6 @@ namespace Controllers.GameController
     {
         private IocInitializer _iocInitializer;
         private DepositoryController _depositoryController;
-        
         public void PreInitialize()
         {
             _iocInitializer = new IocInitializer();

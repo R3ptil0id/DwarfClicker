@@ -19,7 +19,6 @@ namespace Controllers.Depository
         {
             _control = control;
             Initialize(control, position);
-            AddLevel(1);
         }
 
         private void Initialize(CurrencyBarControl control, Vector3 position)
@@ -35,14 +34,14 @@ namespace Controllers.Depository
             _control.AddLevel(lvl);
         }
 
-        public Vector3 GetLocalPosition()
+        public Vector3 GetPosition()
         {
-            return _control.transform.localPosition;
+            return _control.transform.position;
         }
 
         public void SetToPosition(Vector3 position)
         {
-            _control.transform.localPosition = position;
+            _control.transform.position = position;
         }
     }
 }

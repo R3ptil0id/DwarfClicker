@@ -7,9 +7,6 @@ namespace Controls.GameElements.CurrencyBar
 {
     public class CurrencyBarControl : MonoBehaviour
     {
-        // [SerializeField]private float localYStartOffset;
-        // [SerializeField]private float localStartScale;
-        
         [Space(2)]
         [SerializeField] private CurrencyType _currencyType;
         [Space(2)]
@@ -46,7 +43,6 @@ namespace Controls.GameElements.CurrencyBar
 
         public void Initialize(Vector3 startPosition)
         {
-            IsBusy = false;
             Guid = Guid.NewGuid();
             transform.position = startPosition;
             // _startPosition = startPosition;
@@ -61,7 +57,7 @@ namespace Controls.GameElements.CurrencyBar
 
         private void TestUpdateLevel() //TODO replace with animation
         {
-            _fill.localScale += new Vector3(0, 1, 0);
+            _fill.localScale += new Vector3(0, 0.1f, 0);
         }
 
         private void UpdateView()

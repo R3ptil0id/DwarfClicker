@@ -1,4 +1,5 @@
 using System;
+using Enums;
 using UnityEngine;
 using Utils.Ioc;
 
@@ -9,16 +10,26 @@ namespace Controls
     {
         [SerializeField] private float _zoomFactor;
         [SerializeField] private float _zoomLerpSpeed;
-        
+
         private Camera _camera;
         private float _targetZoom;
-        public Action NotifyClick;
-        
-        public void Click()
-        {
-            NotifyClick?.Invoke();
-        }
+        public Action<CurrencyType> NotifyClickAddCurrency;
 
+        public void ClickAddCurrency0Bar()
+        {
+            NotifyClickAddCurrency?.Invoke(CurrencyType.Currency_0);
+        }
+        
+        public void ClickAddCurrency1Bar()
+        {
+            NotifyClickAddCurrency?.Invoke(CurrencyType.Currency_1);
+        }
+        
+        public void ClickAddCurrency2Bar()
+        {
+            NotifyClickAddCurrency?.Invoke(CurrencyType.Currency_2);
+        }
+        
         public void Initialize()
         {
             var cameraControl = IoC.Resolve<CameraControl>();

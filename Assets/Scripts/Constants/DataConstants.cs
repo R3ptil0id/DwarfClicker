@@ -9,7 +9,10 @@ namespace Constants
         public const string ScriptableObjectFolderPath = "Assets/ScriptableObjects";
         public static readonly Dictionary<CurrencyType, int> CurrencyCountInType = new();
 
-        public const float PositionXOffsetCurrency = 0.15f;
+        public const float PositionXOffsetCurrency = 0.7f;
+        public const int MaxCurrency0BarOnStart = 1;
+        public const int MaxCurrency1BarOnStart = 0;
+        public const int MaxCurrency2BarOnStart = 0;
                 
         static DataConstants()
         {
