@@ -11,7 +11,6 @@ namespace Controllers.GameController
 {
     public class IocInitializer
     {
-        // private List<IInitializable> _monoBehavioursInitializables = new ();
         private MonoBehaviourIocInstaller _monoBehaviourIocInstaller;
         private List<IInitializable> _initializables = new ();
 

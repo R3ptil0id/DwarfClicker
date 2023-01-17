@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Controllers;
 using Services.GameLoop;
 using Utils.Ioc;
 
 namespace Services.Timers
 {
     [RegistrateInIoc]
-    public class TimersService : ITimersService
+    public class TimersService : BaseController, ITimersService
     {
         private static int _currentId = 0;
 
@@ -17,7 +18,7 @@ namespace Services.Timers
         private readonly Dictionary<int, ITimer> _added = new Dictionary<int, ITimer>();
         private readonly Queue<LinkedListNode<ITimer>> _removed = new Queue<LinkedListNode<ITimer>>();
         
-        private GameLoopService _gameLoopService;
+       [Inject] private GameLoopService _gameLoopService;
         
         private double _serverTime;
         private double _serverStartTime;
@@ -60,6 +61,13 @@ namespace Services.Timers
             RemoveTimers();
         }
 
+        public ITimer AddTimer(float duration, Action<ITimer> done = null)
+        {
+            var id = GetId();
+            var timer = CreateTimer(id, duration, null, done);
+            _added[timer.Id] = timer;
+            return timer;
+        }
         public ITimer AddTimer(float duration, Action<ITimer> tick = null, Action<ITimer> done = null)
         {
             var id = GetId();
@@ -149,10 +157,10 @@ namespace Services.Timers
             _removed.Clear();
         }
 
-        public TimersService()
-        {
-            _gameLoopService = IoC.Resolve<GameLoopService>();
-        }
+        // public TimersService()
+        // {
+        //     _gameLoopService = IoC.Resolve<GameLoopService>();
+        // }
         
         private void AddTimers()
         {

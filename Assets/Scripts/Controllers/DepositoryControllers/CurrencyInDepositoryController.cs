@@ -1,18 +1,19 @@
 using System.Collections.Generic;
 using Constants;
+using Controllers.Perks;
 using Controls;
 using Enums;
 using UnityEngine;
 using Utils.EnumExtensions;
 using Utils.Ioc;
 
-namespace Controllers.Depository
+namespace Controllers.DepositoryControllers
 {
     public class CurrencyInDepositoryController : BaseController
     {
         [Inject] private readonly ObjectsInstaller _objectsInstaller;
         [Inject] private readonly CurrencyObjectsPoolController _currencyObjectsPool;
-        [Inject] private readonly PerkController _perkController;
+        [Inject] private readonly PerksController _perksController;
         
         private readonly Dictionary<CurrencyType, List<CurrencyBarController>> _currentCurrencyBars = new();
         private readonly LinkedList<CurrencyBarController> _currencyBarControllers = new ();
@@ -27,9 +28,9 @@ namespace Controllers.Depository
         
         public void AddCurrencyBar(CurrencyType currencyType)
         {
-            if (_perkController.MaxCurrencyBars[currencyType] == 0 ||
-                 (_currentCurrencyBars.TryGetValue(currencyType, out var barControllers) &&
-                  barControllers.Count >= _perkController.MaxCurrencyBars[currencyType]))
+            if (_perksController.GetPerk<CurrencyBarPerks>().CurrentMaxCurrencyBars[currencyType] == 0 ||
+            (_currentCurrencyBars.TryGetValue(currencyType, out var barControllers) &&
+                   barControllers.Count >= _perksController.GetPerk<CurrencyBarPerks>().CurrentMaxCurrencyBars[currencyType]))
             {
                 return;
             }

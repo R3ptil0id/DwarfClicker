@@ -6,7 +6,7 @@ using Enums;
 using Utils.EnumExtensions;
 using Utils.Ioc;
 
-namespace Controllers.Depository
+namespace Controllers.DepositoryControllers
 {
     public class DepositoryController : BaseController, IDisposable
     {

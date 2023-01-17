@@ -9,5 +9,11 @@ namespace Controls
         [Header("SceneObjects")]
         public Transform PoolObject;
         public Transform Currencies;
+        
+        [Space(3)][Header("BotObjects")]
+        public Transform HomePoint;
+        public Transform UnloadPoint;
+        public Transform AirPoint;
+        public Transform TargetPoint;
     }
 }

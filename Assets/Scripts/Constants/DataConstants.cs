@@ -5,7 +5,6 @@ namespace Constants
 {
     public static class DataConstants
     {
-        
         public const string ScriptableObjectFolderPath = "Assets/ScriptableObjects";
         public static readonly Dictionary<CurrencyType, int> CurrencyCountInType = new();
 
@@ -13,6 +12,10 @@ namespace Constants
         public const int MaxCurrency0BarOnStart = 1;
         public const int MaxCurrency1BarOnStart = 0;
         public const int MaxCurrency2BarOnStart = 0;
+        
+        public const float BotCollectingTime = 2f;
+        public const int BotMaxCountOnStart = 10;
+        public const int BotMaxCount = 160;
                 
         static DataConstants()
         {

@@ -1,4 +1,8 @@
-using Controllers.Depository;
+
+using Controllers.BotController;
+using Controllers.DepositoryControllers;
+using Services.Timers;
+using Utils.Ioc;
 
 namespace Controllers.GameController
 {
@@ -6,6 +10,8 @@ namespace Controllers.GameController
     {
         private IocInitializer _iocInitializer;
         private DepositoryController _depositoryController;
+        private BotsController _botsController;
+        private TimersService _timersService;
         public void PreInitialize()
         {
             _iocInitializer = new IocInitializer();
@@ -15,6 +21,10 @@ namespace Controllers.GameController
         {
             _iocInitializer.Initialize();
             _depositoryController = new DepositoryController();
+            _botsController = new BotsController();
+
+            _timersService = IoC.Resolve<TimersService>();
+            _timersService.Run();
         }
     }
 }

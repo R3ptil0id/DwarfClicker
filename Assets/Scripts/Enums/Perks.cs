@@ -2,6 +2,7 @@ namespace Enums
 {
     public enum Perks
     {
-        AutoConvert
+        AutoConvert,
+        
     }
 }

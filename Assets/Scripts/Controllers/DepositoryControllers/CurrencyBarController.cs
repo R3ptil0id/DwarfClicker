@@ -5,7 +5,7 @@ using Enums;
 using UnityEngine;
 using Utils.Ioc;
 
-namespace Controllers.Depository
+namespace Controllers.DepositoryControllers
 {
     public class CurrencyBarController : BaseController
     {

@@ -7,9 +7,10 @@ using Enums;
 using ScriptableObjects;
 using UnityEngine;
 using Utils.Ioc;
+
 using Object = UnityEngine.Object;
 
-namespace Controllers
+namespace Controllers.DepositoryControllers
 {
     [RegistrateInIoc(needInitialize: true)]
     public class CurrencyObjectsPoolController : BaseController, IInitializable
@@ -21,7 +22,6 @@ namespace Controllers
         private Dictionary<CurrencyType, List<CurrencyBarControl>> _dictionary;
         
         private const int InstancesCount = 20;
-        
         
         public CurrencyBarControl GetCurrencyObject(CurrencyType type)
         { 

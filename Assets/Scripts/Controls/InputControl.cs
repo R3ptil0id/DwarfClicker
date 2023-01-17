@@ -14,18 +14,20 @@ namespace Controls
         private Camera _camera;
         private float _targetZoom;
         public Action<CurrencyType> NotifyClickAddCurrency;
+        public Action<CurrencyType> NotifyClickAddBar;
+        public Action NotifyClickAddBot;
 
-        public void ClickAddCurrency0Bar()
+        public void ClickAddCurrency0()
         {
             NotifyClickAddCurrency?.Invoke(CurrencyType.Currency_0);
         }
         
-        public void ClickAddCurrency1Bar()
+        public void ClickAddCurrency1()
         {
             NotifyClickAddCurrency?.Invoke(CurrencyType.Currency_1);
         }
         
-        public void ClickAddCurrency2Bar()
+        public void ClickAddCurrency2()
         {
             NotifyClickAddCurrency?.Invoke(CurrencyType.Currency_2);
         }
@@ -34,6 +36,26 @@ namespace Controls
         {
             var cameraControl = IoC.Resolve<CameraControl>();
             _camera = cameraControl.Camera;
+        }
+        
+        public void ClickAddCurrencyBar0()
+        {
+            NotifyClickAddBar?.Invoke(CurrencyType.Currency_1);
+        }
+        
+        public void ClickAddCurrencyBar1()
+        {
+            NotifyClickAddBar?.Invoke(CurrencyType.Currency_2);
+        }
+        
+        public void ClickAddCurrencyBar2()
+        {
+            NotifyClickAddBar?.Invoke(CurrencyType.Currency_2);
+        }
+        
+        public void ClickAddBot()
+        {
+            NotifyClickAddBot?.Invoke();
         }
     }
 }
