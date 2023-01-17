@@ -27,6 +27,7 @@ public class BotControl : BaseControl
     private Vector3 _airPosition;
     private Vector3 _targetPosition;
     private Vector3 _startPosition;
+    private Vector3 _hidenPosition;
     
     private float _timer;
     private bool _moving;
@@ -34,12 +35,20 @@ public class BotControl : BaseControl
     private Action _moveAction;
     
     public Action<BotLocation> CameToLocation;
-    
-    public void Initialize(Vector3 parentPosition)
+
+    public void Initialize()
     {
         base.Initialize();
-
-        var position = parentPosition;
+        Reset();
+        
+        _startPosition = _objectsInstaller.HomePoint.position;
+        _hidenPosition = transform.position;
+        GenerateRandomPositions();
+    }
+    
+    public void GenerateRandomPositions()
+    {   
+        var position = _startPosition;
         var xAir = Random.Range(-_xAirOffset, _xAirOffset);
         var yAir = Random.Range(-_yAirOffset, _yAirOffset);
 
@@ -51,8 +60,6 @@ public class BotControl : BaseControl
 
         var targetPosition = _objectsInstaller.TargetPoint.position;
         _targetPosition = new Vector3(targetPosition.x + xTarget, targetPosition.y + yTarget, position.z);
-        _startPosition = _objectsInstaller.HomePoint.position;
-        Reset();
     }
 
     public void StartMoveToTarget()
@@ -71,6 +78,11 @@ public class BotControl : BaseControl
     {
         _moving = true;
         _moveAction = MoveToHome;
+    }
+    
+    public void HideFromScreen()
+    {
+        transform.position = _hidenPosition;
     }
 
     private void MoveToTarget()

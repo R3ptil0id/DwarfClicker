@@ -55,7 +55,7 @@ namespace Controllers.BotController
             {
                 var instance = Object.Instantiate(_prefabTable.Bot, _parentObject);
                 var component = instance.GetComponent<BotControl>();
-                component.Initialize(_parentObject.position);
+                component.Initialize();
                 var controller = new BotController(component);
                     
                 _bots.Add(controller);

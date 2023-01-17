@@ -29,6 +29,7 @@ namespace Controllers.BotController
             IsBusy = true;
             
             _botControl.CameToLocation += CameToLocationHandler;
+            _botControl.GenerateRandomPositions();
             _botControl.StartMoveToTarget();
         }
         
@@ -40,7 +41,7 @@ namespace Controllers.BotController
             }
 
             IsBusy = false;
-            
+            _botControl.HideFromScreen();
             _botControl.CameToLocation -= CameToLocationHandler;
         }
 
@@ -55,9 +56,8 @@ namespace Controllers.BotController
                     IsBusy = false;
                     break;
                 case BotControl.BotLocation.Shaft:
-                    _timersService.AddTimer(DataConstants.BotCollectingTime, OnTimerDone);
-                    break;
                 case BotControl.BotLocation.Unload:
+                    _timersService.AddTimer(DataConstants.BotCollectingTime, OnTimerDone);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(botLocation), botLocation, null);
