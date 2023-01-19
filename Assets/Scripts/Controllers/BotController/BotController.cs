@@ -1,5 +1,7 @@
 using System;
 using Constants;
+using Controllers.DepositoryControllers;
+using Enums;
 using Services.Timers;
 using Utils.Ioc;
 
@@ -8,6 +10,7 @@ namespace Controllers.BotController
     public class BotController : BaseController
     {
         [Inject] private TimersService _timersService;
+        [Inject] private DepositoryController _depositoryController;
         private ITimer _timer;
         private readonly BotControl _botControl;
         private BotControl.BotLocation _botLocation;
@@ -75,6 +78,7 @@ namespace Controllers.BotController
                     break;
                 case BotControl.BotLocation.Unload:
                     _botControl.StartMoveToHome();
+                    _depositoryController.AddCurrency(CurrencyType.Currency_0);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

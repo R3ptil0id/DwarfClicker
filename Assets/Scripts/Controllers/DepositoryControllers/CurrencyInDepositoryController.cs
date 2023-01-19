@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Constants;
 using Controllers.Perks;
 using Controls;
@@ -25,7 +26,20 @@ namespace Controllers.DepositoryControllers
                 _currentCurrencyBars.Add(currencyType, new List<CurrencyBarController>());
             }
         }
-        
+
+        public bool TryAddCurrency(CurrencyType currencyType)
+        {
+            var bar = _currentCurrencyBars[currencyType].LastOrDefault(b => !b.Filled);
+            
+            if (bar == null)
+            {
+                return false;
+            }
+
+            bar.AddLevel();
+            return true;
+        }
+
         public void AddCurrencyBar(CurrencyType currencyType)
         {
             if (_perksController.GetPerk<CurrencyBarPerks>().CurrentMaxCurrencyBars[currencyType] == 0 ||

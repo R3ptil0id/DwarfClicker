@@ -11,9 +11,9 @@ namespace Controllers.DepositoryControllers
     {
         [Inject] private readonly ObjectsInstaller _objectsInstaller;
         private readonly CurrencyBarControl _control;
+        private int _lvl;
         public CurrencyType CurrencyType { get; protected set;}
-        public int Lvl { get; protected set;}
-        public bool Filled => Lvl == DataConstants.CurrencyCountInType[CurrencyType];
+        public bool Filled => _lvl == DataConstants.CurrencyCountInType[CurrencyType];
 
         public CurrencyBarController(CurrencyBarControl control, Vector3 position)
         {
@@ -28,10 +28,10 @@ namespace Controllers.DepositoryControllers
             CurrencyType = control.CurrencyType;
         }
 
-        public void AddLevel(int lvl)
+        public void AddLevel()
         {
-            Lvl = lvl;
-            _control.AddLevel(lvl);
+            _lvl++;
+            _control.AddLevel();
         }
 
         public Vector3 GetPosition()

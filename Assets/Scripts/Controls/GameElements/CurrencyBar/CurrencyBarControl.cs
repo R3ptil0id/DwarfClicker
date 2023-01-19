@@ -49,7 +49,7 @@ namespace Controls.GameElements.CurrencyBar
             InitView();
         }
         
-        public void AddLevel(int currentLvl)
+        public void AddLevel()
         {
             // UpdateView();
             TestUpdateLevel();

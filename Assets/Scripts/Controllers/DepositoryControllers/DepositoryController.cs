@@ -30,6 +30,20 @@ namespace Controllers.DepositoryControllers
             Subscribe();
         }
 
+        public void AddCurrency(CurrencyType currencyType)
+        {
+           var added = _currencyInDepositoryController.TryAddCurrency(currencyType);
+           
+           if (!added)
+           {
+               return;
+           }
+
+           var currencyCount = ++_currencyValues[currencyType];
+           
+           _currenciesUiControl.UpdateInfo(currencyType, currencyCount);
+        }
+
         private void OnClickAddCurrencyBar(CurrencyType currencyType)
         {
             _currencyInDepositoryController.AddCurrencyBar(currencyType);

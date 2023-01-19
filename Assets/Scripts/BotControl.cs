@@ -21,13 +21,16 @@ public class BotControl : BaseControl
     [SerializeField][Range(0,10)] private float _xTargetOffset = 5.7f;
     [SerializeField][Range(0,10)] private float _yTargetOffset = 0.4f;
     [SerializeField][Range(0,5)] private float _speed = 0.7f;
+
+    [SerializeField] private GameObject _empty;
+    [SerializeField] private GameObject _filled;
     
     [Inject] private ObjectsInstaller _objectsInstaller;
     
     private Vector3 _airPosition;
     private Vector3 _targetPosition;
     private Vector3 _startPosition;
-    private Vector3 _hidenPosition;
+    private Vector3 _hiddenPosition;
     
     private float _timer;
     private bool _moving;
@@ -42,7 +45,9 @@ public class BotControl : BaseControl
         Reset();
         
         _startPosition = _objectsInstaller.HomePoint.position;
-        _hidenPosition = transform.position;
+        _hiddenPosition = transform.position;
+        _empty.SetActive(true);
+        _filled.SetActive(false);
         GenerateRandomPositions();
     }
     
@@ -70,19 +75,25 @@ public class BotControl : BaseControl
 
     public void StartMoveToUnload()
     {
+        _empty.SetActive(false);
+        _filled.SetActive(true);
+        
         _moving = true;
         _moveAction = MoveToUnload;
     }
     
     public void StartMoveToHome()
     {
+        _empty.SetActive(true);
+        _filled.SetActive(false);
+        
         _moving = true;
         _moveAction = MoveToHome;
     }
     
     public void HideFromScreen()
     {
-        transform.position = _hidenPosition;
+        transform.position = _hiddenPosition;
     }
 
     private void MoveToTarget()
