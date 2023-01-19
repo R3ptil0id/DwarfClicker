@@ -28,9 +28,10 @@ namespace Utils
             
             scriptableObject.Types.Clear();
             scriptableObject.NeedInitializeTypes.Clear();
-            
-            var types = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsDefined(typeof(RegistrateInIocAttribute))).ToList();
-          
+
+            var types = Assembly.GetExecutingAssembly().GetTypes()
+                .Where(t => t.IsDefined(typeof(RegistrateInIocAttribute))).ToList();
+
             foreach (var type in types)
             {
                 scriptableObject.Types.Add(type);
@@ -43,10 +44,11 @@ namespace Utils
                     }
                 }
             }
+            EditorUtility.SetDirty(scriptableObject);
             
             var rootObjects = new List<GameObject>();
             var scene = SceneManager.GetActiveScene();
-            scene.GetRootGameObjects( rootObjects );
+            scene.GetRootGameObjects(rootObjects);
 
             var storedMonoBehaviours = new List<MonoBehaviour>();
             var storedInitializableMonoBehaviours = new List<MonoBehaviour>();
@@ -55,17 +57,17 @@ namespace Utils
             foreach (var rootObject in rootObjects)
             {
                 var monobehaviours = rootObject.GetComponentsInParent<MonoBehaviour>();
-                
+
                 foreach (var monobehaviour in monobehaviours)
                 {
                     monoBehaviourIocInstaller = monoBehaviourIocInstaller != null
                         ? monoBehaviourIocInstaller
                         : rootObject.GetComponentsInParent<MonoBehaviourIocInstaller>().FirstOrDefault();
-                    
+
                     var type = monobehaviour.GetType();
                     var attribute = type
                         .GetCustomAttributes<RegistrateMonoBehaviourInIocAttribute>().FirstOrDefault();
-                    
+
                     if (attribute == null)
                     {
                         continue;
