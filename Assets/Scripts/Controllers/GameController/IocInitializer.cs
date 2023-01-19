@@ -14,15 +14,15 @@ namespace Controllers.GameController
         private MonoBehaviourIocInstaller _monoBehaviourIocInstaller;
         private List<IInitializable> _initializables = new ();
 
-        public IocInitializer()
+        public IocInitializer(MonoBehaviourIocInstaller iocInstaller)
         {
+            IoC.CreateIoC();
+            IoC.Register(iocInstaller);
+            
             RegistrateScriptableObjects();
             RegistrateMonobehavioursInIoC();
             RegistrateCustomsInIoC();
-        }
-
-        public void Initialize()
-        {
+            
             foreach (var initializable in _monoBehaviourIocInstaller.Initializables.Where(i => i is IInitializable))
             {
                 ((IInitializable)initializable).Initialize();
@@ -58,6 +58,7 @@ namespace Controllers.GameController
                 IoC.Register(monoBehaviour);
             }
         }
+        
         private void RegistrateCustomsInIoC()
         {
             var types = IoC.Resolve<StoreCustomAttributes>().Types;

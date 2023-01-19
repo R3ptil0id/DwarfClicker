@@ -8,6 +8,7 @@ using Utils.Ioc;
 
 namespace Controllers.DepositoryControllers
 {
+    [RegistrateInIoc()]
     public class DepositoryController : BaseController, IDisposable
     {
         [Inject] private readonly InputControl _inputControl;
@@ -18,6 +19,7 @@ namespace Controllers.DepositoryControllers
         private readonly Dictionary<CurrencyType, int> _currencyValues = new();
         
         public Dictionary<CurrencyType, int> CurrencyValues => _currencyValues;
+        
         public DepositoryController()
         {
             _currencyInDepositoryController = new CurrencyInDepositoryController();
