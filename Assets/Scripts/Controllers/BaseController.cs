@@ -13,9 +13,8 @@ namespace Controllers
 
             foreach (var fieldInfo in fieldInfos)
             {
-                var f = fieldInfo.FieldType;
-                var t = IoC.Resolve(fieldInfo.FieldType);
-                fieldInfo.SetValue(this, t);
+                var o = IoC.Resolve(fieldInfo.FieldType);
+                fieldInfo.SetValue(this, o);
             }
         }
     }
