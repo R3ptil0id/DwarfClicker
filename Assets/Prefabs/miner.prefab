@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 8692092701735006201}
   - component: {fileID: 7051059769137696959}
   m_Layer: 0
-  m_Name: miner
+  m_Name: Miner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

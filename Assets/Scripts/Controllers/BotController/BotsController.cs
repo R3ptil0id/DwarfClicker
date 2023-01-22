@@ -5,7 +5,7 @@ namespace Controllers.BotController
 {
     public class BotsController : BaseController
     {
-        [Inject] private readonly BotPool _botPool;
+        [Inject] private readonly BotPoolController _botPoolController;
         [Inject] private readonly InputControl _inputControl;
 
         public BotsController()
@@ -15,7 +15,7 @@ namespace Controllers.BotController
 
         private void ClickAddBotHandler()
         {
-            _botPool.GetBotController();
+            _botPoolController.GetBotController();
         }
     }
 }

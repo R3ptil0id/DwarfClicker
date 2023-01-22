@@ -3,6 +3,7 @@ using System.Linq;
 using Constants;
 using Controllers.Perks;
 using Controls;
+using Controls.GameElements.Bot;
 using ScriptableObjects;
 using UnityEngine;
 using Utils.Ioc;
@@ -12,7 +13,7 @@ using Object = UnityEngine.Object;
 namespace Controllers.BotController
 {
     [RegistrateInIoc(needInitialize: true)]
-    public class BotPool : BaseController, IInitializable
+    public class BotPoolController : BaseController, IInitializable
     {
         [Inject] private ObjectsInstaller _objectsInstaller;
         [Inject] private PrefabTable _prefabTable;

@@ -42,7 +42,8 @@ namespace Controllers.DepositoryControllers
         public void Initialize()
         {
             _parentObject = _objectsInstaller.PoolObject;
-            _dictionary = new Dictionary<CurrencyType, List<CurrencyBarControl>>(_currenciesPrefabs.Count);
+            _dictionary = new Dictionary<CurrencyType, List<CurrencyBarControl>>();
+            
              var type = _currenciesPrefabs.GetType();
              var fields = type.GetFields();
 
@@ -73,15 +74,17 @@ namespace Controllers.DepositoryControllers
                         list.Add(component);
                     }
 
-                    if (currencyType != CurrencyType.Undefined)
+                    if (currencyType == CurrencyType.Undefined)
                     {
-                        if (_dictionary.ContainsKey(currencyType))
-                        {
-                            throw new ArgumentException($"{currencyType} already added to Currencies pool");
-                        }
-
-                        _dictionary.Add(currencyType, list);
+                        continue;
                     }
+                    
+                    if (_dictionary.ContainsKey(currencyType))
+                    {
+                        throw new ArgumentException($"{currencyType} already added to Currencies pool");
+                    }
+
+                    _dictionary.Add(currencyType, list);
                 }
         }
     }

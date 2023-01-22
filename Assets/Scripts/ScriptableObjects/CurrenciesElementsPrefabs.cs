@@ -11,8 +11,5 @@ namespace ScriptableObjects
         public GameObject Bar0;
         public GameObject Bar1;
         public GameObject Bar2;
-        
-        [HideInInspector]
-        public int Count;
     }
 }

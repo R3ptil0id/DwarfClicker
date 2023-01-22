@@ -1,6 +1,7 @@
 using System;
 using Constants;
 using Controllers.DepositoryControllers;
+using Controls.GameElements.Bot;
 using Enums;
 using Services.Timers;
 using Utils.Ioc;
@@ -11,9 +12,10 @@ namespace Controllers.BotController
     {
         [Inject] private TimersService _timersService;
         [Inject] private DepositoryController _depositoryController;
+        
         private ITimer _timer;
         private readonly BotControl _botControl;
-        private BotControl.BotLocation _botLocation;
+        private BotLocation _botLocation;
         
         public bool IsBusy { get; private set; }
 
@@ -48,18 +50,18 @@ namespace Controllers.BotController
             _botControl.CameToLocation -= CameToLocationHandler;
         }
 
-        private void CameToLocationHandler(BotControl.BotLocation botLocation)
+        private void CameToLocationHandler(BotLocation botLocation)
         {
             _botLocation = botLocation;
             
             switch(botLocation)
             {
-                case BotControl.BotLocation.Home:
+                case BotLocation.Home:
                     Release();
                     IsBusy = false;
                     break;
-                case BotControl.BotLocation.Shaft:
-                case BotControl.BotLocation.Unload:
+                case BotLocation.Shaft:
+                case BotLocation.Unload:
                     _timersService.AddTimer(DataConstants.BotCollectingTime, OnTimerDone);
                     break;
                 default:
@@ -71,12 +73,12 @@ namespace Controllers.BotController
         {
             switch (_botLocation)
             {
-                case BotControl.BotLocation.Home:
+                case BotLocation.Home:
                     break;
-                case BotControl.BotLocation.Shaft:
+                case BotLocation.Shaft:
                     _botControl.StartMoveToUnload();
                     break;
-                case BotControl.BotLocation.Unload:
+                case BotLocation.Unload:
                     _botControl.StartMoveToHome();
                     _depositoryController.AddCurrency(CurrencyType.Currency_0);
                     break;
