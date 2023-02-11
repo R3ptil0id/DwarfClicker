@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Controls.GameElements.Workers
 {
-    public class MinerControl : MonoBehaviour
+    public class MinerControl : WorkerControl
     {
         
     }

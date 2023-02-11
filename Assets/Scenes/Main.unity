@@ -302,12 +302,12 @@ GameObject:
   - component: {fileID: 149293268}
   - component: {fileID: 149293267}
   m_Layer: 5
-  m_Name: 'ButtonBARII '
+  m_Name: ButtonMIner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &149293266
 RectTransform:
   m_ObjectHideFlags: 0
@@ -373,9 +373,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584678952}
-        m_TargetAssemblyTypeName: Controls.InputControl, Assembly-CSharp
-        m_MethodName: ClickAddCurrencyBar1
+      - m_Target: {fileID: 584678955}
+        m_TargetAssemblyTypeName: Controls.InputsControls.WorkersInputsControl, Assembly-CSharp
+        m_MethodName: ClickAddMiner
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -751,7 +751,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BAR II
+  m_text: MIner
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1133,8 +1133,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584678952}
-        m_TargetAssemblyTypeName: Controls.InputControl, Assembly-CSharp
+      - m_Target: {fileID: 584678957}
+        m_TargetAssemblyTypeName: Controls.InputsControls.BotsInputControl, Assembly-CSharp
         m_MethodName: ClickAddBot
         m_Mode: 1
         m_Arguments:
@@ -1300,7 +1300,7 @@ Transform:
   - {fileID: 1608641185}
   - {fileID: 132513152}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &584678945
 GameObject:
@@ -1317,8 +1317,12 @@ GameObject:
   - component: {fileID: 584678946}
   - component: {fileID: 584678951}
   - component: {fileID: 584678950}
+  - component: {fileID: 584678957}
+  - component: {fileID: 584678956}
+  - component: {fileID: 584678955}
   - component: {fileID: 584678952}
   - component: {fileID: 584678954}
+  - component: {fileID: 584678958}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1368,6 +1372,7 @@ MonoBehaviour:
   UnloadPoint: {fileID: 1027372374}
   AirPoint: {fileID: 1608641185}
   TargetPoint: {fileID: 132513152}
+  MinerShaftStartPoint: {fileID: 1498913313}
 --- !u!4 &584678949
 Transform:
   m_ObjectHideFlags: 0
@@ -1437,8 +1442,12 @@ MonoBehaviour:
   - {fileID: 1725522357}
   - {fileID: 584678948}
   - {fileID: 584678951}
+  - {fileID: 584678957}
+  - {fileID: 584678956}
+  - {fileID: 584678955}
   - {fileID: 584678952}
   - {fileID: 584678954}
+  - {fileID: 584678958}
   Initializables:
   - {fileID: 584678952}
 --- !u!114 &584678954
@@ -1458,6 +1467,54 @@ MonoBehaviour:
   "\u0421urrency_2": {fileID: 1066604791}
   "\u0421urrency_3": {fileID: 154834942}
   "\u0421urrency_4": {fileID: 116159010}
+--- !u!114 &584678955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584678945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af28fd12bd4545c2a35fdaaf61370c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &584678956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584678945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd272cae0e65428188c25046e0fb5e45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &584678957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584678945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f098bd5d8d446db080d744a4d3952e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &584678958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584678945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12c96f9b7c114236b72254e4dfe91e97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &646730110
 GameObject:
   m_ObjectHideFlags: 0
@@ -2197,8 +2254,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584678952}
-        m_TargetAssemblyTypeName: Controls.InputControl, Assembly-CSharp
+      - m_Target: {fileID: 584678956}
+        m_TargetAssemblyTypeName: Controls.InputsControls.CurrenciesInputControl,
+          Assembly-CSharp
         m_MethodName: ClickAddCurrency0
         m_Mode: 1
         m_Arguments:
@@ -3199,6 +3257,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1498913312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1498913313}
+  m_Layer: 0
+  m_Name: Miners1
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1498913313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498913312}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.058, y: -3.289, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1583619113
 GameObject:
   m_ObjectHideFlags: 0
@@ -3836,7 +3925,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BAR I
+  m_text: BOT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

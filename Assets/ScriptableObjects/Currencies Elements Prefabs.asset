@@ -15,4 +15,3 @@ MonoBehaviour:
   Bar0: {fileID: 7646608428367068950, guid: 63e3d510ab7bf074b8bbfe838651648c, type: 3}
   Bar1: {fileID: 7646608428367068950, guid: 6a1f66a14a6fbd441ab88d6f7f797fcb, type: 3}
   Bar2: {fileID: 7646608428367068950, guid: 2ecd9f65299698347868303872af99d1, type: 3}
-  Count: 3

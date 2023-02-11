@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b499ca1a8e841d9b146a5ebe3a5d93e, type: 3}
   m_Name: Workers Prefabs
   m_EditorClassIdentifier: 
-  Miner: {fileID: 0}
-  Count: 0
+  Miner: {fileID: 8692092701735006148, guid: 230c3202036fb65439796ae60d2c5bd7, type: 3}

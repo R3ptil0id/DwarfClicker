@@ -12,8 +12,7 @@ using Object = UnityEngine.Object;
 
 namespace Controllers.BotController
 {
-    [RegistrateInIoc(needInitialize: true)]
-    public class BotPoolController : BaseController, IInitializable
+    public class BotPoolController : BaseController
     {
         [Inject] private ObjectsInstaller _objectsInstaller;
         [Inject] private PrefabTable _prefabTable;
@@ -21,8 +20,8 @@ namespace Controllers.BotController
         
         private Transform _parentObject;
         private List<BotController> _bots;
-        
-        public void Initialize()
+
+        public BotPoolController()
         {
             _parentObject = _objectsInstaller.PoolObject;
             _bots = new List<BotController>(DataConstants.BotMaxCountOnStart);

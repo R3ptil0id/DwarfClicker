@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Controls;
+using Controls.InputsControls;
 using Controls.UiControls;
 using Enums;
 using Utils.EnumExtensions;
@@ -11,14 +12,12 @@ namespace Controllers.DepositoryControllers
     [RegistrateInIoc()]
     public class DepositoryController : BaseController, IDisposable
     {
-        [Inject] private readonly InputControl _inputControl;
+        [Inject] private readonly CurrenciesInputControl _currenciesInputControl;
         [Inject] private readonly CurrenciesUiControl _currenciesUiControl;
         
         private readonly CurrencyInDepositoryController _currencyInDepositoryController;
         
         private readonly Dictionary<CurrencyType, int> _currencyValues = new();
-        
-        public Dictionary<CurrencyType, int> CurrencyValues => _currencyValues;
         
         public DepositoryController()
         {
@@ -44,19 +43,19 @@ namespace Controllers.DepositoryControllers
            _currenciesUiControl.UpdateInfo(currencyType, currencyCount);
         }
 
-        private void OnClickAddCurrencyBar(CurrencyType currencyType)
+        private void ClickAddCurrencyBarHandler(CurrencyType currencyType)
         {
             _currencyInDepositoryController.AddCurrencyBar(currencyType);
         }
 
         private void Subscribe()
         {
-            _inputControl.NotifyClickAddCurrency += OnClickAddCurrencyBar;
+            _currenciesInputControl.NotifyClickAddCurrency += ClickAddCurrencyBarHandler;
         }
 
         private void UnSubscribe()
         {
-            _inputControl.NotifyClickAddCurrency -= OnClickAddCurrencyBar;
+            _currenciesInputControl.NotifyClickAddCurrency -= ClickAddCurrencyBarHandler;
         }
 
         public void Dispose()

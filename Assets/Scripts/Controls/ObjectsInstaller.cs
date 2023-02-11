@@ -15,5 +15,8 @@ namespace Controls
         public Transform UnloadPoint;
         public Transform AirPoint;
         public Transform TargetPoint;
+        
+        [Space(3)][Header("ShaftPositions")]
+        public Transform MinerShaftStartPoint;
     }
 }

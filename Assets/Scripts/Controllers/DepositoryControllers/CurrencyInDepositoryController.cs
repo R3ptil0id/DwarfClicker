@@ -13,9 +13,9 @@ namespace Controllers.DepositoryControllers
     public class CurrencyInDepositoryController : BaseController
     {
         [Inject] private readonly ObjectsInstaller _objectsInstaller;
-        [Inject] private readonly CurrencyObjectsPoolController _currencyObjectsPool;
         [Inject] private readonly PerksController _perksController;
         
+        private readonly CurrencyObjectsPoolController _currencyObjectsPool;
         private readonly Dictionary<CurrencyType, List<CurrencyBarController>> _currentCurrencyBars = new();
         private readonly LinkedList<CurrencyBarController> _currencyBarControllers = new ();
 
@@ -25,6 +25,8 @@ namespace Controllers.DepositoryControllers
             {
                 _currentCurrencyBars.Add(currencyType, new List<CurrencyBarController>());
             }
+
+            _currencyObjectsPool = new CurrencyObjectsPoolController();
         }
 
         public bool TryAddCurrency(CurrencyType currencyType)
@@ -42,16 +44,15 @@ namespace Controllers.DepositoryControllers
 
         public void AddCurrencyBar(CurrencyType currencyType)
         {
-            if (_perksController.GetPerk<CurrencyBarPerks>().CurrentMaxCurrencyBars[currencyType] == 0 ||
-            (_currentCurrencyBars.TryGetValue(currencyType, out var barControllers) &&
-                   barControllers.Count >= _perksController.GetPerk<CurrencyBarPerks>().CurrentMaxCurrencyBars[currencyType]))
+            if (_currentCurrencyBars.TryGetValue(currencyType, out var barControllers) &&
+                 barControllers.Count >= _perksController.GetPerk<CurrencyBarPerks>().CurrentMaxCurrencyBars[currencyType])
             {
                 return;
             }
 
             if (_currencyBarControllers.Count == 0)
             {
-               var currencyBarController= CreateCurrencyBarController(currencyType, _objectsInstaller.Currencies.position);
+               var currencyBarController = CreateCurrencyBarController(currencyType, _objectsInstaller.Currencies.position);
                _currencyBarControllers.AddLast(currencyBarController);
                 return;
             }

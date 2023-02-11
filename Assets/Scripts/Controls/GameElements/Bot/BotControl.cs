@@ -34,7 +34,7 @@ namespace Controls.GameElements.Bot
     
         public Action<BotLocation> CameToLocation;
 
-        public void Initialize()
+        public override void Initialize()
         {
             base.Initialize();
             Reset();

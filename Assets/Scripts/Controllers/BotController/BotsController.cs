@@ -1,16 +1,19 @@
 using Controls;
+using Controls.InputsControls;
 using Utils.Ioc;
 
 namespace Controllers.BotController
 {
     public class BotsController : BaseController
     {
-        [Inject] private readonly BotPoolController _botPoolController;
-        [Inject] private readonly InputControl _inputControl;
+        private readonly BotPoolController _botPoolController;
+        [Inject] private readonly BotsInputControl _botsInputControl;
 
         public BotsController()
         {
-            _inputControl.NotifyClickAddBot += ClickAddBotHandler;
+            _botPoolController = new BotPoolController();
+            
+            _botsInputControl.NotifyClickAddBot += ClickAddBotHandler;
         }
 
         private void ClickAddBotHandler()

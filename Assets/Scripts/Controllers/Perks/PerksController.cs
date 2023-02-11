@@ -13,6 +13,7 @@ namespace Controllers.Perks
         {
             AddPerk<CurrencyBarPerks>();
             AddPerk<BotsPerks>();
+            AddPerk<WorkersPerks>();
         }
 
         public void AddPerk<T>() where T : new()
