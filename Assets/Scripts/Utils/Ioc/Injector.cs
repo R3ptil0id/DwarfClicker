@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Utils.Ioc
 {
-    public static class Injecter
+    public static class Injector
     {
         public static void Inject(this object obj)
         {
