@@ -8,22 +8,23 @@ namespace Controllers.Workers
 {
     public class WorkerController : BaseController
     {
-    [Inject] private readonly ObjectsInstaller _objectsInstaller;
+        [Inject] private readonly ObjectsInstaller _objectsInstaller;
 
-    protected readonly WorkerControl _control;
-    public WorkerType WorkerType { get; protected set; }
+        protected readonly WorkerControl _control;
 
-    public WorkerController(WorkerControl control, Vector3 position)
-    {
-        _control = control;
-        Initialize(control, position);
-    }
+        public WorkerType WorkerType { get; protected set; }
 
-    private void Initialize(WorkerControl control, Vector3 position)
-    {
-        _control.transform.SetParent(_objectsInstaller.MinerShaftStartPoint);
-        _control.Initialize(position);
-        WorkerType = control.WorkerType;
-    }
+        public WorkerController(WorkerControl control, Vector3 position)
+        {
+            _control = control;
+            Initialize(control, position);
+        }
+
+        private void Initialize(WorkerControl control, Vector3 position)
+        {
+            _control.transform.SetParent(_objectsInstaller.MinerShaftStartPoint);
+            _control.Initialize(position);
+            WorkerType = control.WorkerType;
+        }
     }
 }

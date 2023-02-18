@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using Utils.Ioc;
 
 namespace Services.Coroutines
 {
+    [RegistrateMonoBehaviourInIoc]
     public class CoroutineService : MonoBehaviour
     {
         public static CoroutineService Instance;

@@ -1,7 +1,7 @@
 using System.Collections;
 using Enums;
+using Services.Coroutines;
 using UnityEngine;
-using Utils;
 using Utils.Ioc;
 
 using Random = UnityEngine.Random;
@@ -15,7 +15,7 @@ namespace Controls.GameElements.Workers
         [SerializeField] private float _delayMin;
         [SerializeField] private float _delayMax;
         
-        [Inject] private Coroutiner _coroutiner;
+        [Inject] private CoroutineService _coroutiner;
 
         private Vector3 _startPosition;
         private float _delayStartAnimation;
@@ -28,7 +28,7 @@ namespace Controls.GameElements.Workers
             
             _animator.enabled = false;
             _delayStartAnimation = Random.Range(_delayMin, _delayMax);
-            _coroutiner.CoroutineRun(StartAnimation);
+            _coroutiner.StartCoroutine(StartAnimation());
         }
 
         public void Initialize(Vector3 startPosition)
@@ -39,7 +39,7 @@ namespace Controls.GameElements.Workers
         public void Release()
         {
             IsBusy = false;
-            
+            _coroutiner.StopCoroutine(StartAnimation());
             InitView();
         }
 

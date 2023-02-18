@@ -20,10 +20,9 @@ namespace Utils.Ioc
 
                 foreach (var fieldInfo in fieldInfos)
                 {
-                    var f = fieldInfo.FieldType;
-                    var t = IoC.Resolve(fieldInfo.FieldType);
-                    fieldInfo.SetValue(obj, t);
+                    fieldInfo.SetValue(obj, IoC.Resolve(fieldInfo.FieldType));
                 }
+                
                 var baseType = type.BaseType;
                 if (baseType != null && type != baseType)
                 {

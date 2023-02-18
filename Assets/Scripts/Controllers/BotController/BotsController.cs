@@ -6,8 +6,9 @@ namespace Controllers.BotController
 {
     public class BotsController : BaseController
     {
-        private readonly BotPoolController _botPoolController;
         [Inject] private readonly BotsInputControl _botsInputControl;
+        
+        private readonly BotPoolController _botPoolController;
 
         public BotsController()
         {

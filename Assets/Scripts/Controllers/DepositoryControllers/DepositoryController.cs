@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Controls;
 using Controls.InputsControls;
 using Controls.UiControls;
 using Enums;
@@ -31,9 +30,7 @@ namespace Controllers.DepositoryControllers
 
         public void AddCurrency(CurrencyType currencyType)
         {
-           var added = _currencyInDepositoryController.TryAddCurrency(currencyType);
-           
-           if (!added)
+           if (!_currencyInDepositoryController.TryAddCurrency(currencyType))
            {
                return;
            }
