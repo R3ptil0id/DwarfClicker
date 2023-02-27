@@ -7,8 +7,11 @@ using Utils.Ioc;
 namespace Controls.UiControls
 {
     [RegistrateMonoBehaviourInIoc]
-    public class CurrenciesUiControl : MonoBehaviour
+    public class UiInGameControl : MonoBehaviour
     {
+        public RectTransform InGamePanel;
+        
+        [Space(6)]
         public TMP_Text Сurrency_0;
         public TMP_Text Сurrency_1;
         public TMP_Text Сurrency_2;

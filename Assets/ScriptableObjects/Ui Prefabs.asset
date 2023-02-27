@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3834f7e465947a2a085289e8d7f9ec4, type: 3}
-  m_Name: StoreCustomAttributesTypes
+  m_Script: {fileID: 11500000, guid: f2e7b2cf726446819733e534a2b4ba50, type: 3}
+  m_Name: Ui Prefabs
   m_EditorClassIdentifier: 
+  BuyPerk: {fileID: 4805257015936957874, guid: 8a4b9690a08c0b2468aeb5e7a15cd69a, type: 3}
+  ActivePerk: {fileID: 4128301577579360970, guid: 6ba6017699cc92f42ad23e2217016c9d, type: 3}

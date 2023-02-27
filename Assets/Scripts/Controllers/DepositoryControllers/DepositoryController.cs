@@ -12,7 +12,7 @@ namespace Controllers.DepositoryControllers
     public class DepositoryController : BaseController, IDisposable
     {
         [Inject] private readonly CurrenciesInputControl _currenciesInputControl;
-        [Inject] private readonly CurrenciesUiControl _currenciesUiControl;
+        [Inject] private readonly UiInGameControl _uiInGameControl;
         
         private readonly CurrencyInDepositoryController _currencyInDepositoryController;
         
@@ -37,7 +37,7 @@ namespace Controllers.DepositoryControllers
 
            var currencyCount = ++_currencyValues[currencyType];
            
-           _currenciesUiControl.UpdateInfo(currencyType, currencyCount);
+           _uiInGameControl.UpdateInfo(currencyType, currencyCount);
         }
 
         private void ClickAddCurrencyBarHandler(CurrencyType currencyType)

@@ -1,5 +1,3 @@
-using System;
-using Enums;
 using UnityEngine;
 using Utils.Ioc;
 
@@ -14,7 +12,6 @@ namespace Controls.InputsControls
         private Camera _camera;
         private float _targetZoom;
 
-        
         public void Initialize()
         {
             var cameraControl = IoC.Resolve<CameraControl>();

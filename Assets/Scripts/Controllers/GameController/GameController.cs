@@ -1,6 +1,7 @@
 
 using Controllers.BotController;
 using Controllers.DepositoryControllers;
+using Controllers.UiControllers;
 using Controllers.Workers;
 using Services.Timers;
 using Utils.Ioc;
@@ -14,11 +15,13 @@ namespace Controllers.GameController
         
         private BotsController _botsController;
         private WorkersController _workersController;
+        private UiInGameController _uiInGameController;
 
         public GameController()
         {
             _botsController = new BotsController();
             _workersController = new WorkersController();
+            _uiInGameController = new UiInGameController();
             
             _timersService.Run();   
         }

@@ -1,9 +1,10 @@
 namespace Enums
 {
-    public enum Perks
+    public enum PerkType
     {
         AutoConvert,
         //Miners
+        StartMinersLvl1Count,
         MinersLvl1
     }
 }

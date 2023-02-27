@@ -1,21 +1,21 @@
+using System.Linq;
 using Constants;
-
-using Perk = Enums.Perks;
+using Enums;
 
 namespace Controllers.Perks
 {
-    public class WorkersPerks
+    public class WorkersPerks : BasePerks
     {
         public int MinersMaxCount { get; private set; }
 
         public WorkersPerks()
         {
-            MinersMaxCount = WorkersDataConstants.Perks[Perk.MinersLvl1];
-        }
-        
-        public void AddMaxCount(Perk perk)
-        {
-            // MaxCount = PerkConstants.GetValue(perk)
+            PerkConstants = new WorkersDataPerkConstants();
+            
+            ActivePerks.Add(PerkType.StartMinersLvl1Count);
+            NotActivePerks = PerkConstants.ConstantsList.Keys.Except(ActivePerks).ToList();
+            
+            MinersMaxCount = GetConstantValue(PerkType.StartMinersLvl1Count);
         }
     }
 }

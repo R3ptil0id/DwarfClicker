@@ -4,7 +4,7 @@ using Enums;
 
 namespace Controllers.Perks
 {
-    public class CurrencyBarPerks
+    public class CurrencyBarPerks : BasePerks
     {
         public Dictionary<CurrencyType, int> CurrentMaxCurrencyBars { get; } = new(); 
 
@@ -15,7 +15,7 @@ namespace Controllers.Perks
             CurrentMaxCurrencyBars.Add(CurrencyType.Currency_2, DataConstants.MaxCurrency2BarOnStart);    
         }
 
-        public void AddMaxCount(CurrencyType currencyType, Enums.Perks perk)
+        public void AddMaxCount(CurrencyType currencyType, Enums.PerkType perkType)
         {
             // CurrentMaxCurrencyBars[currencyType] = PerkConstants.GetValue(perk)
         }

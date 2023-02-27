@@ -44,7 +44,7 @@ namespace Controllers.Workers
             var workerControl = _workersPoolController.GetWorkerObject(WorkerType.Miner);
             var workController = new WorkerController(workerControl, _position);
             _workers[workerType].Add(workController);
-            _position += Vector3.left * WorkersDataConstants.XworkerOffset;
+            _position += Vector3.left * WorkersDataPerkConstants.XworkerOffset;
         }
     }
 }
