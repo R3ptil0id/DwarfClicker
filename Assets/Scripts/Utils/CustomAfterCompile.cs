@@ -43,6 +43,7 @@ namespace Utils
                     }
                 }
             }
+            
             EditorUtility.SetDirty(scriptableObject);
             
             var rootObjects = new List<GameObject>();
@@ -55,35 +56,16 @@ namespace Utils
 
             foreach (var rootObject in rootObjects)
             {
-                var monobehaviours = rootObject.GetComponentsInParent<MonoBehaviour>();
-
-                foreach (var monobehaviour in monobehaviours)
+                FillsInstaller(rootObject, ref storedMonoBehaviours, ref storedInitializableMonoBehaviours, ref monoBehaviourIocInstaller);
+                
+                foreach (Transform child in rootObject.transform)
                 {
-                    monoBehaviourIocInstaller = monoBehaviourIocInstaller != null
-                        ? monoBehaviourIocInstaller
-                        : rootObject.GetComponentsInParent<MonoBehaviourIocInstaller>().FirstOrDefault();
-
-                    var type = monobehaviour.GetType();
-                    var attribute = type
-                        .GetCustomAttributes<RegistrateMonoBehaviourInIocAttribute>().FirstOrDefault();
-
-                    if (attribute == null)
-                    {
-                        continue;
-                    }
-
-                    storedMonoBehaviours.Add(monobehaviour);
-                    if (attribute.NeedInitialize)
-                    {
-                        storedInitializableMonoBehaviours.Add(monobehaviour);
-                    }
+                    FillsInstaller(child.gameObject, ref storedMonoBehaviours, ref storedInitializableMonoBehaviours, ref monoBehaviourIocInstaller);
                 }
             }
 
             if (monoBehaviourIocInstaller == null)
-            {
                 return;
-            }
 
             monoBehaviourIocInstaller.GameObjects.Clear();
             foreach (var monoBehaviour in storedMonoBehaviours)
@@ -94,6 +76,34 @@ namespace Utils
             monoBehaviourIocInstaller.Initializables.Clear();
             foreach (var monoBehaviour in storedInitializableMonoBehaviours.Where(m => m is IInitializable)) {
                 monoBehaviourIocInstaller.Initializables.Add(monoBehaviour);
+            }
+        }
+
+        private static void FillsInstaller(GameObject child, ref List<MonoBehaviour> storedMonoBehaviours,
+           ref List<MonoBehaviour> storedInitializableMonoBehaviours,
+           ref MonoBehaviourIocInstaller monoBehaviourIocInstaller)
+        {
+            var monobehaviours = child.GetComponentsInParent<MonoBehaviour>();
+
+            foreach (var monobehaviour in monobehaviours)
+            {
+                monoBehaviourIocInstaller = monoBehaviourIocInstaller != null
+                    ? monoBehaviourIocInstaller
+                    : child.GetComponentsInParent<MonoBehaviourIocInstaller>().FirstOrDefault();
+
+                var type = monobehaviour.GetType();
+                var attribute = type
+                    .GetCustomAttributes<RegistrateMonoBehaviourInIocAttribute>().FirstOrDefault();
+
+                if (attribute == null)
+                    continue;
+
+                storedMonoBehaviours.Add(monobehaviour);
+
+                if (attribute.NeedInitialize)
+                {
+                    storedInitializableMonoBehaviours.Add(monobehaviour);
+                }
             }
         }
     }

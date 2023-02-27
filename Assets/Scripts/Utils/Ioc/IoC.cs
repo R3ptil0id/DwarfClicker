@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Utils.Ioc
 {
@@ -27,7 +28,16 @@ namespace Utils.Ioc
         
         public static object Resolve<T>(T type)
         {
-            return Instance._types.TryGetValue(type as Type ?? type.GetType(), out var o) ? o : Resolve<T>();
+            try
+            {
+                return Instance._types.TryGetValue(type as Type ?? type.GetType(), out var o) ? o : Resolve<T>();
+            }
+            catch (ArgumentNullException e)
+            {
+                Debug.LogError($"<color=#ff0000>********** Can`t resolve {type} in Ioc **********</color>");
+                Console.WriteLine(e);
+                throw;
+            }
         }
         public static T Resolve<T>()  
         {
@@ -36,7 +46,7 @@ namespace Utils.Ioc
                 return (T)o;
             }
 
-            throw new ArgumentNullException($"{typeof(T)} not registrated in Ioc");
+            throw new ArgumentNullException($"Cant resolve Type in Ioc");
         }
         
         public static T Create<T>()
