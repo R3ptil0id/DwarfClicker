@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: fc7bda4694130d549b71ce91449a8bb2
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Houston
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 03d6a54a733cba844b6e5debb157102e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
