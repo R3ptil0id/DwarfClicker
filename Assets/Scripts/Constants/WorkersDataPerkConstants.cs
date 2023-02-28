@@ -12,7 +12,7 @@ namespace Constants
                     PerkType.StartMinersLvl1Count,
                     new ConstantPerkData(PerkType.MinersLvl1, CurrencyType.Undefined, 0, 4)
                 },
-                { PerkType.MinersLvl1, new ConstantPerkData(PerkType.MinersLvl1, CurrencyType.Undefined, 100, 1) },
+                { PerkType.MinersLvl1, new ConstantPerkData(PerkType.MinersLvl1, CurrencyType.Currency_2, 100, 1) },
             };
 
         public const float XworkerOffset = 0.1f;

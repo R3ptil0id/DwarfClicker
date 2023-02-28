@@ -11,13 +11,14 @@ namespace Controllers.Perks
         public List<PerkType> NotActivePerks { get; protected set; }
         public List<PerkType> ActivePerks { get; } = new ();
 
-        public int GetConstantValue(PerkType type)
+        public ConstantPerkData GetConstantValue(PerkType type)
         {
-            return PerkConstants.ConstantsList.TryGetValue(type, out var data) ? data.Value : 0;
+            return PerkConstants.ConstantsList.TryGetValue(type, out var data) ? data : null;
         }
         
-        public void AddMaxCount(PerkType perkType)
+        public void BuyPerk(PerkType perkType)
         {
+            NotActivePerks.Remove(perkType);
             ActivePerks.Add(perkType);
         }
     }

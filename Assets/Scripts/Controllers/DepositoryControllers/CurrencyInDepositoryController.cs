@@ -45,7 +45,7 @@ namespace Controllers.DepositoryControllers
         public void AddCurrencyBar(CurrencyType currencyType)
         {
             if (_currentCurrencyBars.TryGetValue(currencyType, out var barControllers) &&
-                 barControllers.Count >= _perksController.GetPerk<CurrencyBarPerks>().CurrentMaxCurrencyBars[currencyType])
+                 barControllers.Count >= _perksController.GetPerksData<CurrencyBarPerks>().CurrentMaxCurrencyBars[currencyType])
             {
                 return;
             }

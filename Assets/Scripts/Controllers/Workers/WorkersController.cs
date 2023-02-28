@@ -16,10 +16,12 @@ namespace Controllers.Workers
         [Inject] private readonly PerksController _perksController;
         [Inject] private readonly WorkersInputsControl _inputControl;
         
-        private readonly WorkersPoolController _workersPoolController;
         private readonly Dictionary<WorkerType, List<WorkerController>> _workers = new();
-        private Vector3 _position; 
+        private readonly WorkersPoolController _workersPoolController;
+        private readonly WorkersPerks _workersPerks;
         
+        private Vector3 _position; 
+         
         public WorkersController()
         {
             foreach (var currencyType in EnumExtension.GetAllItems<WorkerType>())
@@ -29,20 +31,24 @@ namespace Controllers.Workers
 
             _position = _objectsInstaller.MinerShaftStartPoint.position;
             
+            _workersPerks = _perksController.GetPerksData<WorkersPerks>();
             _workersPoolController = new WorkersPoolController();
+            
             _inputControl.NotifyClickAddMiner += ClickAddMinerHandler;
         }
 
         private void ClickAddMinerHandler(WorkerType workerType)
         {
+            
             if (_workers.TryGetValue(workerType, out var workControllers) &&
-                workControllers.Count >= _perksController.GetPerk<WorkersPerks>().MinersMaxCount)
+                workControllers.Count >= _workersPerks.GetConstantValue(PerkType.StartMinersLvl1Count).Value)
             {
                 return;
             }
 
             var workerControl = _workersPoolController.GetWorkerObject(WorkerType.Miner);
             var workController = new WorkerController(workerControl, _position);
+            
             _workers[workerType].Add(workController);
             _position += Vector3.left * WorkersDataPerkConstants.XworkerOffset;
         }

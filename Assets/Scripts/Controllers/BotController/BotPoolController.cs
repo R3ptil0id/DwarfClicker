@@ -25,7 +25,7 @@ namespace Controllers.BotController
         {
             _parentObject = _objectsInstaller.PoolObject;
             _bots = new List<BotController>(DataConstants.BotMaxCountOnStart);
-            GenerateBots(_perksController.GetPerk<BotsPerks>().MaxCount);
+            GenerateBots(_perksController.GetPerksData<BotsPerks>().MaxCount);
         }
 
         public BotController GetBotController()
@@ -37,7 +37,7 @@ namespace Controllers.BotController
 
         public void GenerateBots(int count)
         {
-            var maxCount = _perksController.GetPerk<BotsPerks>().MaxCount;
+            var maxCount = _perksController.GetPerksData<BotsPerks>().MaxCount;
             
             if (_bots.Count >= maxCount)
             {

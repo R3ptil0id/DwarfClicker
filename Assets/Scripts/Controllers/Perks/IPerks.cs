@@ -9,5 +9,7 @@ namespace Controllers.Perks
         IPerkConstants PerkConstants { get; }
         List<PerkType> NotActivePerks { get; }
         List<PerkType> ActivePerks { get; }
+        void BuyPerk(PerkType perkType);
+        ConstantPerkData GetConstantValue(PerkType type);
     }
 }

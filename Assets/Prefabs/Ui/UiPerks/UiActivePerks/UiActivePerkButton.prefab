@@ -271,8 +271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676f7266ba264616aa4878ddd1a14365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TypePriceText: {fileID: 0}
   PriceText: {fileID: 0}
+  TypePriceText: {fileID: 0}
+  DescriptionText: {fileID: 0}
 --- !u!1 &3386926133289068392
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7095005127299701989}
-  - component: {fileID: 5721530184993721590}
+  - component: {fileID: 7892193906039045743}
   - component: {fileID: 6057596592060334152}
   m_Layer: 5
   m_Name: UiActivePerkButton
@@ -452,7 +453,7 @@ RectTransform:
   m_AnchoredPosition: {x: 808, y: -235}
   m_SizeDelta: {x: 412, y: 304}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5721530184993721590
+--- !u!114 &7892193906039045743
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -461,11 +462,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4128301577579360970}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676f7266ba264616aa4878ddd1a14365, type: 3}
+  m_Script: {fileID: 11500000, guid: 74069138def642ce853189e90f10bfa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TypePriceText: {fileID: 3454321904467466744}
-  PriceText: {fileID: 0}
+  DescriptionText: {fileID: 8019135947162301174}
 --- !u!114 &6057596592060334152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,8 +577,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676f7266ba264616aa4878ddd1a14365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TypePriceText: {fileID: 0}
   PriceText: {fileID: 0}
+  TypePriceText: {fileID: 0}
+  DescriptionText: {fileID: 0}
 --- !u!1 &5949307755518739638
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +591,7 @@ GameObject:
   - component: {fileID: 3055374921952719762}
   - component: {fileID: 2960754578379066378}
   - component: {fileID: 447291172214205148}
-  - component: {fileID: 5079543872950529625}
+  - component: {fileID: 5693368165844235862}
   m_Layer: 5
   m_Name: UiPerkButtonShadow
   m_TagString: Untagged
@@ -655,7 +657,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 2
---- !u!114 &5079543872950529625
+--- !u!114 &5693368165844235862
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -664,8 +666,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5949307755518739638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676f7266ba264616aa4878ddd1a14365, type: 3}
+  m_Script: {fileID: 11500000, guid: 74069138def642ce853189e90f10bfa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TypePriceText: {fileID: 0}
-  PriceText: {fileID: 0}
+  TypePriceText: {fileID: 3454321904467466744}
+  DescriptionText: {fileID: 8019135947162301174}

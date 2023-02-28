@@ -27,21 +27,34 @@ namespace Controllers.Perks
 
         public void Initialize()
         {
-            AddPerk<CurrencyBarPerks>();
-            AddPerk<BotsPerks>();
-            AddPerk<WorkersPerks>();
+            AddPerksData<CurrencyBarPerks>();
+            AddPerksData<BotsPerks>();
+            AddPerksData<WorkersPerks>();
 
             var perksList = _perks.Values.Cast<IPerks>().ToList();
 
             _uiPerksController = new UiPerksController(perksList);
         }
 
-        public void AddPerk<T>() where T : new()
+        public void BuyPerk(PerkType perkType)
+        {
+            foreach (IPerks perks in _perks.Values)
+            {
+                foreach (var _ in perks.NotActivePerks.Where(p => p == perkType))
+                {
+                    perks.BuyPerk(perkType);
+                    var data = perks.GetConstantValue(perkType);
+                    _uiPerksController.BuyAndActivatePerk(data);
+                }
+            }
+        }
+
+        public void AddPerksData<T>() where T : new()
         {
             _perks.Add(typeof(T), new T());
         }
 
-        public T GetPerk<T>()
+        public T GetPerksData<T>()
         {
             if(_perks.TryGetValue(typeof(T), out var obj))
             {

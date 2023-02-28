@@ -10,11 +10,12 @@ namespace Controllers.BotController
 {
     public class BotController : BaseController
     {
-        [Inject] private TimersService _timersService;
-        [Inject] private DepositoryController _depositoryController;
+        [Inject] private readonly TimersService _timersService;
+        [Inject] private readonly DepositoryController _depositoryController;
+        
+        private readonly BotControl _botControl;
         
         private ITimer _timer;
-        private readonly BotControl _botControl;
         private BotLocation _botLocation;
         
         public bool IsBusy { get; private set; }
