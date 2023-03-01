@@ -5,6 +5,7 @@ using Constants;
 using Controllers.UiControllers;
 using Controls.InputsControls;
 using Controls.UiControls;
+using Data.PerksData;
 using Enums;
 using ScriptableObjects;
 using Utils.Ioc;
@@ -20,8 +21,8 @@ namespace Controllers.Perks
         
         private readonly Dictionary<Type, object> _perks = new();
         
-        private Dictionary<PerkType, ConstantPerkData> _notActivePerks = new(); 
-        private Dictionary<PerkType, ConstantPerkData> _activePerks = new(); 
+        private Dictionary<PerkType, PerkData> _notActivePerks = new(); 
+        private Dictionary<PerkType, PerkData> _activePerks = new(); 
         
         private UiPerksController _uiPerksController;
 

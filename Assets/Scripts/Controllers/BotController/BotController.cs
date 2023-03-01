@@ -63,7 +63,7 @@ namespace Controllers.BotController
                     break;
                 case BotLocation.Shaft:
                 case BotLocation.Unload:
-                    _timersService.AddTimer(DataConstants.BotCollectingTime, OnTimerDone);
+                    _timersService.AddTimer(CommonConstants.BotCollectingTime, OnTimerDone);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(botLocation), botLocation, null);

@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using Constants;
+using Data.PerksData;
 using Enums;
 
 namespace Controllers.Perks
 {
     public interface IPerks
     {
-        IPerkConstants PerkConstants { get; }
+        IPerkData PerkData { get; }
         List<PerkType> NotActivePerks { get; }
         List<PerkType> ActivePerks { get; }
         void BuyPerk(PerkType perkType);
-        ConstantPerkData GetConstantValue(PerkType type);
+        PerkData GetConstantValue(PerkType type);
     }
 }

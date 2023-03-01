@@ -1,6 +1,7 @@
 using Constants;
 using Controllers.Perks;
 using Controls.UiControls.UiPerkButtonControls;
+using Data.PerksData;
 using Utils.Ioc;
 
 namespace Controllers.UiControllers.UiPerkButtonControllers
@@ -9,7 +10,7 @@ namespace Controllers.UiControllers.UiPerkButtonControllers
     {
         [Inject] private PerksController _perksController;
 
-        public UiBuyPerkButtonController(ConstantPerkData data, UiBasePerkButtonControl uiBuyPerkButtonControl) : base(data, uiBuyPerkButtonControl)
+        public UiBuyPerkButtonController(PerkData data, UiBasePerkButtonControl uiBuyPerkButtonControl) : base(data, uiBuyPerkButtonControl)
         {
         }
 

@@ -3,7 +3,7 @@ using Enums;
 
 namespace Constants
 {
-    public static class DataConstants
+    public static class CommonConstants
     {
         public const string ScriptableObjectFolderPath = "Assets/ScriptableObjects";
         public static readonly Dictionary<CurrencyType, int> CurrencyCountInType = new();
@@ -16,8 +16,11 @@ namespace Constants
         public const float BotCollectingTime = 2f;
         public const int BotMaxCountOnStart = 10;
         public const int BotMaxCount = 160;
+        
+        public const float XworkerOffset = 0.1f;
+        public const float YworkerOffset = 0.4f;
                 
-        static DataConstants()
+        static CommonConstants()
         {
             CurrencyCountInType.Add(CurrencyType.Currency0, 10);
             CurrencyCountInType.Add(CurrencyType.Currency1, 10);

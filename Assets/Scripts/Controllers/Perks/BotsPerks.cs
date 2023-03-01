@@ -8,7 +8,7 @@ namespace Controllers.Perks
 
         public BotsPerks()
         {
-            MaxCount = DataConstants.BotMaxCountOnStart;
+            MaxCount = CommonConstants.BotMaxCountOnStart;
         }
         
         public void AddMaxCount(Enums.PerkType perkType)

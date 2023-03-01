@@ -24,7 +24,7 @@ namespace Controllers.BotController
         public BotPoolController()
         {
             _parentObject = _objectsInstaller.PoolObject;
-            _bots = new List<BotController>(DataConstants.BotMaxCountOnStart);
+            _bots = new List<BotController>(CommonConstants.BotMaxCountOnStart);
             GenerateBots(_perksController.GetPerksData<BotsPerks>().MaxCount);
         }
 

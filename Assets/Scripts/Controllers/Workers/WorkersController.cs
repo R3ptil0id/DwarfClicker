@@ -50,7 +50,7 @@ namespace Controllers.Workers
             var workController = new WorkerController(workerControl, _position);
             
             _workers[workerType].Add(workController);
-            _position += Vector3.left * WorkersDataPerkConstants.XworkerOffset;
+            _position += Vector3.left * CommonConstants.XworkerOffset;
         }
     }
 }

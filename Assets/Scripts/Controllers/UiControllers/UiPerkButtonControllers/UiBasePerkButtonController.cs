@@ -2,6 +2,7 @@ using System;
 using Constants;
 using Controllers.Perks;
 using Controls.UiControls.UiPerkButtonControls;
+using Data.PerksData;
 using TMPro;
 using Utils.Ioc;
 using Object = UnityEngine.Object;
@@ -12,10 +13,10 @@ namespace Controllers.UiControllers.UiPerkButtonControllers
     {
         [Inject] private PerksController _perksController;
 
-        protected readonly ConstantPerkData _data;
+        protected readonly PerkData _data;
         protected readonly UiBasePerkButtonControl _uiBuyPerkButtonControl;
 
-        protected UiBasePerkButtonController(ConstantPerkData data, UiBasePerkButtonControl uiBuyPerkButtonControl)
+        protected UiBasePerkButtonController(PerkData data, UiBasePerkButtonControl uiBuyPerkButtonControl)
         {
             _data = data;
             

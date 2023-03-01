@@ -10,9 +10,9 @@ namespace Controllers.Perks
 
         public CurrencyBarPerks()
         {
-            CurrentMaxCurrencyBars.Add(CurrencyType.Currency0, DataConstants.MaxCurrency0BarOnStart);
-            CurrentMaxCurrencyBars.Add(CurrencyType.Currency1, DataConstants.MaxCurrency1BarOnStart);
-            CurrentMaxCurrencyBars.Add(CurrencyType.Currency2, DataConstants.MaxCurrency2BarOnStart);    
+            CurrentMaxCurrencyBars.Add(CurrencyType.Currency0, CommonConstants.MaxCurrency0BarOnStart);
+            CurrentMaxCurrencyBars.Add(CurrencyType.Currency1, CommonConstants.MaxCurrency1BarOnStart);
+            CurrentMaxCurrencyBars.Add(CurrencyType.Currency2, CommonConstants.MaxCurrency2BarOnStart);    
         }
 
         public void AddMaxCount(CurrencyType currencyType, Enums.PerkType perkType)

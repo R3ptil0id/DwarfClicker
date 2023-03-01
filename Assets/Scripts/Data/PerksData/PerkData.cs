@@ -1,15 +1,15 @@
 using Enums;
 
-namespace Constants
+namespace Data.PerksData
 {
-    public class ConstantPerkData
+    public class PerkData
     {
         public readonly PerkType PerkType;
         public readonly CurrencyType PriceType;
         public readonly int Price;
         public readonly int Value;
 
-        public ConstantPerkData(PerkType perkType, CurrencyType priceType, int price, int value)
+        public PerkData(PerkType perkType, CurrencyType priceType, int price, int value)
         {
             PerkType = perkType;
             PriceType = priceType;

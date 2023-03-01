@@ -61,7 +61,7 @@ namespace Controllers.DepositoryControllers
 
             if (currentNode.Value.CurrencyType <= currencyType)
             {
-                var currencyBarController= CreateCurrencyBarController(currencyType, currentNode.Value.GetPosition() + Vector3.right * DataConstants.PositionXOffsetCurrency);
+                var currencyBarController= CreateCurrencyBarController(currencyType, currentNode.Value.GetPosition() + Vector3.right * CommonConstants.PositionXOffsetCurrency);
                 _currencyBarControllers.AddLast(currencyBarController);
                 return;
             }
@@ -80,7 +80,7 @@ namespace Controllers.DepositoryControllers
                 if (currentNode.Previous == null)
                 {
                     var currencyBarController= CreateCurrencyBarController(currencyType,
-                        currentNode.Value.GetPosition()  + Vector3.left * DataConstants.PositionXOffsetCurrency);
+                        currentNode.Value.GetPosition()  + Vector3.left * CommonConstants.PositionXOffsetCurrency);
                     var node = _currencyBarControllers.AddBefore(currentNode, currencyBarController);
                     MoveFollowing(node);
                     return;
@@ -98,7 +98,7 @@ namespace Controllers.DepositoryControllers
             {
                 var currencyBarController = currentNode.Value;
                 currencyBarController.SetToPosition(currencyBarController.GetPosition() +
-                                                    Vector3.right * DataConstants.PositionXOffsetCurrency);
+                                                    Vector3.right * CommonConstants.PositionXOffsetCurrency);
                 currentNode = currentNode.Next;
             }
         }

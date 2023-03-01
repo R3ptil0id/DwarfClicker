@@ -1,19 +1,20 @@
 using System.Collections.Generic;
 using Constants;
+using Data.PerksData;
 using Enums;
 
 namespace Controllers.Perks
 {
     public abstract class BasePerks : IPerks
     {
-        public IPerkConstants PerkConstants { get; protected set; }
+        public IPerkData PerkData { get; protected set; }
         
         public List<PerkType> NotActivePerks { get; protected set; }
         public List<PerkType> ActivePerks { get; } = new ();
 
-        public ConstantPerkData GetConstantValue(PerkType type)
+        public PerkData GetConstantValue(PerkType type)
         {
-            return PerkConstants.ConstantsList.TryGetValue(type, out var data) ? data : null;
+            return PerkData.PerksData.TryGetValue(type, out var data) ? data : null;
         }
         
         public void BuyPerk(PerkType perkType)

@@ -1,5 +1,6 @@
 using System.Linq;
 using Constants;
+using Data.PerksData;
 using Enums;
 
 namespace Controllers.Perks
@@ -8,10 +9,10 @@ namespace Controllers.Perks
     {
         public WorkersPerks()
         {
-            PerkConstants = new WorkersDataPerkConstants();
+            PerkData = new PerkWorkersData();
             
             ActivePerks.Add(PerkType.StartMinersLvl1Count);
-            NotActivePerks = PerkConstants.ConstantsList.Keys.Except(ActivePerks).ToList();
+            NotActivePerks = PerkData.PerksData.Keys.Except(ActivePerks).ToList();
         }
     }
 }
