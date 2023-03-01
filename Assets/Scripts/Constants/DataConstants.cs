@@ -19,10 +19,10 @@ namespace Constants
                 
         static DataConstants()
         {
-            CurrencyCountInType.Add(CurrencyType.Currency_0, 10);
-            CurrencyCountInType.Add(CurrencyType.Currency_1, 10);
-            CurrencyCountInType.Add(CurrencyType.Currency_2, 10);
-            CurrencyCountInType.Add(CurrencyType.Currency_3, 10);
+            CurrencyCountInType.Add(CurrencyType.Currency0, 10);
+            CurrencyCountInType.Add(CurrencyType.Currency1, 10);
+            CurrencyCountInType.Add(CurrencyType.Currency2, 10);
+            CurrencyCountInType.Add(CurrencyType.Currency3, 10);
         }
     }
 }

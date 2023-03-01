@@ -23,19 +23,19 @@ namespace Controls.UiControls
             var str = $"{currencyValue:D10}";
             switch (type)
             {
-                case CurrencyType.Currency_0:
+                case CurrencyType.Currency0:
                     Сurrency_0.text = str; 
                     break;
-                case CurrencyType.Currency_1:
+                case CurrencyType.Currency1:
                     Сurrency_1.text = str;
                     break;
-                case CurrencyType.Currency_2:
+                case CurrencyType.Currency2:
                     Сurrency_2.text = str;
                     break;
-                case CurrencyType.Currency_3:
+                case CurrencyType.Currency3:
                     Сurrency_3.text = str;
                     break;
-                case CurrencyType.Currency_4:
+                case CurrencyType.Currency4:
                     Сurrency_4.text = str;
                     break;
                 default:

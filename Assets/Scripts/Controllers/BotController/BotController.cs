@@ -81,7 +81,7 @@ namespace Controllers.BotController
                     break;
                 case BotLocation.Unload:
                     _botControl.StartMoveToHome();
-                    _depositoryController.AddCurrency(CurrencyType.Currency_0);
+                    _depositoryController.AddCurrency(CurrencyType.Currency0);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
