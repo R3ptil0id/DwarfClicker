@@ -1,0 +1,52 @@
+{
+  "DataArray": [
+    {
+      "PerkType": "1",
+      "CurrencyType": 0,
+      "Price": "0",
+      "Modifier": "1",
+      "Level": "1",
+      "MaxLevel": "1"
+    },
+    {
+      "PerkType": "2",
+      "CurrencyType": 1,
+      "Price": "1000",
+      "Modifier": "2",
+      "Level": "1",
+      "MaxLevel": "4"
+    },
+    {
+      "PerkType": "3",
+      "CurrencyType": 2,
+      "Price": "3000",
+      "Modifier": "1",
+      "Level": "1",
+      "MaxLevel": "1"
+    },
+    {
+      "PerkType": "4",
+      "CurrencyType": 2,
+      "Price": "1000",
+      "Modifier": "2",
+      "Level": "1",
+      "MaxLevel": "4"
+    },
+    {
+      "PerkType": "5",
+      "CurrencyType": 3,
+      "Price": "3000",
+      "Modifier": "1",
+      "Level": "1",
+      "MaxLevel": "1"
+    },
+    {
+      "PerkType": "6",
+      "CurrencyType": 3,
+      "Price": "1000",
+      "Modifier": "2",
+      "Level": "1",
+      "MaxLevel": "4"
+    }
+  ]
+}
