@@ -22,7 +22,7 @@ namespace Controllers.UiControllers.UiPerkButtonControllers
             var uiBuyPerkButtonControl = ((UiBuyPerkButtonControl)_uiBuyPerkButtonControl);
             
             SetText(uiBuyPerkButtonControl.PriceText, _data.Price.ToString());
-            SetText(uiBuyPerkButtonControl.TypePriceText, _data.PriceType.ToString());
+            SetText(uiBuyPerkButtonControl.TypePriceText, _data.CurrencyType.ToString());
             SetText(uiBuyPerkButtonControl.TypeText, _data.PerkType.ToString());
             SetText(uiBuyPerkButtonControl.DescriptionText, "@Some Description");
         }

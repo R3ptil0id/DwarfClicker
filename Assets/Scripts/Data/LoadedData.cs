@@ -5,14 +5,14 @@ using Utils.JsonUtils;
 
 namespace Data
 {
-    [RegistrateInIoc(true)]
-    public class LoadedData : IInitializable
+    [RegistrateInIoc()]
+    public class LoadedData
     {
         public PerkData[] PerkDataCollection { get; private set; }
 
-        public void Initialize()
+        public LoadedData()
         {
-            PerkDataCollection = JsonHelper.GetData<PerkData>(PathConstants.PerksConstants);
+            PerkDataCollection = JsonHelper.GetData<PerkData>(PathConstants.PerksConstants);    
         }
     }
 }

@@ -1,10 +1,10 @@
 using System;
-using Constants;
 using Controllers.Perks;
 using Controls.UiControls.UiPerkButtonControls;
 using Data.PerksData;
 using TMPro;
 using Utils.Ioc;
+
 using Object = UnityEngine.Object;
 
 namespace Controllers.UiControllers.UiPerkButtonControllers
