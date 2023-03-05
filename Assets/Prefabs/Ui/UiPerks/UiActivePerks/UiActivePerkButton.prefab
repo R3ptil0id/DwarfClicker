@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 95522477394985574}
   - component: {fileID: 3454321904467466744}
   m_Layer: 5
-  m_Name: 'TypePriceText '
+  m_Name: 'PerkTypeText '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,8 +148,6 @@ GameObject:
   - component: {fileID: 17180773326270204}
   - component: {fileID: 5863815066103771130}
   - component: {fileID: 1868448810619721153}
-  - component: {fileID: 2921096616555623756}
-  - component: {fileID: 640748454998810761}
   m_Layer: 5
   m_Name: UiPerkButton
   m_TagString: Untagged
@@ -215,65 +213,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 2
---- !u!114 &2921096616555623756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1381014181028883060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1868448810619721153}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &640748454998810761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1381014181028883060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676f7266ba264616aa4878ddd1a14365, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PriceText: {fileID: 0}
-  TypePriceText: {fileID: 0}
-  DescriptionText: {fileID: 0}
 --- !u!1 &3386926133289068392
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +361,7 @@ GameObject:
   - component: {fileID: 7095005127299701989}
   - component: {fileID: 7892193906039045743}
   - component: {fileID: 6057596592060334152}
+  - component: {fileID: 6490053241513895757}
   m_Layer: 5
   m_Name: UiActivePerkButton
   m_TagString: Untagged
@@ -465,7 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74069138def642ce853189e90f10bfa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TypePriceText: {fileID: 3454321904467466744}
+  PerkTypeText: {fileID: 3454321904467466744}
   DescriptionText: {fileID: 8019135947162301174}
 --- !u!114 &6057596592060334152
 MonoBehaviour:
@@ -487,6 +427,50 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &6490053241513895757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4128301577579360970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1868448810619721153}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4991864392783670275
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,7 +482,6 @@ GameObject:
   - component: {fileID: 8662088431162833062}
   - component: {fileID: 5673652243597625445}
   - component: {fileID: 7012713695833939835}
-  - component: {fileID: 2467828406464586254}
   m_Layer: 5
   m_Name: InnerShadow
   m_TagString: Untagged
@@ -565,21 +548,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 2
---- !u!114 &2467828406464586254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4991864392783670275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676f7266ba264616aa4878ddd1a14365, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PriceText: {fileID: 0}
-  TypePriceText: {fileID: 0}
-  DescriptionText: {fileID: 0}
 --- !u!1 &5949307755518739638
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,7 +559,6 @@ GameObject:
   - component: {fileID: 3055374921952719762}
   - component: {fileID: 2960754578379066378}
   - component: {fileID: 447291172214205148}
-  - component: {fileID: 5693368165844235862}
   m_Layer: 5
   m_Name: UiPerkButtonShadow
   m_TagString: Untagged
@@ -657,17 +624,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 2
---- !u!114 &5693368165844235862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5949307755518739638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74069138def642ce853189e90f10bfa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TypePriceText: {fileID: 3454321904467466744}
-  DescriptionText: {fileID: 8019135947162301174}

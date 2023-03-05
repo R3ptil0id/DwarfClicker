@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Constants;
 using Controllers.Perks;
 using Controllers.UiControllers.UiPerkButtonControllers;
 using Controls.InputsControls;
@@ -7,6 +6,7 @@ using Controls.UiControls;
 using Controls.UiControls.UiPerkButtonControls;
 using Data.PerksData;
 using Enums;
+using Models;
 using ScriptableObjects;
 using UnityEngine;
 using Utils.Ioc;
@@ -19,28 +19,24 @@ namespace Controllers.UiControllers
        [Inject] private readonly UiPerksControl _uiPerksControl;
        [Inject] private readonly UiPrefabs _uiPrefabs;
        
-       private readonly List<IPerks> _perkConstantsList;
+       // private readonly List<IPerks> _perkConstantsList;
+       private readonly PerksModel _perksModel;
 
         private Dictionary<PerkType, UiBuyPerkButtonController> _buyingButtons = new();
         private Dictionary<PerkType, UiActivePerkButtonController> _activeButtons = new();
         
         private bool _isEnable;
 
-        public UiPerksController(List<IPerks> perkConstantsList)
+        public UiPerksController(PerksModel perksModel)
         {
-            _perkConstantsList = perkConstantsList;
-            
+            // _perkConstantsList = perkConstantsList;
+            _perksModel = perksModel;
             _isEnable = false;
             UpdateInGamePanelState();
             
             _inputUiControl.NotifyClickPerkPanel += ClickOpenPerkPanelHandler;
             
             FillButtons();
-        }
-
-        private void UpdateInGamePanelState()
-        {
-            _uiPerksControl.PerksPanel.gameObject.SetActive(_isEnable);
         }
 
         public void BuyAndActivatePerk(PerkData perkData)
@@ -60,51 +56,50 @@ namespace Controllers.UiControllers
         
         private void FillButtons()
         {
-            foreach (var perk in _perkConstantsList)
-            {
-                FillNotActivePerks(perk);
-                FillActivePerks(perk);
-            }
+            FillNotActivePerks();
+            FillActivePerks();
         }
 
-        private void FillNotActivePerks(IPerks perk)
+        private void FillNotActivePerks()
         {
-            if (perk.NotActivePerks == null)
-                return;
-
-            foreach (var notActivePerk in perk.NotActivePerks)
+            foreach (var perkType in _perksModel.NotActivePerks)
             {
+                var perkData = _perksModel.GetPerkData(perkType);
+                
                 var buyButtonGameObject =
                     Object.Instantiate(_uiPrefabs.BuyPerk, _uiPerksControl.BuyingPerksContent.transform);
-
-                var perkConstantsConstants = perk.PerkData.PerksData[notActivePerk];
                 
                 var buyButtonControl = buyButtonGameObject.GetComponent<UiBuyPerkButtonControl>();
-                var buyButtonController =  new UiBuyPerkButtonController(perkConstantsConstants, buyButtonControl);
-
-                _buyingButtons.Add(notActivePerk, buyButtonController);
+                var buyButtonController =  new UiBuyPerkButtonController(perkData, buyButtonControl);
+        
+                _buyingButtons.Add(perkType, buyButtonController);
             }
         }
         
-        private void FillActivePerks(IPerks perk)
+        private void FillActivePerks()
         {
-            if (perk.NotActivePerks == null)
-                return;
-
-            foreach (var activePerk in perk.ActivePerks)
+            foreach (var perkType in _perksModel.ActivePerks)
             {
-                var activeButtonGameObject =
-                    Object.Instantiate(_uiPrefabs.ActivePerk, _uiPerksControl.ActivePerksContent.transform);
-
-                var perkConstantsConstants = perk.PerkData.PerksData[activePerk];
+                var perkData =  _perksModel.GetPerkData(perkType);
                 
-                var activePerkButtonControl = activeButtonGameObject.GetComponent<UiActivePerkButtonControl>();
-                var activePerkButtonController = new UiActivePerkButtonController(perkConstantsConstants, activePerkButtonControl);
-
-                _activeButtons.Add(activePerk, activePerkButtonController);
+                if (perkData.ActiveOnStart)
+                    continue;
+                
+                var buyButtonGameObject =
+                    Object.Instantiate(_uiPrefabs.ActivePerk, _uiPerksControl.BuyingPerksContent.transform);
+                
+                var buyButtonControl = buyButtonGameObject.GetComponent<UiActivePerkButtonControl>();
+                var buyButtonController =  new UiActivePerkButtonController(perkData, buyButtonControl);
+        
+                _activeButtons.Add(perkType, buyButtonController);
             }
         }
 
+        private void UpdateInGamePanelState()
+        {
+            _uiPerksControl.PerksPanel.gameObject.SetActive(_isEnable);
+        }
+        
         private void ClickOpenPerkPanelHandler()
         {
             _isEnable = !_isEnable;

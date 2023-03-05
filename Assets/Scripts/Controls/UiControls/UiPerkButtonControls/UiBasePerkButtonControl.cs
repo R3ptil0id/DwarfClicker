@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
-using UnityEngine.UIElements;
+
+using UnityEngine.UI;
 
 namespace Controls.UiControls.UiPerkButtonControls
 {
     public abstract class UiBasePerkButtonControl : MonoBehaviour, IDisposable
     {
-        [SerializeField] private Button _button;
+        private Button _button;
 
         public Action Clicked; 
 
@@ -16,15 +17,16 @@ namespace Controls.UiControls.UiPerkButtonControls
 
             if (_button == null)
                 return;
-            _button.clicked -= ClickedHandler;
+            
+            _button.onClick.RemoveListener(ClickedHandler);
         }
 
         private void Start()
         {
             if (_button == null)
-                return;
+                _button = GetComponent<Button>();
 
-            _button.clicked += ClickedHandler;
+            _button.onClick.AddListener(ClickedHandler);
         }
 
         private void ClickedHandler()

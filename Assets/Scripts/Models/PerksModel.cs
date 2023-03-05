@@ -6,9 +6,9 @@ namespace Models
 {
     public class PerksModel
     {
-        private readonly Dictionary<PerkType, PerkData> _perks = new Dictionary<PerkType, PerkData>();
+        private readonly Dictionary<PerkType, PerkData> _perks = new ();
 
-        public PerkData[] PerkData { get; private set; }
+        // public PerkData[] PerkData { get; private set; }
         public List<PerkType> NotActivePerks { get; } = new();
         public List<PerkType> ActivePerks { get; } = new ();
 
@@ -30,18 +30,16 @@ namespace Models
         {
             foreach (var perk in perks)
             {
-                if (_perks.ContainsKey(perk.PerkType))
-                {
-                    _perks[perk.PerkType] = perk;
-                }
-                else
-                {   
-                    _perks.Add(perk.PerkType, perk);
-                }
-                
+
+                _perks.Add(perk.PerkType, perk);
+
                 if (perk.ActiveOnStart)
                 {
                     ActivePerks.Add(perk.PerkType);
+                }
+                else
+                {
+                    NotActivePerks.Add(perk.PerkType);
                 }
             }
         }
