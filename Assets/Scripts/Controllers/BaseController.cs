@@ -2,9 +2,9 @@ using Utils.Ioc;
 
 namespace Controllers
 {
-    public abstract class BaseController
+    public abstract class BaseController : IInitializable
     {
-        protected BaseController()
+        public virtual void Initialize()
         {
             this.Inject();
         }

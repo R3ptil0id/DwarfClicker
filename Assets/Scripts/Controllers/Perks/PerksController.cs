@@ -1,7 +1,9 @@
+using Controllers.DepositoryControllers;
 using Controllers.UiControllers;
 using Controls.InputsControls;
 using Controls.UiControls;
 using Data;
+using Data.PerksData;
 using Enums;
 using Models;
 using ScriptableObjects;
@@ -9,20 +11,23 @@ using Utils.Ioc;
 
 namespace Controllers.Perks
 {
-    [RegistrateInIoc(needInitialize: true)]
-    public class PerksController : BaseController, IInitializable
+    [RegistrateInIoc]
+    public class PerksController : BaseController
     {
         [Inject] private readonly LoadedData _loadedData;
         [Inject] private readonly UiPerksControl _perksControl;
         [Inject] private readonly InputUiControl _inputUiControl;
+        [Inject] private readonly DepositoryController _depositoryController;
         [Inject] private readonly UiPrefabs _uiPrefabs;
 
         private PerksModel _perksModel;
         
         private UiPerksController _uiPerksController;
 
-        public void Initialize()
+        public override void Initialize()
         {
+            base.Initialize();
+            
             _perksModel = new PerksModel(_loadedData.PerkDataCollection);
             _uiPerksController = new UiPerksController(_perksModel);
         }

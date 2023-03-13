@@ -4,7 +4,7 @@ using Utils.Ioc;
 
 namespace Controllers.UiControllers
 {
-    public class UiInGameController : BaseController
+    public class UiInGameController : InitializableBaseController
     {
         [Inject] private readonly UiInGameControl _inGameControl;
         [Inject] private readonly InputUiControl _inputUiControl;

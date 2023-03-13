@@ -4,7 +4,7 @@ using Utils.Ioc;
 
 namespace Controllers.BotController
 {
-    public class BotsController : BaseController
+    public class BotsController : InitializableBaseController
     {
         [Inject] private readonly BotsInputControl _botsInputControl;
         

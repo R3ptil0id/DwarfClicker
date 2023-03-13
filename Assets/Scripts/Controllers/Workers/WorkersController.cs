@@ -10,7 +10,7 @@ using Utils.Ioc;
 
 namespace Controllers.Workers
 {
-    public class WorkersController : BaseController
+    public class WorkersController : InitializableBaseController
     {
         [Inject] private readonly ObjectsInstaller _objectsInstaller;
         [Inject] private readonly PerksController _perksController;

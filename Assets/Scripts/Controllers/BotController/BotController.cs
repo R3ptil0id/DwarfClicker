@@ -25,8 +25,9 @@ namespace Controllers.BotController
             _botControl = botControl;
         }
 
-        public void Initialize()
+        public override void Initialize()
         {
+            base.Initialize();
             if (IsBusy)
             {
                 return;

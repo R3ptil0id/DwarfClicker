@@ -13,7 +13,7 @@ using Object = UnityEngine.Object;
 
 namespace Controllers.Workers
 {
-    public class WorkersPoolController : BaseController
+    public class WorkersPoolController : InitializableBaseController
     {
         [Inject] private readonly WorkersPrefabs _workersPrefabs;
         [Inject] private readonly ObjectsInstaller _objectsInstaller;

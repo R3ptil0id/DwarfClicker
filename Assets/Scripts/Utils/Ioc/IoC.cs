@@ -12,13 +12,15 @@ namespace Utils.Ioc
         public static object Register<T>(T type) where T : Type
         {
             var instance = Create(type);
-            Instance._types[type] = instance;
+            Register(instance);
+            
             return instance;
         }
 
         public static void Register(object instance)
         {
-            Instance._types[instance.GetType()] = instance;
+            var type = instance.GetType();
+            Instance._types[type] = instance;
         }
 
         public static void Register<T>()
@@ -49,7 +51,7 @@ namespace Utils.Ioc
             throw new ArgumentNullException($"Cant resolve Type in Ioc");
         }
         
-        public static T Create<T>()
+        private static T Create<T>()
         {
             return (T)Create(typeof(T));
         }

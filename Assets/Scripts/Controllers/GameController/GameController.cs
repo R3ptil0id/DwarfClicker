@@ -8,7 +8,7 @@ using Utils.Ioc;
 
 namespace Controllers.GameController
 {
-    public class GameController : BaseController
+    public class GameController : InitializableBaseController
     {
         [Inject] private DepositoryController _depositoryController;
         [Inject] private TimersService _timersService;

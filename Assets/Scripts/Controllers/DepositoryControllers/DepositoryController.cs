@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Controllers.Perks;
 using Controls.InputsControls;
 using Controls.UiControls;
 using Enums;
+using Models;
 using Utils.EnumExtensions;
 using Utils.Ioc;
 
@@ -13,10 +15,11 @@ namespace Controllers.DepositoryControllers
     {
         [Inject] private readonly CurrenciesInputControl _currenciesInputControl;
         [Inject] private readonly UiInGameControl _uiInGameControl;
+        [Inject] private readonly PerksController _perksController;
         
         private readonly CurrencyInDepositoryController _currencyInDepositoryController;
         
-        private readonly Dictionary<CurrencyType, int> _currencyValues = new();
+        private readonly Dictionary<CurrencyType, float> _currencyValues = new();
         
         public DepositoryController()
         {

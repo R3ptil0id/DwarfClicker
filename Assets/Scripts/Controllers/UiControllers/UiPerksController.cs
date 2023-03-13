@@ -13,7 +13,7 @@ using Utils.Ioc;
 
 namespace Controllers.UiControllers
 {
-    public class UiPerksController : BaseController
+    public class UiPerksController : InitializableBaseController
     {
        [Inject] private readonly InputUiControl _inputUiControl;
        [Inject] private readonly UiPerksControl _uiPerksControl;

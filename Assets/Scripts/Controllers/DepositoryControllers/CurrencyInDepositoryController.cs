@@ -10,7 +10,7 @@ using Utils.Ioc;
 
 namespace Controllers.DepositoryControllers
 {
-    public class CurrencyInDepositoryController : BaseController
+    public class CurrencyInDepositoryController : InitializableBaseController
     {
         [Inject] private readonly ObjectsInstaller _objectsInstaller;
         [Inject] private readonly PerksController _perksController;

@@ -12,7 +12,7 @@ using Object = UnityEngine.Object;
 
 namespace Controllers.DepositoryControllers
 {
-    public class CurrencyObjectsPoolController : BaseController
+    public sealed class CurrencyObjectsPoolController : InitializableBaseController
     {
         [Inject] private readonly CurrenciesElementsPrefabs _currenciesPrefabs;
         [Inject] private readonly ObjectsInstaller _objectsInstaller;

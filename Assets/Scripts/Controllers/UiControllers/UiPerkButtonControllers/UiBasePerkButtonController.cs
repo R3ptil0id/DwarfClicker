@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 
 namespace Controllers.UiControllers.UiPerkButtonControllers
 {
-    public abstract class UiBasePerkButtonController : BaseController, IDisposable
+    public abstract class UiBasePerkButtonController : InitializableBaseController, IDisposable
     {
         [Inject] private PerksController _perksController;
 
