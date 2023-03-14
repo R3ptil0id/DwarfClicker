@@ -13,13 +13,12 @@ using Utils.Ioc;
 
 namespace Controllers.UiControllers
 {
-    public class UiPerksController : InitializableBaseController
+    public class UiPerksController : BaseController
     {
-       [Inject] private readonly InputUiControl _inputUiControl;
-       [Inject] private readonly UiPerksControl _uiPerksControl;
-       [Inject] private readonly UiPrefabs _uiPrefabs;
+       [Inject] private InputUiControl _inputUiControl;
+       [Inject] private UiPerksControl _uiPerksControl;
+       [Inject] private UiPrefabs _uiPrefabs;
        
-       // private readonly List<IPerks> _perkConstantsList;
        private readonly PerksModel _perksModel;
 
         private Dictionary<PerkType, UiBuyPerkButtonController> _buyingButtons = new();

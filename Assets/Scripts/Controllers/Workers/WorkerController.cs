@@ -6,9 +6,9 @@ using Utils.Ioc;
 
 namespace Controllers.Workers
 {
-    public class WorkerController : InitializableBaseController
+    public class WorkerController : BaseController
     {
-        [Inject] private readonly ObjectsInstaller _objectsInstaller;
+        [Inject] private ObjectsInstaller _objectsInstaller;
 
         protected readonly WorkerControl _control;
 

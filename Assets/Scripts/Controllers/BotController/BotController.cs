@@ -10,8 +10,8 @@ namespace Controllers.BotController
 {
     public class BotController : BaseController
     {
-        [Inject] private readonly TimersService _timersService;
-        [Inject] private readonly DepositoryController _depositoryController;
+        [Inject] private TimersService _timersService;
+        [Inject] private DepositoryController _depositoryController;
         
         private readonly BotControl _botControl;
         
@@ -25,9 +25,8 @@ namespace Controllers.BotController
             _botControl = botControl;
         }
 
-        public override void Initialize()
+        public void Initialize()
         {
-            base.Initialize();
             if (IsBusy)
             {
                 return;

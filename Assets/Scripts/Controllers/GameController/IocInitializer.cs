@@ -58,22 +58,29 @@ namespace Controllers.GameController
                 IoC.Register(monoBehaviour);
             }
         }
-        
+
         private void RegistrateCustomsInIoC()
         {
             var types = IoC.Resolve<StoreCustomAttributes>().Types;
             var needInitializeTypes = IoC.Resolve<StoreCustomAttributes>().NeedInitializeTypes;
-
+            var instances = new List<object>();
+                
             foreach (var type in types)
             {
                 var instance = IoC.Register(type);
+                instances.Add(instance);
                
                 if (instance is not IInitializable initialize || !needInitializeTypes.Contains(type))
                 {
                     continue;
                 }
-               
+                
                 _initializables.Add(initialize);
+            }
+            
+            foreach (var instance in instances)
+            {
+                instance.Inject();
             }
         }
     }

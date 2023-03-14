@@ -13,10 +13,10 @@ using Object = UnityEngine.Object;
 
 namespace Controllers.Workers
 {
-    public class WorkersPoolController : InitializableBaseController
+    public class WorkersPoolController : BaseController
     {
-        [Inject] private readonly WorkersPrefabs _workersPrefabs;
-        [Inject] private readonly ObjectsInstaller _objectsInstaller;
+        [Inject] private WorkersPrefabs _workersPrefabs;
+        [Inject] private ObjectsInstaller _objectsInstaller;
 
         private Transform _parentObject;
         private Dictionary<WorkerType, List<WorkerControl>> _dictionary;

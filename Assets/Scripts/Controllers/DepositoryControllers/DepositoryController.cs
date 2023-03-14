@@ -11,11 +11,11 @@ using Utils.Ioc;
 namespace Controllers.DepositoryControllers
 {
     [RegistrateInIoc()]
-    public class DepositoryController : BaseController, IDisposable
+    public class DepositoryController : IDisposable
     {
-        [Inject] private readonly CurrenciesInputControl _currenciesInputControl;
-        [Inject] private readonly UiInGameControl _uiInGameControl;
-        [Inject] private readonly PerksController _perksController;
+        [Inject] private CurrenciesInputControl _currenciesInputControl;
+        [Inject] private UiInGameControl _uiInGameControl;
+        [Inject] private PerksController _perksController;
         
         private readonly CurrencyInDepositoryController _currencyInDepositoryController;
         

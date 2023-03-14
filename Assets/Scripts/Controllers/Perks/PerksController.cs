@@ -11,23 +11,21 @@ using Utils.Ioc;
 
 namespace Controllers.Perks
 {
-    [RegistrateInIoc]
-    public class PerksController : BaseController
+    [RegistrateInIoc(true)]
+    public class PerksController : IInitializable
     {
-        [Inject] private readonly LoadedData _loadedData;
-        [Inject] private readonly UiPerksControl _perksControl;
-        [Inject] private readonly InputUiControl _inputUiControl;
-        [Inject] private readonly DepositoryController _depositoryController;
-        [Inject] private readonly UiPrefabs _uiPrefabs;
+        [Inject] private LoadedData _loadedData;
+        [Inject] private UiPerksControl _perksControl;
+        [Inject] private InputUiControl _inputUiControl;
+        [Inject] private DepositoryController _depositoryController;
+        [Inject] private UiPrefabs _uiPrefabs;
 
         private PerksModel _perksModel;
         
         private UiPerksController _uiPerksController;
 
-        public override void Initialize()
+        public void Initialize()
         {
-            base.Initialize();
-            
             _perksModel = new PerksModel(_loadedData.PerkDataCollection);
             _uiPerksController = new UiPerksController(_perksModel);
         }

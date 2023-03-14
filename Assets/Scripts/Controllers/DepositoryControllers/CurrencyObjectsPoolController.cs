@@ -12,10 +12,10 @@ using Object = UnityEngine.Object;
 
 namespace Controllers.DepositoryControllers
 {
-    public sealed class CurrencyObjectsPoolController : InitializableBaseController
+    public sealed class CurrencyObjectsPoolController : BaseController
     {
-        [Inject] private readonly CurrenciesElementsPrefabs _currenciesPrefabs;
-        [Inject] private readonly ObjectsInstaller _objectsInstaller;
+        [Inject] private CurrenciesElementsPrefabs _currenciesPrefabs;
+        [Inject] private ObjectsInstaller _objectsInstaller;
 
         private Transform _parentObject;
         private Dictionary<CurrencyType, List<CurrencyBarControl>> _dictionary;

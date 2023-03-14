@@ -10,15 +10,14 @@ using Utils.Ioc;
 
 namespace Controllers.Workers
 {
-    public class WorkersController : InitializableBaseController
+    public class WorkersController : BaseController
     {
-        [Inject] private readonly ObjectsInstaller _objectsInstaller;
-        [Inject] private readonly PerksController _perksController;
-        [Inject] private readonly WorkersInputsControl _inputControl;
+        [Inject] private ObjectsInstaller _objectsInstaller;
+        [Inject] private PerksController _perksController;
+        [Inject] private WorkersInputsControl _inputControl;
         
         private readonly Dictionary<WorkerType, List<WorkerController>> _workers = new();
         private readonly WorkersPoolController _workersPoolController;
-        private readonly WorkersPerks _workersPerks;
         
         private Vector3 _position; 
          

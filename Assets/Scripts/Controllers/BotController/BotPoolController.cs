@@ -12,7 +12,7 @@ using Object = UnityEngine.Object;
 
 namespace Controllers.BotController
 {
-    public class BotPoolController : InitializableBaseController
+    public class BotPoolController : BaseController
     {
         [Inject] private ObjectsInstaller _objectsInstaller;
         [Inject] private PrefabTable _prefabTable;

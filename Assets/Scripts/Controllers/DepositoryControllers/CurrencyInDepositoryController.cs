@@ -10,10 +10,10 @@ using Utils.Ioc;
 
 namespace Controllers.DepositoryControllers
 {
-    public class CurrencyInDepositoryController : InitializableBaseController
+    public class CurrencyInDepositoryController : BaseController
     {
-        [Inject] private readonly ObjectsInstaller _objectsInstaller;
-        [Inject] private readonly PerksController _perksController;
+        [Inject] private ObjectsInstaller _objectsInstaller;
+        [Inject] private PerksController _perksController;
         
         private readonly CurrencyObjectsPoolController _currencyObjectsPool;
         private readonly Dictionary<CurrencyType, List<CurrencyBarController>> _currentCurrencyBars = new();

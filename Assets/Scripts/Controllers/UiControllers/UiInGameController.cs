@@ -4,10 +4,10 @@ using Utils.Ioc;
 
 namespace Controllers.UiControllers
 {
-    public class UiInGameController : InitializableBaseController
+    public class UiInGameController : BaseController
     {
-        [Inject] private readonly UiInGameControl _inGameControl;
-        [Inject] private readonly InputUiControl _inputUiControl;
+        [Inject] private UiInGameControl _inGameControl;
+        [Inject] private InputUiControl _inputUiControl;
         
         private bool _isEnable;
         

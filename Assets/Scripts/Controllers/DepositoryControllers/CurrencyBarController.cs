@@ -7,9 +7,9 @@ using Utils.Ioc;
 
 namespace Controllers.DepositoryControllers
 {
-    public class CurrencyBarController : InitializableBaseController
+    public class CurrencyBarController : BaseController
     {
-        [Inject] private readonly ObjectsInstaller _objectsInstaller;
+        [Inject] private ObjectsInstaller _objectsInstaller;
         
         private readonly CurrencyBarControl _control;
         private int _lvl;
