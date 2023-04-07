@@ -6,9 +6,11 @@ namespace Utils.Ioc
     public abstract class InitializableAttribute : Attribute
     {
         public bool NeedInitialize { get; private set; }
-        public InitializableAttribute(bool needInitialize)
+        public bool NeedLateInitialize { get; private set; }
+        public InitializableAttribute(bool needInitialize, bool needLateInitialize)
         {
             NeedInitialize = needInitialize;
+            NeedLateInitialize = NeedLateInitialize;
         }
     }
 }

@@ -10,5 +10,6 @@ namespace ScriptableObjects
     {
         public List<Type> Types = new List<Type>();
         public List<Type> NeedInitializeTypes = new List<Type>();
+        public List<Type> NeedLateInitializeTypes = new List<Type>();
     }
 }

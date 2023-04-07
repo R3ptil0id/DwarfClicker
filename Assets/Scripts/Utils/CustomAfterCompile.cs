@@ -27,6 +27,7 @@ namespace Utils
             
             scriptableObject.Types.Clear();
             scriptableObject.NeedInitializeTypes.Clear();
+            scriptableObject.NeedLateInitializeTypes.Clear();
 
             var types = Assembly.GetExecutingAssembly().GetTypes()
                 .Where(t => t.IsDefined(typeof(RegistrateInIocAttribute))).ToList();
@@ -40,6 +41,11 @@ namespace Utils
                     if (((RegistrateInIocAttribute)attribute).NeedInitialize)
                     {
                         scriptableObject.NeedInitializeTypes.Add(type);
+                    }
+                    
+                    if (((RegistrateInIocAttribute)attribute).NeedLateInitialize)
+                    {
+                        scriptableObject.NeedLateInitializeTypes.Add(type);
                     }
                 }
             }
