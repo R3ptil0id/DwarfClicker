@@ -13,6 +13,7 @@ namespace Controllers.GameController
     {
         private MonoBehaviourIocInstaller _monoBehaviourIocInstaller;
         private List<IInitializable> _initializables = new ();
+        private List<ILateInitializable> _lateInitializables = new ();
 
         public IocInitializer(MonoBehaviourIocInstaller iocInstaller)
         {
@@ -23,15 +24,7 @@ namespace Controllers.GameController
             RegistrateMonobehavioursInIoC();
             RegistrateCustomsInIoC();
             
-            foreach (var initializable in _monoBehaviourIocInstaller.Initializables.Where(i => i is IInitializable))
-            {
-                ((IInitializable)initializable).Initialize();
-            }
-            
-            foreach (var initializable in _initializables)
-            {
-                initializable.Initialize();
-            }
+            InitializeMembersInIoc();
         }
 
         private static void RegistrateScriptableObjects()
@@ -61,8 +54,12 @@ namespace Controllers.GameController
 
         private void RegistrateCustomsInIoC()
         {
-            var types = IoC.Resolve<StoreCustomAttributes>().Types;
-            var needInitializeTypes = IoC.Resolve<StoreCustomAttributes>().NeedInitializeTypes;
+            var storeCustomAttributes = IoC.Resolve<StoreCustomAttributes>();
+            
+            var types = storeCustomAttributes.Types;
+            var needInitializeTypes = storeCustomAttributes.NeedInitializeTypes;
+            var needLateInitializeTypes = storeCustomAttributes.NeedLateInitializeTypes;
+            
             var instances = new List<object>();
                 
             foreach (var type in types)
@@ -70,17 +67,38 @@ namespace Controllers.GameController
                 var instance = IoC.Register(type);
                 instances.Add(instance);
                
-                if (instance is not IInitializable initialize || !needInitializeTypes.Contains(type))
+                if (instance is IInitializable initialize && needInitializeTypes.Contains(type))
                 {
-                    continue;
+                    _initializables.Add(initialize);
                 }
                 
-                _initializables.Add(initialize);
+                if (instance is ILateInitializable lateInitialize && needLateInitializeTypes.Contains(type))
+                {
+                    _lateInitializables.Add(lateInitialize);
+                }
             }
             
             foreach (var instance in instances)
             {
                 instance.Inject();
+            }
+        }
+
+        private void InitializeMembersInIoc()
+        {
+            foreach (var initializable in _monoBehaviourIocInstaller.Initializables.Where(i => i is IInitializable))
+            {
+                ((IInitializable)initializable).Initialize();
+            }
+
+            foreach (var initializable in _initializables)
+            {
+                initializable.Initialize();
+            }
+
+            foreach (var lateInitializable in _lateInitializables)
+            {
+                lateInitializable.LateInitialize();
             }
         }
     }

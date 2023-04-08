@@ -15,6 +15,7 @@ namespace Constants
         
         public const float BotCollectingTime = 2f;
         public const int BotMaxCountOnStart = 10;
+        public const int BotCollectCount = 10;
         public const int BotMaxCount = 160;
         
         public const float XworkerOffset = 0.1f;

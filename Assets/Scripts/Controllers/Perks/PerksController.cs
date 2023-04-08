@@ -11,7 +11,7 @@ using Utils.Ioc;
 
 namespace Controllers.Perks
 {
-    [RegistrateInIoc(true)]
+    [RegistrateInIoc( true)]
     public class PerksController : IInitializable
     {
         [Inject] private LoadedData _loadedData;
@@ -21,7 +21,6 @@ namespace Controllers.Perks
         [Inject] private UiPrefabs _uiPrefabs;
 
         private PerksModel _perksModel;
-        
         private UiPerksController _uiPerksController;
 
         public void Initialize()
@@ -30,10 +29,22 @@ namespace Controllers.Perks
             _uiPerksController = new UiPerksController(_perksModel);
         }
 
+        public PerkData GetPerkData(PerkType perkType)
+        {
+            return _perksModel.GetPerkData(perkType);
+        }
+
         public void BuyPerk(PerkType perkType)
         {
-            var data = _perksModel.BuyPerk(perkType);
-            _uiPerksController.BuyAndActivatePerk(data);
+            var data = _perksModel.GetPerkData(perkType);
+            if (data == null || _depositoryController.GetCurrencyValue(data.CurrencyType) < data.Price)
+            {
+                //TODO maybe fire some action for showing warning or play bump sound
+                return;
+            }
+
+            _perksModel.BuyPerk(perkType);
+            // _perksModel.UpdatePrice(perkType, 0);
         }
     }
 }

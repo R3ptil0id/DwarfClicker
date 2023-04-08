@@ -44,11 +44,11 @@ namespace Controllers.DepositoryControllers
 
         public void AddCurrencyBar(CurrencyType currencyType)
         {
-            if (_currentCurrencyBars.TryGetValue(currencyType, out var barControllers) &&
-                 barControllers.Count >= _perksController.GetPerksData<CurrencyBarPerks>().CurrentMaxCurrencyBars[currencyType])
-            {
-                return;
-            }
+            // if (_currentCurrencyBars.TryGetValue(currencyType, out var barControllers) &&
+            //      barControllers.Count >= _perksController.GetPerksData<CurrencyBarPerks>().CurrentMaxCurrencyBars[currencyType])
+            // {
+            //     return;
+            // }
 
             if (_currencyBarControllers.Count == 0)
             {

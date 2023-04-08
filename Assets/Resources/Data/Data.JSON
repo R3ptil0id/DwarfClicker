@@ -1,58 +1,24 @@
 {
   "DataArray": [
     {
-      "PerkType": "1",
-      "CurrencyType": 0,
-      "Price": "0",
-      "Modifier": "1",
-      "Level": "1",
-      "MaxLevel": "1",
-      "ActiveOnStart" : "true"
-    },
-    {
-      "PerkType": "2",
-      "CurrencyType": 1,
-      "Price": "1000",
+      "PerkType": "Currency0Max",
+      "CurrencyType": "Currency0",
+      "ActiveOnStart" : "true",
+      "BasePrice": "1000",
       "Modifier": "2",
-      "Level": "1",
-      "MaxLevel": "4",
-      "ActiveOnStart" : "false"
+      "PriceCount": "Currency0Count",
+      "Value": "1",
+      "MaxValue": "4"
     },
     {
-      "PerkType": "3",
-      "CurrencyType": 2,
-      "Price": "3000",
-      "Modifier": "1",
-      "Level": "1",
-      "MaxLevel": "1",
-      "ActiveOnStart" : "false"
-    },
-    {
-      "PerkType": "4",
-      "CurrencyType": 2,
-      "Price": "1000",
-      "Modifier": "2",
-      "Level": "1",
-      "MaxLevel": "4",
-      "ActiveOnStart" : "false"
-    },
-    {
-      "PerkType": "5",
-      "CurrencyType": 3,
-      "Price": "3000",
-      "Modifier": "1",
-      "Level": "1",
-      "MaxLevel": "1",
-      "ActiveOnStart" : "false"
-    },
-    {
-      "PerkType": "6",
-      "CurrencyType": 3,
-      "Price": "1000",
-      "Modifier": "2",
-      "Level": "1",
-      "MaxLevel": "4",
-      "ActiveOnStart" : "false"
+      "PerkType": "Currency0Add",
+      "CurrencyType": "Currency0",
+      "ActiveOnStart" : "true",
+      "BasePrice": "1000",
+      "Modifier": "1.5",
+      "PriceCount": "Currency0Count",
+      "Value": "1",
+      "MaxValue": "4"
     }
   ]
 }

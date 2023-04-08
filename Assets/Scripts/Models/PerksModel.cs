@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Data.PerksData;
 using Enums;
@@ -6,50 +7,103 @@ namespace Models
 {
     public class PerksModel
     {
-        private readonly Dictionary<PerkType, PerkData> _perks = new ();
-
-        // public PerkData[] PerkData { get; private set; }
-        public List<PerkType> NotActivePerks { get; } = new();
+        private readonly Dictionary<PerkType, PerkData> _perks = new();
+        private readonly Dictionary<PerkType, LoadedPerkData> _loadedPerks = new();
+        
+        private readonly Dictionary<PriceCount, int> _priceCounts = new();
+        
+        public event Action UpdatedNotify;
+        
+        public List<PerkType> BuyablePerks { get; } = new();
         public List<PerkType> ActivePerks { get; } = new ();
+        
+        public PerksModel(LoadedPerkData[] loadedPerks)
+        {
+            foreach (var loadedPerkData in loadedPerks)
+            {
+                _loadedPerks.Add(loadedPerkData.PerkType, loadedPerkData);
+                
+                var perk = new PerkData(loadedPerkData);
+                _perks.Add(loadedPerkData.PerkType, perk);
+                
+                if(!_priceCounts.ContainsKey(loadedPerkData.PriceCount) && loadedPerkData.PriceCount != PriceCount.Undefined)
+                    _priceCounts.Add(loadedPerkData.PriceCount, 1);
+                
+                if (loadedPerkData.ActiveOnStart)
+                    ActivePerks.Add(loadedPerkData.PerkType);
+                else
+                    BuyablePerks.Add(loadedPerkData.PerkType);
+            }
+        }
+
+        public void UpdatePerkPriceCount(PerkType type, int count)
+        {
+            var priceCount = _loadedPerks[type].PriceCount;
+            _priceCounts[priceCount] = count;
+        }
 
         public PerkData GetPerkData(PerkType type)
         {
             return _perks.TryGetValue(type, out var data) ? data : null;
         }
         
-        public PerkData BuyPerk(PerkType perkType)
+        public LoadedPerkData GetLoadedPerkData(PerkType type)
         {
-            // NotActivePerks.Remove(perkType);
-            // ActivePerks.Add(perkType);
-            //TODO Recalculate All Depends perks
+            return _loadedPerks.TryGetValue(type, out var data) ? data : null;
+        }
+
+        public void BuyPerk(PerkType perkType)
+        {            
+            var canBuy = _perks.TryGetValue(perkType, out var data);
+            canBuy &= _loadedPerks.TryGetValue(perkType, out var loadedData);
+            canBuy &= BuyablePerks.Contains(perkType);  
             
-            return null;
+            if (!canBuy)
+                return;
+   
+            var newValue = data.Value + loadedData.Value;
+            data.Value = Math.Clamp(newValue, newValue, loadedData.MaxValue);
+
+            if (data.Value >= loadedData.MaxValue)
+            {
+                ActivePerks.Add(perkType);
+                BuyablePerks.Remove(perkType);
+            }
+            else if (!ActivePerks.Contains(perkType))
+            {
+                ActivePerks.Add(perkType);
+            }
+            
+            if(!StaticPrice(perkType))
+                SetPerkNewPrice(data, loadedData);
+
+            UpdatedNotify?.Invoke();
+        }
+        
+        private void SetPerkNewPrice(PerkData data, LoadedPerkData loadedPerkData)
+        {
+            var currentPriceCount = 1;
+            if (_priceCounts.TryGetValue(loadedPerkData.PriceCount, out var priceCount))
+            {
+                currentPriceCount = priceCount;
+            }
+            
+            data.Price = loadedPerkData.BasePrice * data.Value * loadedPerkData.Modifier *  currentPriceCount;
         }
 
-        public PerksModel(PerkData[] perks)
+        private static bool StaticPrice(PerkType perkType)
         {
-            foreach (var perk in perks)
+            switch (perkType)
             {
-
-                _perks.Add(perk.PerkType, perk);
-
-                if (perk.ActiveOnStart)
-                {
-                    ActivePerks.Add(perk.PerkType);
-                }
-                else
-                {
-                    NotActivePerks.Add(perk.PerkType);
-                }
+                case PerkType.Undefined:
+                case PerkType.Currency1Open:
+                case PerkType.Currency2Open:
+                case PerkType.Currency3Open:
+                case PerkType.Currency4Open:
+                    return true;
             }
-        }
 
-        public void UpdatePrice(PerkType perkType, int newPrice)
-        {
-            if (_perks.TryGetValue(perkType, out var data))
-            {
-                data.Price = newPrice;
-            }
+            return false;
         }
     }
 }

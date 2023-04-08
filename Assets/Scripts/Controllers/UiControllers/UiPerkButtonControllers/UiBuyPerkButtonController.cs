@@ -1,4 +1,3 @@
-using Constants;
 using Controllers.Perks;
 using Controls.UiControls.UiPerkButtonControls;
 using Data.PerksData;
@@ -10,11 +9,11 @@ namespace Controllers.UiControllers.UiPerkButtonControllers
     {
         [Inject] private PerksController _perksController;
 
-        public UiBuyPerkButtonController(PerkData data, UiBasePerkButtonControl uiBuyPerkButtonControl) : base(data, uiBuyPerkButtonControl)
+        public UiBuyPerkButtonController(PerkData data, IClickListener uiBuyPerkButtonControl) : base(data, uiBuyPerkButtonControl)
         {
         }
 
-        protected override void UpdateControl()
+        public override void UpdateControllerData()
         {
             if (_uiBuyPerkButtonControl == null)
                 return;

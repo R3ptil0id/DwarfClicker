@@ -9,7 +9,7 @@ namespace Controls.InputsControls
     public class CurrenciesInputControl : MonoBehaviour
     {
         public Action<CurrencyType> NotifyClickAddCurrency;
-        public Action<CurrencyType> NotifyClickAddBar;
+        public Action<CurrencyType> NotifyClickAddMaxCurrency;
         
         public void ClickAddCurrency0()
         {
@@ -26,19 +26,29 @@ namespace Controls.InputsControls
             NotifyClickAddCurrency?.Invoke(CurrencyType.Currency2);
         }
         
-        public void ClickAddCurrencyBar0()
+        public void ClickAddMaxCurrency0()
         {
-            NotifyClickAddBar?.Invoke(CurrencyType.Currency1);
+            NotifyClickAddMaxCurrency?.Invoke(CurrencyType.Currency0);
         }
         
-        public void ClickAddCurrencyBar1()
+        public void ClickAddMaxCurrency1()
         {
-            NotifyClickAddBar?.Invoke(CurrencyType.Currency2);
+            NotifyClickAddMaxCurrency?.Invoke(CurrencyType.Currency1);
         }
         
-        public void ClickAddCurrencyBar2()
+        public void ClickAddMaxCurrency2()
         {
-            NotifyClickAddBar?.Invoke(CurrencyType.Currency2);
+            NotifyClickAddMaxCurrency?.Invoke(CurrencyType.Currency2);
+        }
+        
+        public void ClickAddMaxCurrency3()
+        {
+            NotifyClickAddMaxCurrency?.Invoke(CurrencyType.Currency3);
+        }
+        
+        public void ClickAddMaxCurrency4()
+        {
+            NotifyClickAddMaxCurrency?.Invoke(CurrencyType.Currency4);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Controls.UiControls
         public TMP_Text Сurrency_3;
         public TMP_Text Сurrency_4;
 
-        public void UpdateInfo(CurrencyType type, int currencyValue)
+        public void UpdateInfo(CurrencyType type, float currencyValue)
         {
             var str = $"{currencyValue:D10}";
             switch (type)

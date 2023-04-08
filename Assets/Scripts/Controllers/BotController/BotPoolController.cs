@@ -24,8 +24,9 @@ namespace Controllers.BotController
         public BotPoolController()
         {
             _parentObject = _objectsInstaller.PoolObject;
+            
             _bots = new List<BotController>(CommonConstants.BotMaxCountOnStart);
-            GenerateBots(_perksController.GetPerksData<BotsPerks>().MaxCount);
+            // GenerateBots(_perksController.GetPerksData<BotsPerks>().MaxCount);
         }
 
         public BotController GetBotController()
@@ -35,31 +36,31 @@ namespace Controllers.BotController
             return control;
         }
 
-        public void GenerateBots(int count)
-        {
-            var maxCount = _perksController.GetPerksData<BotsPerks>().MaxCount;
-            
-            if (_bots.Count >= maxCount)
-            {
-                return;
-            }
-
-            var checkBots = _bots.Capacity - maxCount;
-            
-            if (checkBots < 0)
-            {
-                count = Mathf.Abs(checkBots);
-            }
-
-            for (var i = 0; i < count; i++)
-            {
-                var instance = Object.Instantiate(_prefabTable.Bot, _parentObject);
-                var component = instance.GetComponent<BotControl>();
-                component.Initialize();
-                var controller = new BotController(component);
-                    
-                _bots.Add(controller);
-            }
-        }
+        // public void GenerateBots(int count)
+        // {
+        //     var maxCount = _perksController.GetPerksData<BotsPerks>().MaxCount;
+        //     
+        //     if (_bots.Count >= maxCount)
+        //     {
+        //         return;
+        //     }
+        //
+        //     var checkBots = _bots.Capacity - maxCount;
+        //     
+        //     if (checkBots < 0)
+        //     {
+        //         count = Mathf.Abs(checkBots);
+        //     }
+        //
+        //     for (var i = 0; i < count; i++)
+        //     {
+        //         var instance = Object.Instantiate(_prefabTable.Bot, _parentObject);
+        //         var component = instance.GetComponent<BotControl>();
+        //         component.Initialize();
+        //         var controller = new BotController(component);
+        //             
+        //         _bots.Add(controller);
+        //     }
+        // }
     }
 }

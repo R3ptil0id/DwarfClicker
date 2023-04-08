@@ -5,33 +5,23 @@ using UnityEngine.UI;
 
 namespace Controls.UiControls.UiPerkButtonControls
 {
-    public abstract class UiBasePerkButtonControl : MonoBehaviour, IDisposable
+    public abstract class UiBasePerkButtonControl : MonoBehaviour, IClickListener, IDisposable
     {
         private Button _button;
 
-        public Action Clicked; 
-
         public void Dispose()
         {
-            Clicked = null;
-
             if (_button == null)
                 return;
             
-            _button.onClick.RemoveListener(ClickedHandler);
+            _button.onClick.RemoveAllListeners();
         }
-
-        private void Start()
+        public void AddClickListener(Action action)
         {
             if (_button == null)
                 _button = GetComponent<Button>();
 
-            _button.onClick.AddListener(ClickedHandler);
-        }
-
-        private void ClickedHandler()
-        {
-            Clicked?.Invoke();
+            _button.onClick.AddListener(action.Invoke);
         }
     }
 }

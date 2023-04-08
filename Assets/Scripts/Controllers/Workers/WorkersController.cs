@@ -30,7 +30,7 @@ namespace Controllers.Workers
 
             _position = _objectsInstaller.MinerShaftStartPoint.position;
             
-            _workersPerks = _perksController.GetPerksData<WorkersPerks>();
+            // _workersPerks = _perksController.GetPerksData<WorkersPerks>();
             _workersPoolController = new WorkersPoolController();
             
             _inputControl.NotifyClickAddMiner += ClickAddMinerHandler;
@@ -38,12 +38,11 @@ namespace Controllers.Workers
 
         private void ClickAddMinerHandler(WorkerType workerType)
         {
-            
-            if (_workers.TryGetValue(workerType, out var workControllers) &&
-                workControllers.Count >= _workersPerks.GetConstantValue(PerkType.StartMinersLvl1Count).Value)
-            {
-                return;
-            }
+            // if (_workers.TryGetValue(workerType, out var workControllers) &&
+            //     workControllers.Count >= _workersPerks.GetConstantValue(PerkType.StartMinersLvl1Count).Value)
+            // {
+            //     return;
+            // }
 
             var workerControl = _workersPoolController.GetWorkerObject(WorkerType.Miner);
             var workController = new WorkerController(workerControl, _position);

@@ -15,26 +15,25 @@ namespace Controllers.UiControllers.UiPerkButtonControllers
 
         protected readonly PerkData _data;
         protected readonly UiBasePerkButtonControl _uiBuyPerkButtonControl;
-
-        protected UiBasePerkButtonController(PerkData data, UiBasePerkButtonControl uiBuyPerkButtonControl)
+        protected readonly IClickListener _clickListener;
+        
+        protected UiBasePerkButtonController(PerkData data, IClickListener clickListener)
         {
             _data = data;
+            _clickListener = clickListener;
             
-            _uiBuyPerkButtonControl = uiBuyPerkButtonControl;
-            _uiBuyPerkButtonControl.Clicked += ClickHandler;
+            clickListener.AddClickListener(ClickHandler);
 
-            UpdateControl();
+            UpdateControllerData();
         }
 
         public void Dispose()
         {
-            _uiBuyPerkButtonControl.Clicked -= ClickHandler;
-            _uiBuyPerkButtonControl?.Dispose();
-
+            ((IDisposable)_clickListener)?.Dispose();
             Object.Destroy(_uiBuyPerkButtonControl);
         }
 
-        protected abstract void UpdateControl();
+        public abstract void UpdateControllerData();
         
         protected void SetText(TMP_Text text, string str)
         {

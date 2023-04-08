@@ -8,11 +8,11 @@ namespace Data
     [RegistrateInIoc()]
     public class LoadedData
     {
-        public PerkData[] PerkDataCollection { get; private set; }
+        public LoadedPerkData[] PerkDataCollection { get; private set; }
 
         public LoadedData()
         {
-            PerkDataCollection = JsonHelper.GetData<PerkData>(PathConstants.PerksConstants);    
+            PerkDataCollection = LoadedPerkParser.Parse(PathConstants.PerksConstants);    
         }
     }
 }

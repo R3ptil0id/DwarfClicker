@@ -34,24 +34,24 @@ namespace Controllers.UiControllers
             UpdateInGamePanelState();
             
             _inputUiControl.NotifyClickPerkPanel += ClickOpenPerkPanelHandler;
-            
+            _perksModel.UpdatedNotify += PerksModelUpdatedHandler;
             FillButtons();
         }
 
-        public void BuyAndActivatePerk(PerkData perkData)
-        {
-            if (!_buyingButtons.TryGetValue(perkData.PerkType, out var buyButtonController))
-                return;
-
-            buyButtonController.Dispose();
-
-            var activeButtonGameObject =
-                Object.Instantiate(_uiPrefabs.ActivePerk, _uiPerksControl.ActivePerksContent.transform);
-            var activeButtonControl = activeButtonGameObject.GetComponent<UiActivePerkButtonControl>();
-            var activeButtonController = new UiActivePerkButtonController(perkData, activeButtonControl);
-
-            _activeButtons.Add(perkData.PerkType, activeButtonController);
-        }
+        // public void ActivatePerkInUi(LoadedPerkData loadedPerkData)
+        // {
+        //     if (!_buyingButtons.TryGetValue(loadedPerkData.PerkType, out var buyButtonController))
+        //         return;
+        //
+        //     buyButtonController.Dispose();
+        //
+        //     var activeButtonGameObject =
+        //         Object.Instantiate(_uiPrefabs.ActivePerk, _uiPerksControl.ActivePerksContent.transform);
+        //     var activeButtonControl = activeButtonGameObject.GetComponent<UiActivePerkButtonControl>();
+        //     var activeButtonController = new UiActivePerkButtonController(loadedPerkData, activeButtonControl);
+        //
+        //     _activeButtons.Add(loadedPerkData.PerkType, activeButtonController);
+        // }
         
         private void FillButtons()
         {
@@ -61,7 +61,7 @@ namespace Controllers.UiControllers
 
         private void FillNotActivePerks()
         {
-            foreach (var perkType in _perksModel.NotActivePerks)
+            foreach (var perkType in _perksModel.BuyablePerks)
             {
                 var perkData = _perksModel.GetPerkData(perkType);
                 
@@ -80,8 +80,9 @@ namespace Controllers.UiControllers
             foreach (var perkType in _perksModel.ActivePerks)
             {
                 var perkData =  _perksModel.GetPerkData(perkType);
+                var loadedPerkData =  _perksModel.GetLoadedPerkData(perkType);
                 
-                if (perkData.ActiveOnStart)
+                if (loadedPerkData.ActiveOnStart)
                     continue;
                 
                 var buyButtonGameObject =
@@ -103,6 +104,14 @@ namespace Controllers.UiControllers
         {
             _isEnable = !_isEnable;
             UpdateInGamePanelState();
+        }
+        
+        private void PerksModelUpdatedHandler()
+        {
+            foreach (var controller in _buyingButtons.Values)
+            {
+                controller.UpdateControllerData();
+            }
         }
     }
 }

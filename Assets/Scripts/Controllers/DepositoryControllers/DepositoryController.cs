@@ -4,14 +4,13 @@ using Controllers.Perks;
 using Controls.InputsControls;
 using Controls.UiControls;
 using Enums;
-using Models;
 using Utils.EnumExtensions;
 using Utils.Ioc;
 
 namespace Controllers.DepositoryControllers
 {
-    [RegistrateInIoc()]
-    public class DepositoryController : IDisposable
+    [RegistrateInIoc(false, true)]
+    public class DepositoryController : ILateInitializable, IDisposable
     {
         [Inject] private CurrenciesInputControl _currenciesInputControl;
         [Inject] private UiInGameControl _uiInGameControl;
@@ -20,27 +19,69 @@ namespace Controllers.DepositoryControllers
         private readonly CurrencyInDepositoryController _currencyInDepositoryController;
         
         private readonly Dictionary<CurrencyType, float> _currencyValues = new();
-        
+        private readonly Dictionary<CurrencyType, int> _currencyBarsCount = new();
+
         public DepositoryController()
         {
             _currencyInDepositoryController = new CurrencyInDepositoryController();
+        }
+        
+        public void Initialize()
+        {
             foreach (var currencyType in EnumExtension.GetAllItems<CurrencyType>())
             {
                 _currencyValues.Add(currencyType, 0);
             }
+        }
+
+        public void LateInitialize()
+        {
             Subscribe();
         }
 
-        public void AddCurrency(CurrencyType currencyType)
+        public float GetCurrencyValue(CurrencyType currencyType)
         {
-           if (!_currencyInDepositoryController.TryAddCurrency(currencyType))
-           {
-               return;
-           }
+            return _currencyValues.TryGetValue(currencyType, out var value) ? value : 0;
+        }
+        
+        public int GetCurrencyBarCount(CurrencyType currencyType)
+        {
+            return _currencyBarsCount.TryGetValue(currencyType, out var value) ? value : 0;
+        }
 
-           var currencyCount = ++_currencyValues[currencyType];
-           
-           _uiInGameControl.UpdateInfo(currencyType, currencyCount);
+        public void AddCurrency(CurrencyType currencyType, float value)
+        {
+            var perkType = PerkType.Undefined;
+            switch (currencyType)
+            {
+                case CurrencyType.Currency0:
+                    perkType = PerkType.Currency0Add;
+                    break;
+                case CurrencyType.Currency1:
+                    perkType = PerkType.Currency1Add;
+                    break;
+                case CurrencyType.Currency2:
+                    perkType = PerkType.Currency2Add;
+                    break;
+                case CurrencyType.Currency3:
+                    perkType = PerkType.Currency3Add;
+                    break;
+                case CurrencyType.Currency4:
+                    perkType = PerkType.Currency4Add;
+                    break;
+            }
+
+            // var data = _perksController.GetPerkData(perkType);
+            //
+            // if (data.Value <= _currencyValues[currencyType])
+            // {
+            //     return;
+            // }
+            //
+            // var nextValue = _currencyValues[currencyType] + value;
+            // _currencyValues[currencyType] = Math.Clamp(nextValue, nextValue, data.Value);
+            //  
+            // _uiInGameControl.UpdateInfo(currencyType, _currencyValues[currencyType]);
         }
 
         private void ClickAddCurrencyBarHandler(CurrencyType currencyType)
@@ -50,12 +91,12 @@ namespace Controllers.DepositoryControllers
 
         private void Subscribe()
         {
-            _currenciesInputControl.NotifyClickAddCurrency += ClickAddCurrencyBarHandler;
+            // _currenciesInputControl.NotifyClickAddCurrency += ClickAddCurrencyBarHandler;
         }
 
         private void UnSubscribe()
         {
-            _currenciesInputControl.NotifyClickAddCurrency -= ClickAddCurrencyBarHandler;
+            // _currenciesInputControl.NotifyClickAddCurrency -= ClickAddCurrencyBarHandler;
         }
 
         public void Dispose()

@@ -8,7 +8,7 @@ using Utils.Ioc;
 
 namespace Controllers.BotController
 {
-    public class BotController : BaseController
+    public class BotController //: BaseController
     {
         [Inject] private TimersService _timersService;
         [Inject] private DepositoryController _depositoryController;
@@ -81,7 +81,7 @@ namespace Controllers.BotController
                     break;
                 case BotLocation.Unload:
                     _botControl.StartMoveToHome();
-                    _depositoryController.AddCurrency(CurrencyType.Currency0);
+                    _depositoryController.AddCurrency(CurrencyType.Currency0, CommonConstants.BotCollectCount);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
