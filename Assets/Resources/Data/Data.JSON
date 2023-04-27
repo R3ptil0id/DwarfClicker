@@ -3,7 +3,6 @@
     {
       "PerkType": "Currency0Max",
       "CurrencyType": "Currency0",
-      "ActiveOnStart" : "true",
       "BasePrice": "1000",
       "Modifier": "2",
       "PriceCount": "Currency0Count",
@@ -13,7 +12,6 @@
     {
       "PerkType": "Currency0Add",
       "CurrencyType": "Currency0",
-      "ActiveOnStart" : "true",
       "BasePrice": "1000",
       "Modifier": "1.5",
       "PriceCount": "Currency0Count",

@@ -1,4 +1,3 @@
-
 using Controllers.BotController;
 using Controllers.DepositoryControllers;
 using Controllers.UiControllers;
@@ -23,6 +22,7 @@ namespace Controllers.GameController
             _workersController = new WorkersController();
             _uiInGameController = new UiInGameController();
             
+            // ReSharper disable once PossibleNullReferenceException
             _timersService.Run();   
         }
     }

@@ -8,7 +8,6 @@ namespace Data.PerksData
     {
         public PerkType PerkType;
         public CurrencyType CurrencyType;
-        public bool ActiveOnStart;
         public int BasePrice;
         public float Modifier;
         public PriceCount PriceCount;

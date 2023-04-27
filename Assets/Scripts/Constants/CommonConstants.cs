@@ -5,8 +5,9 @@ namespace Constants
 {
     public static class CommonConstants
     {
-        public const string ScriptableObjectFolderPath = "Assets/ScriptableObjects";
-        public static readonly Dictionary<CurrencyType, int> CurrencyCountInType = new();
+        public const string CScriptableObjectFolderPath = "Assets/ScriptableObjects";
+        public static readonly Dictionary<CurrencyType, int> CCurrencyCountInType = new();
+        public const int CZero = 0;
 
         public const float PositionXOffsetCurrency = 0.7f;
         public const int MaxCurrency0BarOnStart = 1;
@@ -23,10 +24,10 @@ namespace Constants
                 
         static CommonConstants()
         {
-            CurrencyCountInType.Add(CurrencyType.Currency0, 10);
-            CurrencyCountInType.Add(CurrencyType.Currency1, 10);
-            CurrencyCountInType.Add(CurrencyType.Currency2, 10);
-            CurrencyCountInType.Add(CurrencyType.Currency3, 10);
+            CCurrencyCountInType.Add(CurrencyType.Currency0, 10);
+            CCurrencyCountInType.Add(CurrencyType.Currency1, 10);
+            CCurrencyCountInType.Add(CurrencyType.Currency2, 10);
+            CCurrencyCountInType.Add(CurrencyType.Currency3, 10);
         }
     }
 }

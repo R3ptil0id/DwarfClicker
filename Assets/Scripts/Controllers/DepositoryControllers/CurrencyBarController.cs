@@ -14,7 +14,7 @@ namespace Controllers.DepositoryControllers
         private readonly CurrencyBarControl _control;
         private int _lvl;
         public CurrencyType CurrencyType { get; protected set;}
-        public bool Filled => _lvl == CommonConstants.CurrencyCountInType[CurrencyType];
+        public bool Filled => _lvl == CommonConstants.CCurrencyCountInType[CurrencyType];
 
         public CurrencyBarController(CurrencyBarControl control, Vector3 position)
         {

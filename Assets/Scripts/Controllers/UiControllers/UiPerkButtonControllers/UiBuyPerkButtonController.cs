@@ -1,3 +1,5 @@
+using System;
+using System.Globalization;
 using Controllers.Perks;
 using Controls.UiControls.UiPerkButtonControls;
 using Data.PerksData;
@@ -9,21 +11,36 @@ namespace Controllers.UiControllers.UiPerkButtonControllers
     {
         [Inject] private PerksController _perksController;
 
-        public UiBuyPerkButtonController(PerkData data, IClickListener uiBuyPerkButtonControl) : base(data, uiBuyPerkButtonControl)
+        private const int ToNextLevelValue = 1;
+        
+        public UiBuyPerkButtonController(PerkData data, UiBasePerkButtonControl control) : base(data, control)
         {
+            ((UiBuyPerkButtonControl)_control).AddClickListener(ClickHandler);
         }
 
-        public override void UpdateControllerData()
+        public void UpdateControllerData()
         {
-            if (_uiBuyPerkButtonControl == null)
+            if (_control == null)
                 return;
 
-            var uiBuyPerkButtonControl = ((UiBuyPerkButtonControl)_uiBuyPerkButtonControl);
+            var uiBuyPerkButtonControl = ((UiBuyPerkButtonControl)_control);
             
-            SetText(uiBuyPerkButtonControl.PriceText, _data.Price.ToString());
+            SetText(uiBuyPerkButtonControl.PerkTypeText, _data.PerkType.ToString());
+            SetText(uiBuyPerkButtonControl.PriceText, _data.Price.ToString(CultureInfo.InvariantCulture));
+            SetText(uiBuyPerkButtonControl.PerkLevelText, (_data.Value + ToNextLevelValue).ToString(CultureInfo.InvariantCulture));
             SetText(uiBuyPerkButtonControl.TypePriceText, _data.CurrencyType.ToString());
-            SetText(uiBuyPerkButtonControl.TypeText, _data.PerkType.ToString());
             SetText(uiBuyPerkButtonControl.DescriptionText, "@Some Description");
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            ((IDisposable)_control).Dispose();
+        }
+
+        private void ClickHandler()
+        {
+            _perksController?.BuyPerk(_data.PerkType);
         }
     }
 }

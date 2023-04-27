@@ -31,7 +31,7 @@ namespace Controllers.GameController
         {
             var types = Assembly.GetExecutingAssembly().GetTypes()
                 .Where(t => t.IsDefined(typeof(RegistrateScriptableObjectInIocAttribute))).ToList();
-            var scriptableObjects = Utility.GetAllInstances<ScriptableObject>(CommonConstants.ScriptableObjectFolderPath);
+            var scriptableObjects = Utility.GetAllInstances<ScriptableObject>(CommonConstants.CScriptableObjectFolderPath);
 
             foreach (var scriptableObject in scriptableObjects)
             {

@@ -33,7 +33,6 @@ namespace Utils.JsonUtils
                     ? priceCount
                     : PriceCount.Undefined;
 
-                loadedData[i].ActiveOnStart = node["ActiveOnStart"].AsBool;
                 loadedData[i].BasePrice = node["BasePrice"].AsInt;
                 loadedData[i].Modifier = node["Modifier"].AsFloat;
                 loadedData[i].Value = node["Value"].AsFloat;

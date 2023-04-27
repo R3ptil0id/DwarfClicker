@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
+using Constants;
 using Data.PerksData;
 using Enums;
 
 namespace Models
 {
     public class PerksModel
-    {
+    {   
         private readonly Dictionary<PerkType, PerkData> _perks = new();
         private readonly Dictionary<PerkType, LoadedPerkData> _loadedPerks = new();
-        
         private readonly Dictionary<PriceCount, int> _priceCounts = new();
         
         public event Action UpdatedNotify;
@@ -22,18 +22,30 @@ namespace Models
             foreach (var loadedPerkData in loadedPerks)
             {
                 _loadedPerks.Add(loadedPerkData.PerkType, loadedPerkData);
-                
-                var perk = new PerkData(loadedPerkData);
-                _perks.Add(loadedPerkData.PerkType, perk);
-                
-                if(!_priceCounts.ContainsKey(loadedPerkData.PriceCount) && loadedPerkData.PriceCount != PriceCount.Undefined)
-                    _priceCounts.Add(loadedPerkData.PriceCount, 1);
-                
-                if (loadedPerkData.ActiveOnStart)
-                    ActivePerks.Add(loadedPerkData.PerkType);
-                else
-                    BuyablePerks.Add(loadedPerkData.PerkType);
+                _perks.Add(loadedPerkData.PerkType, new PerkData(loadedPerkData));
             }
+
+            foreach (var perk in _perks)
+            {
+                FillCurrentPerk(perk);    
+            }
+        }
+
+        private void FillCurrentPerk(KeyValuePair<PerkType, PerkData> perkKeyValuePair)
+        {
+            if(!_loadedPerks.TryGetValue(perkKeyValuePair.Key, out var loadedPerkData))
+                return;
+            
+            var perk = perkKeyValuePair.Value;
+            
+            if(!_priceCounts.ContainsKey(loadedPerkData.PriceCount) && loadedPerkData.PriceCount != PriceCount.Undefined)
+                _priceCounts.Add(loadedPerkData.PriceCount, 1);
+                
+            if (loadedPerkData.Value > CommonConstants.CZero)
+                ActivePerks.Add(loadedPerkData.PerkType);
+            
+            if (perk.Value < loadedPerkData.MaxValue)
+                BuyablePerks.Add(loadedPerkData.PerkType);
         }
 
         public void UpdatePerkPriceCount(PerkType type, int count)

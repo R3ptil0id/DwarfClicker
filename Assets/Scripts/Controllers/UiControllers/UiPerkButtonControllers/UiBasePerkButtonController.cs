@@ -1,9 +1,7 @@
 using System;
-using Controllers.Perks;
 using Controls.UiControls.UiPerkButtonControls;
 using Data.PerksData;
 using TMPro;
-using Utils.Ioc;
 
 using Object = UnityEngine.Object;
 
@@ -11,29 +9,19 @@ namespace Controllers.UiControllers.UiPerkButtonControllers
 {
     public abstract class UiBasePerkButtonController : BaseController, IDisposable
     {
-        [Inject] private PerksController _perksController;
-
         protected readonly PerkData _data;
-        protected readonly UiBasePerkButtonControl _uiBuyPerkButtonControl;
-        protected readonly IClickListener _clickListener;
+        protected readonly UiBasePerkButtonControl _control;
         
-        protected UiBasePerkButtonController(PerkData data, IClickListener clickListener)
+        protected UiBasePerkButtonController(PerkData data, UiBasePerkButtonControl control)
         {
             _data = data;
-            _clickListener = clickListener;
-            
-            clickListener.AddClickListener(ClickHandler);
-
-            UpdateControllerData();
+            _control = control;
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
-            ((IDisposable)_clickListener)?.Dispose();
-            Object.Destroy(_uiBuyPerkButtonControl);
+            Object.Destroy(_control);
         }
-
-        public abstract void UpdateControllerData();
         
         protected void SetText(TMP_Text text, string str)
         {
@@ -41,11 +29,6 @@ namespace Controllers.UiControllers.UiPerkButtonControllers
                 return;
 
             text.text = str;
-        }
-
-        private void ClickHandler()
-        {
-            _perksController?.BuyPerk(_data.PerkType);
         }
     }
 }

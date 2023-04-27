@@ -14,7 +14,7 @@ namespace Data.PerksData
             PerkType = loadedPerkData.PerkType;
             Price = loadedPerkData.BasePrice;
             CurrencyType = loadedPerkData.CurrencyType;
-            Value = 0;
+            Value = loadedPerkData.Value;
         }
     }
 }

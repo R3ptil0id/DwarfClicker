@@ -33,9 +33,12 @@ namespace Controllers.UiControllers
             _isEnable = false;
             UpdateInGamePanelState();
             
+            FillNotActivePerks();
+            FillActivePerks();
+            PerksModelUpdatedHandler();
+            
             _inputUiControl.NotifyClickPerkPanel += ClickOpenPerkPanelHandler;
             _perksModel.UpdatedNotify += PerksModelUpdatedHandler;
-            FillButtons();
         }
 
         // public void ActivatePerkInUi(LoadedPerkData loadedPerkData)
@@ -52,12 +55,6 @@ namespace Controllers.UiControllers
         //
         //     _activeButtons.Add(loadedPerkData.PerkType, activeButtonController);
         // }
-        
-        private void FillButtons()
-        {
-            FillNotActivePerks();
-            FillActivePerks();
-        }
 
         private void FillNotActivePerks()
         {
@@ -82,14 +79,11 @@ namespace Controllers.UiControllers
                 var perkData =  _perksModel.GetPerkData(perkType);
                 var loadedPerkData =  _perksModel.GetLoadedPerkData(perkType);
                 
-                if (loadedPerkData.ActiveOnStart)
-                    continue;
-                
                 var buyButtonGameObject =
-                    Object.Instantiate(_uiPrefabs.ActivePerk, _uiPerksControl.BuyingPerksContent.transform);
+                    Object.Instantiate(_uiPrefabs.ActivePerk, _uiPerksControl.ActivePerksContent.transform);
                 
-                var buyButtonControl = buyButtonGameObject.GetComponent<UiActivePerkButtonControl>();
-                var buyButtonController =  new UiActivePerkButtonController(perkData, buyButtonControl);
+                var activeButtonControl = buyButtonGameObject.GetComponent<UiActivePerkButtonControl>();
+                var buyButtonController =  new UiActivePerkButtonController(perkData, activeButtonControl);
         
                 _activeButtons.Add(perkType, buyButtonController);
             }
@@ -109,6 +103,11 @@ namespace Controllers.UiControllers
         private void PerksModelUpdatedHandler()
         {
             foreach (var controller in _buyingButtons.Values)
+            {
+                controller.UpdateControllerData();
+            }
+            
+            foreach (var controller in _activeButtons.Values)
             {
                 controller.UpdateControllerData();
             }
