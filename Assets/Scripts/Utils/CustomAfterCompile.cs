@@ -42,14 +42,14 @@ namespace Utils
                     {
                         scriptableObject.NeedInitializeTypes.Add(type);
                     }
-                    
+
                     if (((RegistrateInIocAttribute)attribute).NeedLateInitialize)
                     {
                         scriptableObject.NeedLateInitializeTypes.Add(type);
                     }
                 }
             }
-            
+
             EditorUtility.SetDirty(scriptableObject);
             
             var rootObjects = new List<GameObject>();

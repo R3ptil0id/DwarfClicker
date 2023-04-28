@@ -27,7 +27,7 @@ namespace Controllers.UiControllers.UiPerkButtonControllers
             
             SetText(uiBuyPerkButtonControl.PerkTypeText, _data.PerkType.ToString());
             SetText(uiBuyPerkButtonControl.PriceText, _data.Price.ToString(CultureInfo.InvariantCulture));
-            SetText(uiBuyPerkButtonControl.PerkLevelText, (_data.Value + ToNextLevelValue).ToString(CultureInfo.InvariantCulture));
+            SetText(uiBuyPerkButtonControl.PerkLevelText, (_data.Level + ToNextLevelValue).ToString(CultureInfo.InvariantCulture));
             SetText(uiBuyPerkButtonControl.TypePriceText, _data.CurrencyType.ToString());
             SetText(uiBuyPerkButtonControl.DescriptionText, "@Some Description");
         }

@@ -9,6 +9,7 @@ namespace Controls.UiControls.UiPerkButtonControls
         public TMP_Text PerkTypeText;
         public TMP_Text PerkLevelText;
         public TMP_Text DescriptionText;
+        public TMP_Text PerkValueText;
         
         public virtual void Dispose()
         {

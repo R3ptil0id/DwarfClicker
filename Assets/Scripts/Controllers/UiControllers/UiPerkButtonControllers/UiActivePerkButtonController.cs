@@ -18,7 +18,8 @@ namespace Controllers.UiControllers.UiPerkButtonControllers
             var uiBuyPerkButtonControl = (UiActivePerkButtonControl)_control;
             
             SetText(uiBuyPerkButtonControl.PerkTypeText, _data.PerkType.ToString());
-            SetText(uiBuyPerkButtonControl.PerkLevelText, _data.Value.ToString(CultureInfo.InvariantCulture));
+            SetText(uiBuyPerkButtonControl.PerkLevelText, _data.Level.ToString(CultureInfo.InvariantCulture));
+            SetText(uiBuyPerkButtonControl.PerkValueText, _data.Value.ToString(CultureInfo.InvariantCulture));
             SetText(uiBuyPerkButtonControl.DescriptionText, "@Some Description");
         }
     }

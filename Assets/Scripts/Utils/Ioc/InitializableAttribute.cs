@@ -10,7 +10,7 @@ namespace Utils.Ioc
         public InitializableAttribute(bool needInitialize, bool needLateInitialize)
         {
             NeedInitialize = needInitialize;
-            NeedLateInitialize = NeedLateInitialize;
+            NeedLateInitialize = needLateInitialize;
         }
     }
 }

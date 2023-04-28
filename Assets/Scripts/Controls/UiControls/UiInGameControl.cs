@@ -20,7 +20,7 @@ namespace Controls.UiControls
 
         public void UpdateInfo(CurrencyType type, float currencyValue)
         {
-            var str = $"{currencyValue:D10}";
+            var str = $"{(int)currencyValue:D10}"; //TODO real format
             switch (type)
             {
                 case CurrencyType.Currency0:

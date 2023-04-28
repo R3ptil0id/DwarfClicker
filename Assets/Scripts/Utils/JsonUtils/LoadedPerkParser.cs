@@ -24,6 +24,10 @@ namespace Utils.JsonUtils
                 loadedData[i].PerkType = Enum.TryParse(node["PerkType"], out PerkType perkType)
                     ? perkType
                     : PerkType.Undefined;
+                
+                loadedData[i].DependencyPerkType = Enum.TryParse(node["DependencyPerkType"], out PerkType dependencyPerkType)
+                    ? dependencyPerkType
+                    : PerkType.Undefined;
 
                 loadedData[i].CurrencyType = Enum.TryParse(node["CurrencyType"], out CurrencyType currencyType)
                     ? currencyType
@@ -34,9 +38,10 @@ namespace Utils.JsonUtils
                     : PriceCount.Undefined;
 
                 loadedData[i].BasePrice = node["BasePrice"].AsInt;
+                loadedData[i].DependencyPerkLevel = node["DependencyPerkLevel"].AsInt;
                 loadedData[i].Modifier = node["Modifier"].AsFloat;
-                loadedData[i].Value = node["Value"].AsFloat;
-                loadedData[i].MaxValue = node["MaxValue"].AsFloat;
+                loadedData[i].Value = node["Value"].AsInt;
+                loadedData[i].MaxValue = node["MaxValue"].AsInt;
             }
 
             return loadedData;

@@ -9,8 +9,9 @@ using Utils.Ioc;
 
 namespace Controllers.DepositoryControllers
 {
-    [RegistrateInIoc(false, true)]
-    public class DepositoryController : ILateInitializable, IDisposable
+    [RegistrateInIoc(true, true)]
+    // ReSharper disable once ClassNeverInstantiated.Global
+    public class DepositoryController : IInitializable, ILateInitializable, IDisposable
     {
         [Inject] private CurrenciesInputControl _currenciesInputControl;
         [Inject] private UiInGameControl _uiInGameControl;
@@ -39,49 +40,50 @@ namespace Controllers.DepositoryControllers
             Subscribe();
         }
 
-        public float GetCurrencyValue(CurrencyType currencyType)
+        public bool TrySpendCurrency(CurrencyType currencyType, float price)
         {
-            return _currencyValues.TryGetValue(currencyType, out var value) ? value : 0;
-        }
-        
-        public int GetCurrencyBarCount(CurrencyType currencyType)
-        {
-            return _currencyBarsCount.TryGetValue(currencyType, out var value) ? value : 0;
-        }
+            if (!_currencyValues.TryGetValue(currencyType, out var value) || value < price) 
+                return false;
+            
+            _currencyValues[currencyType] -= price;
+            _uiInGameControl.UpdateInfo(currencyType, _currencyValues[currencyType]);
+                
+            return true;
 
-        public void AddCurrency(CurrencyType currencyType, float value)
+        }
+        public void AddCurrency(CurrencyType currencyType, int value)
         {
             var perkType = PerkType.Undefined;
             switch (currencyType)
             {
                 case CurrencyType.Currency0:
-                    perkType = PerkType.Currency0Add;
+                    perkType = PerkType.Currency0Max;
                     break;
                 case CurrencyType.Currency1:
-                    perkType = PerkType.Currency1Add;
+                    perkType = PerkType.Currency1Max;
                     break;
                 case CurrencyType.Currency2:
-                    perkType = PerkType.Currency2Add;
+                    perkType = PerkType.Currency2Max;
                     break;
                 case CurrencyType.Currency3:
-                    perkType = PerkType.Currency3Add;
+                    perkType = PerkType.Currency3Max;
                     break;
                 case CurrencyType.Currency4:
-                    perkType = PerkType.Currency4Add;
+                    perkType = PerkType.Currency4Max;
                     break;
             }
 
-            // var data = _perksController.GetPerkData(perkType);
-            //
-            // if (data.Value <= _currencyValues[currencyType])
-            // {
-            //     return;
-            // }
-            //
-            // var nextValue = _currencyValues[currencyType] + value;
-            // _currencyValues[currencyType] = Math.Clamp(nextValue, nextValue, data.Value);
-            //  
-            // _uiInGameControl.UpdateInfo(currencyType, _currencyValues[currencyType]);
+            var data = _perksController.GetPerkData(perkType);
+            
+            if (data.Value <= _currencyValues[currencyType])
+            {
+                return;
+            }
+            
+            var nextValue = _currencyValues[currencyType] + value;
+            _currencyValues[currencyType] = Math.Min(nextValue, data.Value);
+             
+            _uiInGameControl.UpdateInfo(currencyType, _currencyValues[currencyType]);
         }
 
         private void ClickAddCurrencyBarHandler(CurrencyType currencyType)

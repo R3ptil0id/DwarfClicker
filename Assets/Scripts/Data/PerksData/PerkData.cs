@@ -7,7 +7,8 @@ namespace Data.PerksData
         public PerkType PerkType;
         public CurrencyType CurrencyType;
         public float Price;
-        public float Value;
+        public int Value;
+        public int Level;
 
         public PerkData(LoadedPerkData loadedPerkData)
         {
@@ -15,6 +16,7 @@ namespace Data.PerksData
             Price = loadedPerkData.BasePrice;
             CurrencyType = loadedPerkData.CurrencyType;
             Value = loadedPerkData.Value;
+            Level = 1;
         }
     }
 }

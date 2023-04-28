@@ -37,14 +37,14 @@ namespace Controllers.Perks
         public void BuyPerk(PerkType perkType)
         {
             var data = _perksModel.GetPerkData(perkType);
-            if (data == null || _depositoryController.GetCurrencyValue(data.CurrencyType) < data.Price)
+            // if (data == null || _depositoryController.GetCurrencyValue(data.CurrencyType) < data.Price)
+            if (data == null || !_depositoryController.TrySpendCurrency(data.CurrencyType, data.Price))
             {
                 //TODO maybe fire some action for showing warning or play bump sound
                 return;
             }
 
             _perksModel.BuyPerk(perkType);
-            // _perksModel.UpdatePrice(perkType, 0);
         }
     }
 }

@@ -2,15 +2,19 @@
   "DataArray": [
     {
       "PerkType": "Currency0Max",
+      "DependencyPerkType": "Undefined",
+      "DependencyPerkLevel": "0",
       "CurrencyType": "Currency0",
       "BasePrice": "1000",
       "Modifier": "2",
       "PriceCount": "Currency0Count",
-      "Value": "1",
-      "MaxValue": "4"
+      "Value": "1000",
+      "MaxValue": "4000"
     },
     {
       "PerkType": "Currency0Add",
+      "DependencyPerkType": "Undefined",
+      "DependencyPerkLevel": "0",
       "CurrencyType": "Currency0",
       "BasePrice": "1000",
       "Modifier": "1.5",
