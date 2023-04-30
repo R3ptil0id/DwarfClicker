@@ -31,7 +31,7 @@ namespace Controls.GameElements.Workers
             _coroutiner.StartCoroutine(StartAnimation());
         }
 
-        public void Initialize(Vector3 startPosition)
+        public void SetToPosition(Vector3 startPosition)
         {
             transform.position = startPosition;
         }

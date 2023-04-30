@@ -17,13 +17,10 @@ namespace Controllers.Workers
         public WorkerController(WorkerControl control, Vector3 position)
         {
             _control = control;
-            Initialize(control, position);
-        }
-
-        private void Initialize(WorkerControl control, Vector3 position)
-        {
             _control.transform.SetParent(_objectsInstaller.MinerShaftStartPoint);
-            _control.Initialize(position);
+            _control.Initialize();
+            _control.SetToPosition(position);
+            
             WorkerType = control.WorkerType;
         }
     }

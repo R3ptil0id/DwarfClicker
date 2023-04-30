@@ -14,7 +14,9 @@ namespace Controls.GameElements.CurrencyBar
         [SerializeField] private Transform _fill;
 
         private Vector3 _startPosition;
+        #pragma warning disable 414
         private IFuture _future;
+        #pragma warning restore
         
         public Action NotifyAnimationAddingBarComplete;
         

@@ -55,7 +55,7 @@ namespace Controllers.Workers
                     }
 
                     workerType = component.WorkerType;
-                    component.Initialize(_parentObject.position);
+                    component.SetToPosition(_parentObject.position);
                     list.Add(component);
                 }
 

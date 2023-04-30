@@ -51,7 +51,7 @@ namespace Controllers.DepositoryControllers
             return true;
 
         }
-        public void AddCurrency(CurrencyType currencyType, int value)
+        public void AddCurrency(CurrencyType currencyType, float value)
         {
             var perkType = PerkType.Undefined;
             switch (currencyType)
