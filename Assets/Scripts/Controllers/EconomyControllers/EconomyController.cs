@@ -11,20 +11,20 @@ namespace Controllers.DepositoryControllers
 {
     [RegistrateInIoc(true, true)]
     // ReSharper disable once ClassNeverInstantiated.Global
-    public class DepositoryController : IInitializable, ILateInitializable, IDisposable
+    public class EconomyController : IInitializable, ILateInitializable, IDisposable
     {
         [Inject] private CurrenciesInputControl _currenciesInputControl;
         [Inject] private UiInGameControl _uiInGameControl;
         [Inject] private PerksController _perksController;
         
-        private readonly CurrencyInDepositoryController _currencyInDepositoryController;
+        // private readonly CurrencyInDepositoryController _currencyInDepositoryController;
         
         private readonly Dictionary<CurrencyType, float> _currencyValues = new();
         private readonly Dictionary<CurrencyType, int> _currencyBarsCount = new();
 
-        public DepositoryController()
+        public EconomyController()
         {
-            _currencyInDepositoryController = new CurrencyInDepositoryController();
+            // _currencyInDepositoryController = new CurrencyInDepositoryController();
         }
         
         public void Initialize()
@@ -53,32 +53,32 @@ namespace Controllers.DepositoryControllers
         }
         public void AddCurrency(CurrencyType currencyType, float value)
         {
-            var perkType = PerkType.Undefined;
-            switch (currencyType)
-            {
-                case CurrencyType.Currency0:
-                    perkType = PerkType.Currency0Max;
-                    break;
-                case CurrencyType.Currency1:
-                    perkType = PerkType.Currency1Max;
-                    break;
-                case CurrencyType.Currency2:
-                    perkType = PerkType.Currency2Max;
-                    break;
-                case CurrencyType.Currency3:
-                    perkType = PerkType.Currency3Max;
-                    break;
-                case CurrencyType.Currency4:
-                    perkType = PerkType.Currency4Max;
-                    break;
-            }
-
-            var data = _perksController.GetPerkData(perkType);
-            
-            if (data.Value <= _currencyValues[currencyType])
-            {
-                return;
-            }
+            // var perkType = PerkType.Undefined;
+            // switch (currencyType)
+            // {
+            //     case CurrencyType.Currency0:
+            //         perkType = PerkType.Currency0Max;
+            //         break;
+            //     case CurrencyType.Currency1:
+            //         perkType = PerkType.Currency1Max;
+            //         break;
+            //     case CurrencyType.Currency2:
+            //         perkType = PerkType.Currency2Max;
+            //         break;
+            //     case CurrencyType.Currency3:
+            //         perkType = PerkType.Currency3Max;
+            //         break;
+            //     case CurrencyType.Currency4:
+            //         perkType = PerkType.Currency4Max;
+            //         break;
+            // }
+            //
+            // var data = _perksController.GetPerkData(perkType);
+            //
+            // if (data.Value <= _currencyValues[currencyType])
+            // {
+            //     return;
+            // }
             
             var nextValue = _currencyValues[currencyType] + value;
             _currencyValues[currencyType] = Math.Min(nextValue, data.Value);
@@ -88,7 +88,7 @@ namespace Controllers.DepositoryControllers
 
         private void ClickAddCurrencyBarHandler(CurrencyType currencyType)
         {
-            _currencyInDepositoryController.AddCurrencyBar(currencyType);
+            // _currencyInDepositoryController.AddCurrencyBar(currencyType);
         }
 
         private void Subscribe()

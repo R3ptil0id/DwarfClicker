@@ -21,6 +21,28 @@
       "PriceCount": "Currency0Count",
       "Value": "1",
       "MaxValue": "4"
+    },
+    {
+      "PerkType": "Currency1Open",
+      "DependencyPerkType": "Currency0Max",
+      "DependencyPerkLevel": "2",
+      "CurrencyType": "Currency0",
+      "BasePrice": "3000",
+      "Modifier": "1",
+      "PriceCount": "Undefined",
+      "Value": "1",
+      "MaxValue": "1"
+    },
+    {
+      "PerkType": "Currency1Max",
+      "DependencyPerkType": "Currency1Open",
+      "DependencyPerkLevel": "1",
+      "CurrencyType": "Currency1",
+      "BasePrice": "1000",
+      "Modifier": "2",
+      "PriceCount": "Currency1Count",
+      "Value": "1",
+      "MaxValue": "1"
     }
   ]
 }

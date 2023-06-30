@@ -17,7 +17,7 @@ namespace Controllers.Perks
         [Inject] private LoadedData _loadedData;
         [Inject] private UiPerksControl _perksControl;
         [Inject] private InputUiControl _inputUiControl;
-        [Inject] private DepositoryController _depositoryController;
+        [Inject] private EconomyController _economyController;
         [Inject] private UiPrefabs _uiPrefabs;
 
         private PerksModel _perksModel;
@@ -38,7 +38,7 @@ namespace Controllers.Perks
         {
             var data = _perksModel.GetPerkData(perkType);
             // if (data == null || _depositoryController.GetCurrencyValue(data.CurrencyType) < data.Price)
-            if (data == null || !_depositoryController.TrySpendCurrency(data.CurrencyType, data.Price))
+            if (data == null || !_economyController.TrySpendCurrency(data.CurrencyType, data.Price))
             {
                 //TODO maybe fire some action for showing warning or play bump sound
                 return;

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Controls;
-using Controls.GameElements.CurrencyBar;
+// using Controls.GameElements.CurrencyBar;
 using Controls.GameElements.Workers;
 using Enums;
 using ScriptableObjects;
@@ -84,9 +84,9 @@ namespace Controllers.Workers
             return control;
         }
 
-        public void Release(CurrencyBarControl control)
-        {
-            control.Release();
-        }
+        // public void Release(CurrencyBarControl control)
+        // {
+        //     control.Release();
+        // }
     }
 }

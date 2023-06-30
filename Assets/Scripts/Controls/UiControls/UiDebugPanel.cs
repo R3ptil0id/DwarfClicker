@@ -9,7 +9,7 @@ namespace Controls.UiControls
 {
     public class UiDebugPanel : BaseControl
     {
-        [Inject] private DepositoryController _depositoryController;
+        [Inject] private EconomyController _economyController;
         [Inject] private CurrenciesInputControl _currenciesInputControl;
 
         [SerializeField] private TMP_InputField _inputField;
@@ -43,31 +43,31 @@ namespace Controls.UiControls
         public void ClickAddCurrency0()
         {
             if (GetValue(out var value)) 
-                _depositoryController.AddCurrency(CurrencyType.Currency0, value);
+                _economyController.AddCurrency(CurrencyType.Currency0, value);
         }
 
         public void ClickAddCurrency1()
         {
             if (GetValue(out var value)) 
-                _depositoryController.AddCurrency(CurrencyType.Currency1, value);
+                _economyController.AddCurrency(CurrencyType.Currency1, value);
         }
         
         public void ClickAddCurrency2()
         {
             if (GetValue(out var value))
-                _depositoryController.AddCurrency(CurrencyType.Currency2, value);
+                _economyController.AddCurrency(CurrencyType.Currency2, value);
         }
         
         public void ClickAddCurrency3()
         {
             if (GetValue(out var value)) 
-                _depositoryController.AddCurrency(CurrencyType.Currency3, value);
+                _economyController.AddCurrency(CurrencyType.Currency3, value);
         }
         
         public void ClickAddCurrency4()
         {
             if (GetValue(out var value))
-                _depositoryController.AddCurrency(CurrencyType.Currency4, value);
+                _economyController.AddCurrency(CurrencyType.Currency4, value);
         }
         #endregion
 

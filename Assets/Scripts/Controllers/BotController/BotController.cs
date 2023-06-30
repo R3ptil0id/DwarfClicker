@@ -11,7 +11,7 @@ namespace Controllers.BotController
     public class BotController //: BaseController
     {
         [Inject] private TimersService _timersService;
-        [Inject] private DepositoryController _depositoryController;
+        [Inject] private EconomyController _economyController;
         
         private readonly BotControl _botControl;
         
@@ -81,7 +81,7 @@ namespace Controllers.BotController
                     break;
                 case BotLocation.Unload:
                     _botControl.StartMoveToHome();
-                    _depositoryController.AddCurrency(CurrencyType.Currency0, CommonConstants.BotCollectCount);
+                    _economyController.AddCurrency(CurrencyType.Currency0, CommonConstants.BotCollectCount);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
